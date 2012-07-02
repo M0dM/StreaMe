@@ -1,4 +1,4 @@
 StreaMe
 =======
 
-A streaming client based on Java Media Framework for Shoot-casters or Gamers
+A streaming client (under GPL) based on Xuggler Library for Shoot-casters or Gamers
