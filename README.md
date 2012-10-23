@@ -1,4 +1,5 @@
 StreaMe
 =======
 
-A streaming client (under GPL License) based on Xuggler Library for shoot-casters, gamers or lecturers.
+A C++ cross-platform streaming video client (under GPL License) 
+based on FFmpg and Qt Libraries for gamers, lecturers or artists.
