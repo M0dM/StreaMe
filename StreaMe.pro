@@ -20,3 +20,6 @@ HEADERS  += mainwindow.h \
     controllerview.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    New.qrc

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/play">
+        <file>player-icone-7795-16.png</file>
+    </qresource>
+</RCC>

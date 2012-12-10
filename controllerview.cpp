@@ -1,12 +1,12 @@
 #include "controllerview.h"
 #include "mainwindow.h"
-
+#include <QApplication>
 #include <iostream>
 using namespace std;
 
 ControllerView::ControllerView()
 {
-    mainWindow();
+    //mainWindow();
 }
 
 void ControllerView::mainWindow(){

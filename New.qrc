@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/new/Play">
+        <file>player-icone-7795-16.png</file>
+    </qresource>
+    <qresource prefix="/new/Previous">
+        <file>first-resultset-icone-8101-16.png</file>
+    </qresource>
+    <qresource prefix="/new/Stop">
+        <file>stop-command-blue-icone-6073-16.png</file>
+    </qresource>
+</RCC>
