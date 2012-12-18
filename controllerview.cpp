@@ -9,8 +9,6 @@ ControllerView::ControllerView()
 }
 void ControllerView::mainWindow(){
 
-    MainWindow w;
-    w.showMaximized();
-    cout << "yoooo"<<endl;
-
+    MainWindow * w = new MainWindow;
+    w->showMaximized();
 }
