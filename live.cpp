@@ -1,5 +1,6 @@
 #include "live.h"
 
-Live::Live()
+Live::Live(Project * project)
 {
+    this->project=project;
 }

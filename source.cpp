@@ -1,5 +1,6 @@
 #include "source.h"
 
-Source::Source()
+Source::Source(Project * project)
 {
+    this->project=project;
 }

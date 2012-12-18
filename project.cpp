@@ -2,5 +2,5 @@
 
 Project::Project(Controller* controller)
 {
-    this->controller=*controller;
+    this->controller=controller;
 }
