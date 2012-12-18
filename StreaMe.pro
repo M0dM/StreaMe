@@ -17,9 +17,7 @@ SOURCES += main.cpp\
     project.cpp \
     source.cpp \
     live.cpp \
-    controllerencoding.cpp \
     controller.cpp \
-    controllerapi.cpp
 
 HEADERS  += mainwindow.h \
     project.h \

@@ -2,7 +2,7 @@
 
 Controller::Controller()
 {
-    this->mainwindow = new MainWindow();
+    this->mainwindow = new MainWindow(this);
 }
 
 void Controller::ShowMainWindow(){

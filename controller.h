@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 #include "mainwindow.h"
+class MainWindow;
 class Controller
 {
 public:
