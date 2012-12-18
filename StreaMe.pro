@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    controllerview.cpp \
     project.cpp \
     source.cpp \
     live.cpp \
@@ -23,13 +22,10 @@ SOURCES += main.cpp\
     controllerapi.cpp
 
 HEADERS  += mainwindow.h \
-    controllerview.h \
     project.h \
     source.h \
     live.h \
-    controllerencoding.h \
-    controller.h \
-    controllerapi.h
+    controller.h
 
 FORMS    += mainwindow.ui
 

@@ -1,12 +1,12 @@
 #ifndef PROJECT_H
 #define PROJECT_H
-#include "controllerview.h"
+#include "controller.h"
 class Project
 {
 public:
-    Project(ControllerView* controller);
+    Project(Controller* controller);
 private:
-    ControllerView controller;
+    Controller controller;
 };
 
 #endif // PROJECT_H

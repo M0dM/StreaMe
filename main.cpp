@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "controllerview.h"
+#include "controller.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,8 +11,8 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    ControllerView controllerView;
-    controllerView.ShowMainWindow();
+    Controller controller;
+    controller.ShowMainWindow();
     return a.exec();
 
 

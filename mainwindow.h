@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "controllerview.h"
+#include "controller.h"
 namespace Ui {
 class MainWindow;
 }
@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
-    ControllerView controller;
+    Controller controller;
 
 };
 
