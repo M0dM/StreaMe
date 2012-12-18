@@ -1,5 +1,6 @@
 #include "project.h"
 
-Project::Project()
+Project::Project(ControllerView* controller)
 {
+    this->controller=*controller;
 }

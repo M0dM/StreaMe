@@ -1,15 +1,12 @@
 #include "controllerview.h"
-#include "mainwindow.h"
 #include <QApplication>
 #include <iostream>
 using namespace std;
 
 ControllerView::ControllerView()
 {
+    this->mainwindow = new MainWindow(this);
 }
-void ControllerView::mainWindow(){
-    MainWindow w;
-    w.showMaximized();
-    cout << "yoooo"<<endl;
-
+void ControllerView::ShowMainWindow(){
+    this->mainwindow->showMaximized();
 }
