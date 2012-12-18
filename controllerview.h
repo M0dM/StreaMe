@@ -1,7 +1,7 @@
 #ifndef CONTROLLERVIEW_H
 #define CONTROLLERVIEW_H
 
-class ControllerView
+class ControllerView : public Controller
 {
 public:
     ControllerView();

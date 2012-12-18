@@ -14,10 +14,22 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    controllerview.cpp
+    controllerview.cpp \
+    project.cpp \
+    source.cpp \
+    live.cpp \
+    controllerencoding.cpp \
+    controller.cpp \
+    controllerapi.cpp
 
 HEADERS  += mainwindow.h \
-    controllerview.h
+    controllerview.h \
+    project.h \
+    source.h \
+    live.h \
+    controllerencoding.h \
+    controller.h \
+    controllerapi.h
 
 FORMS    += mainwindow.ui
 
