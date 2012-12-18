@@ -6,13 +6,11 @@ using namespace std;
 
 ControllerView::ControllerView()
 {
-    //mainWindow();
 }
-
 void ControllerView::mainWindow(){
 
     MainWindow w;
-    w.show();
+    w.showMaximized();
     cout << "yoooo"<<endl;
 
 }

@@ -6,8 +6,9 @@ class ControllerView : public Controller
 {
 public:
     ControllerView();
+    void mainWindow();
 private:
-   void mainWindow();
+
 };
 
 #endif // CONTROLLERVIEW_H

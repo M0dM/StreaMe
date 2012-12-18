@@ -10,10 +10,11 @@ int main(int argc, char *argv[])
     ControllerView controllerView();
     return a.exec();*/
 
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.showMaximized();
 
+    QApplication a(argc, argv);
+
+    ControllerView controllerView;
+    controllerView.mainWindow();
     return a.exec();
 
 
