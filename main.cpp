@@ -1,6 +1,4 @@
-#include "mainwindow.h"
 #include <QApplication>
-
 #include "controllerview.h"
 
 int main(int argc, char *argv[])

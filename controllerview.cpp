@@ -5,7 +5,7 @@ using namespace std;
 
 ControllerView::ControllerView()
 {
-    this->mainwindow = new MainWindow(this);
+    this->mainwindow = new MainWindow();
 }
 void ControllerView::ShowMainWindow(){
     this->mainwindow->showMaximized();
