@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
     return a.exec();*/
 
 
-    QApplication a(argc, argv);
+   // QApplication a(argc, argv);
 
     ControllerView controllerView;
     controllerView.mainWindow();
-    return a.exec();
+    //return a.exec();
 
 
 }

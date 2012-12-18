@@ -8,7 +8,6 @@ ControllerView::ControllerView()
 {
 }
 void ControllerView::mainWindow(){
-
     MainWindow w;
     w.showMaximized();
     cout << "yoooo"<<endl;
