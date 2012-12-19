@@ -1,6 +1,7 @@
 #ifndef SOURCE_H
 #define SOURCE_H
 #include "project.h"
+class Project;
 class Source
 {
 public:

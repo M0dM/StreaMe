@@ -1,0 +1,14 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libavformat
+Description: Libav container format library
+Version: 54.19.0
+Requires: 
+Requires.private: libavcodec = 54.33.0
+Conflicts:
+Libs: -L${libdir} -lavformat 
+Libs.private: -lavicap32 -lws2_32 -lx264 -lvpx -lvpx -lvorbisenc -lvorbis -logg -lvo-aacenc -L/usr/x86_64-w64-mingw32/usr/lib -lrtmp -lpolarssl -lz -lws2_32 -lwinmm -lgdi32 -lmp3lame -lavifil32 -lm -lz -lpsapi -ladvapi32 -lshell32
+Cflags: -I${includedir}
