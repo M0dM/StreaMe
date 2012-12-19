@@ -34,8 +34,8 @@ LIBS     += $$PWD/libav-win64-20121113/usr/bin/avcodec.lib \
          $$PWD/libav-win64-20121113/usr/bin/avresample.lib \
          $$PWD/libav-win64-20121113/usr/bin/avutil.lib \
          $$PWD/libav-win64-20121113/usr/bin/swscale.lib \
-         -L"C:\Program Files (x86)\VideoLAN\VLC\sdk\lib" \
-         -lvlc
+         -L*$$PWD/vlc/sdk/lib/libvlc.lib* \
+         -L*$$PWD/vlc/sdk/lib/libvlccore.lib*
 
 RESOURCES += \
     New.qrc
