@@ -1,5 +1,4 @@
 #include "controller.h"
-
 Controller::Controller()
 {
     this->mainwindow = new MainWindow(this);
