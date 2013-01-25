@@ -1,13 +1,23 @@
 #ifndef SOURCE_H
 #define SOURCE_H
-#include "project.h"
-class Project;
+
+#include <string>
+
+using namespace std;
+
+class WinAvTools;
+
 class Source
 {
 public:
-    Source(Project * project);
+    Source(WinAvTools *avTools, std::string name ="null", string type="null");
+    string getName();
+    string getType();
+
 private:
-    Project * project;
+    WinAvTools *avTools;
+    string name;
+    string type;
 };
 
 #endif // SOURCE_H

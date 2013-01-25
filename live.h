@@ -1,7 +1,8 @@
 #ifndef LIVE_H
 #define LIVE_H
-#include "project.h"
+
 class Project;
+
 class Live
 {
 private:

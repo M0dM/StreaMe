@@ -1,11 +1,13 @@
 #ifndef PROJECT_H
 #define PROJECT_H
-#include "controller.h"
+
 #include "source.h"
 #include "live.h"
+
 class Controller;
 class Source;
 class Live;
+
 class Project
 {
 public:

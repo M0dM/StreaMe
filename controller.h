@@ -1,17 +1,27 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+
 #include "mainwindow.h"
 #include "project.h"
+#include "streamtools.h"
+
+
 class MainWindow;
 class Project;
+class StreamTools;
+
 class Controller
 {
 public:
     Controller();
     void ShowMainWindow();
+    void displayVideoSources();
+    void displayAudioSources();
+
 private:
     MainWindow * mainwindow;
-    Project* project;
+    Project *project;
+    StreamTools *streamTools;
 };
 
 #endif // CONTROLLER_H
