@@ -16,7 +16,7 @@ void Controller::displayVideoSources(){
 
     vector<Source> videoDevices = streamTools->getVideoSources();
 
-    for(int i(0); i < videoDevices.size(); i++){
+    for(unsigned int i(0); i < videoDevices.size(); i++){
         cout << videoDevices[i].getName() << endl;
     }
 }
@@ -25,7 +25,7 @@ void Controller::displayAudioSources(){
 
     vector<Source> audioDevices = streamTools->getAudioSources();
 
-    for(int i(0); i < audioDevices.size(); i++){
+    for(unsigned int i(0); i < audioDevices.size(); i++){
         cout << audioDevices[i].getName() << endl;
     }
 }
