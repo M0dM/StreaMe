@@ -8,6 +8,11 @@ Controller::Controller()
 
 }
 
+Controller::~Controller(){
+    delete this->mainwindow;
+    delete this->streamTools;
+}
+
 void Controller::ShowMainWindow(){
     this->mainwindow->showMaximized();
 }

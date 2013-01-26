@@ -14,6 +14,7 @@ class Controller
 {
 public:
     Controller();
+    ~Controller();
     void ShowMainWindow();
     void displayVideoSources();
     void displayAudioSources();
