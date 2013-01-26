@@ -23,6 +23,8 @@ public:
     WinAvTools();
     std::vector<Source> getVideoSources() const;
     std::vector<Source> getAudioSources() const;
+    Source peekVideoSource() const;
+    Source peekAudioSource() const;
 
 private:
     std::vector<Source> audioSources;

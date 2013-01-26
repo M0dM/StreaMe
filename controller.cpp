@@ -34,3 +34,7 @@ void Controller::displayAudioSources(){
         cout << audioDevices[i].getName() << endl;
     }
 }
+
+void Controller::captureFileTest(){
+    streamTools->captureVideoFile(15,"superfast","out.mp4");
+}

@@ -2,6 +2,8 @@
 #define STREAMTOOLS_H
 
 #include "windows.h"
+#include <string>
+
 #include "winavtools.h"
 
 
@@ -9,10 +11,15 @@ class StreamTools : public WinAvTools
 {
 public:
     StreamTools(Controller *controller);
-    void captureVideoFile(int time) const; // time = seconds
+    void captureVideoFile(int time = 10, std::string preset = "ultrafast", std::string file = "out.mp4");
+    void captureAudioVideoFile(int time = 10, std::string preset = "ultrafast", std::string file = "out.mp4");
 
 private:
     Controller *controller;
+    std::string streamCommand;
+    std::string getStreamCommand();
+    void setStreamCommand(std::string streamCommand);
+
 };
 
 #endif // STREAMTOOLS_H

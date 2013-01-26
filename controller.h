@@ -18,6 +18,7 @@ public:
     void ShowMainWindow();
     void displayVideoSources();
     void displayAudioSources();
+    void captureFileTest();
 
 private:
     MainWindow * mainwindow;

@@ -15,6 +15,13 @@ vector<Source> WinAvTools::getVideoSources() const{
     return this->videoSources;
 }
 
+Source WinAvTools::peekVideoSource() const{
+    return videoSources.front();
+}
+Source WinAvTools::peekAudioSource() const{
+    return audioSources.front();
+}
+
 string WinAvTools::getDevicesCommand() const{
     return this->devicesCommand;
 }
@@ -28,11 +35,11 @@ void WinAvTools::setAudioSources(vector<Source> audioSources){
 }
 
 void WinAvTools::setDevicesCommand(string videoDevice){
-    this->devicesCommand = "-f dshow -i video=\"" + videoDevice + "\" ";
+    this->devicesCommand = "video=" + videoDevice;
 }
 
 void WinAvTools::setDevicesCommand(string videoDevice, string audioDevice){
-    this->devicesCommand = "-f dshow -i video=\"" + videoDevice + "\":audio=\""+ audioDevice + "\" ";
+    this->devicesCommand = "video=" + videoDevice + ":audio="+ audioDevice;
 }
 
 void WinAvTools::pushVideoSource(Source videoSource){
@@ -120,6 +127,8 @@ void WinAvTools::detectSources(){
     }
     else
         cout << "Error while starting FFmpeg dshow devices list command" << endl; //REPLACE BY EXCEPTION
+
+    process->kill();
 }
 
 

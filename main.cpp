@@ -15,10 +15,8 @@ int main(int argc, char *argv[])
 
     controller.ShowMainWindow();
 
-    cout << "Video devices : " << endl;
-    controller.displayVideoSources();
-    cout << "Audio devices : " << endl;
-    controller.displayAudioSources();
+    controller.captureFileTest();
 
     return a.exec();
+
 }
