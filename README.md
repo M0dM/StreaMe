@@ -1,4 +1,4 @@
 StreaMe
 =======
 
-A streaming client based on Java Media Framework for Shoot-casters or Gamers
+StreaMe is a cross-platform live streaming broadcasting client, written in C++. 
