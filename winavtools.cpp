@@ -7,15 +7,15 @@ WinAvTools::WinAvTools()
     detectSources();
 }
 
-vector<Source> WinAvTools::getAudioSources(){
+vector<Source> WinAvTools::getAudioSources() const{
     return this->audioSources;
 }
 
-vector<Source> WinAvTools::getVideoSources(){
+vector<Source> WinAvTools::getVideoSources() const{
     return this->videoSources;
 }
 
-string WinAvTools::getDevicesCommand(){
+string WinAvTools::getDevicesCommand() const{
     return this->devicesCommand;
 }
 

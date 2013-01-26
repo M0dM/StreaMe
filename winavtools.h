@@ -21,8 +21,8 @@ class WinAvTools
 {
 public:
     WinAvTools();
-    std::vector<Source> getVideoSources();
-    std::vector<Source> getAudioSources();
+    std::vector<Source> getVideoSources() const;
+    std::vector<Source> getAudioSources() const;
 
 private:
     std::vector<Source> audioSources;
@@ -35,7 +35,7 @@ private:
 
 protected:
     std::string devicesCommand; // the attribute part of the ffmpeg command that is dependent of the OS
-    std::string getDevicesCommand();
+    std::string getDevicesCommand() const;
     void setDevicesCommand(std::string videoDevice);
     void setDevicesCommand(std::string videoDevice, std::string audioDevice);
 };
