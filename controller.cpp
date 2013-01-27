@@ -19,22 +19,22 @@ void Controller::ShowMainWindow(){
 
 void Controller::displayVideoSources(){
 
-    vector<Source> videoDevices = streamTools->getVideoSources();
+    vector<Source*> videoDevices = streamTools->getVideoSources();
 
     for(unsigned int i(0); i < videoDevices.size(); i++){
-        cout << videoDevices[i].getName() << endl;
+        cout << videoDevices[i]->getName() << endl;
     }
 }
 
 void Controller::displayAudioSources(){
 
-    vector<Source> audioDevices = streamTools->getAudioSources();
+    vector<Source*> audioDevices = streamTools->getAudioSources();
 
     for(unsigned int i(0); i < audioDevices.size(); i++){
-        cout << audioDevices[i].getName() << endl;
+        cout << audioDevices[i]->getName() << endl;
     }
 }
 
 void Controller::captureFileTest(){
-    streamTools->captureVideoFile(15,"superfast","out.mp4");
+    streamTools->captureAudioVideoFile(5,"superfast","out.mp4");
 }

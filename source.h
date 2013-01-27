@@ -5,17 +5,14 @@
 
 using namespace std;
 
-class WinAvTools;
-
 class Source
 {
 public:
-    Source(WinAvTools *avTools, std::string name ="null", string type="null");
+    Source(std::string name ="null", string type="null");
     string getName();
     string getType();
 
 private:
-    WinAvTools *avTools;
     string name;
     string type;
 };

@@ -7,31 +7,50 @@ WinAvTools::WinAvTools()
     detectSources();
 }
 
-vector<Source> WinAvTools::getAudioSources() const{
-    return this->audioSources;
+WinAvTools::~WinAvTools(){
+    for(unsigned int i(0); i<sources.size(); i++){
+        delete sources[i];
+        sources[i] = 0;
+    }
 }
 
-vector<Source> WinAvTools::getVideoSources() const{
-    return this->videoSources;
+vector<Source*> WinAvTools::getSources() const{
+    return this->sources;
 }
 
-Source WinAvTools::peekVideoSource() const{
-    return videoSources.front();
+
+Source *WinAvTools::peekVideoSource() const{
+    unsigned int i(0);
+    bool found(false);
+
+    while(i<sources.size() && !found){
+        i++;
+        if (sources[i-1]->getType() == "video")
+            found = true;
+
+    }
+
+    return sources[i-1];
 }
-Source WinAvTools::peekAudioSource() const{
-    return audioSources.front();
+
+Source *WinAvTools::peekAudioSource() const{
+    unsigned int i(0);
+    bool found(false);
+
+    while(i<sources.size() && !found){
+        i++;
+        if (sources[i-1]->getType() == "audio")
+            found = true;
+    }
+    return sources[i-1];
 }
 
 string WinAvTools::getDevicesCommand() const{
     return this->devicesCommand;
 }
 
-void WinAvTools::setVideoSources(vector<Source> videoSources){
-    this->videoSources = videoSources;
-}
-
-void WinAvTools::setAudioSources(vector<Source> audioSources){
-    this->audioSources = audioSources;
+void WinAvTools::setSources(vector<Source*> sources){
+    this->sources = sources;
 }
 
 void WinAvTools::setDevicesCommand(string videoDevice){
@@ -42,12 +61,8 @@ void WinAvTools::setDevicesCommand(string videoDevice, string audioDevice){
     this->devicesCommand = "video=" + videoDevice + ":audio="+ audioDevice;
 }
 
-void WinAvTools::pushVideoSource(Source videoSource){
-    videoSources.push_back(videoSource);
-}
-
-void WinAvTools::pushAudioSource(Source audioSource){
-    audioSources.push_back(audioSource);
+void WinAvTools::pushSource(Source *source){
+    sources.push_back(source);
 }
 
 void WinAvTools::detectSources(){
@@ -99,7 +114,7 @@ void WinAvTools::detectSources(){
                 posVideo = video.find("\""); // the position of the next quote
 
                 //we add the source found in the global vector of sources
-                this->pushVideoSource(Source(this,video.substr(0, posVideo),"video"));
+                this->pushSource(new Camera(this,video.substr(0, posVideo),"video"));
 
                 video = video.substr(++posVideo, video.size() - posVideo);
                 // we save the remaining string and remove the first character to not keep the quote for the next iteration
@@ -116,7 +131,7 @@ void WinAvTools::detectSources(){
                 posAudio = audio.find("\""); // the position of the next quote
 
                 //we add the source found in the global vector of sources
-                this->pushAudioSource(Source(this,audio.substr(0, posAudio), "audio"));
+                this->pushSource(new Microphone(this,audio.substr(0, posAudio),"audio"));
 
                 audio = audio.substr(++posAudio, audio.size() - posAudio);
                 // we save the remaining string and remove the first character to not keep the quote for the next iteration

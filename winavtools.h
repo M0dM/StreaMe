@@ -12,34 +12,34 @@
 #include <string>
 
 #include "source.h"
-
+#include "camera.h"
+#include "microphone.h"
 
 class Source;
 class Controller;
+class Camera;
+class Microphone;
 
 class WinAvTools
 {
 public:
     WinAvTools();
-    std::vector<Source> getVideoSources() const;
-    std::vector<Source> getAudioSources() const;
-    Source peekVideoSource() const;
-    Source peekAudioSource() const;
+    ~WinAvTools();
+    Source *peekVideoSource() const;
+    Source *peekAudioSource() const;
 
 private:
-    std::vector<Source> audioSources;
-    std::vector<Source> videoSources;
+    std::vector<Source*> sources;
     void detectSources(); //detect all sources and add them into the correspondant vector (audioSources or videoSources)
-    void setVideoSources(std::vector<Source>);
-    void setAudioSources(std::vector<Source>);
-    void pushVideoSource(Source videoSource);
-    void pushAudioSource(Source audioSource);
+    void setSources(std::vector<Source*>);
+    void pushSource(Source *source);
 
 protected:
     std::string devicesCommand; // the attribute part of the ffmpeg command that is dependent of the OS
     std::string getDevicesCommand() const;
     void setDevicesCommand(std::string videoDevice);
     void setDevicesCommand(std::string videoDevice, std::string audioDevice);
+    std::vector<Source*> getSources() const;
 };
 
 #endif // WINAVTOOLS_H

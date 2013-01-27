@@ -19,7 +19,9 @@ SOURCES += main.cpp\
     live.cpp \
     controller.cpp \
     winavtools.cpp \
-    streamtools.cpp
+    streamtools.cpp \
+    camera.cpp \
+    microphone.cpp
 
 HEADERS  += mainwindow.h \
     project.h \
@@ -27,7 +29,9 @@ HEADERS  += mainwindow.h \
     live.h \
     controller.h \
     winavtools.h \
-    streamtools.h
+    streamtools.h \
+    camera.h \
+    microphone.h
 
 FORMS    += mainwindow.ui
 
