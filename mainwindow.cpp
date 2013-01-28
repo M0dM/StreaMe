@@ -31,6 +31,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
 void MainWindow::stopClicked(){
     ui->videoPlayer->stop();
     cout << "Stop clicked" << endl;
@@ -45,4 +46,8 @@ void MainWindow::rewindClicked(){
     ui->videoPlayer->stop();
     ui->videoPlayer->play();
     cout << "Rewind clicked" << endl;
+}
+
+void MainWindow::setFreeSources(QStringList freeSources){
+    ui->listFreeSources->addItems(freeSources);
 }
