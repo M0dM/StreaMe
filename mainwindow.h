@@ -12,6 +12,7 @@
 #include <phonon/effect.h>
 #include <phonon/effectparameter.h>
 #include <phonon/objectdescriptionmodel.h>
+#include <QBuffer>
 #include <QMainWindow>
 #include "controller.h"
 
@@ -31,7 +32,10 @@ public:
 private:
     Ui::MainWindow *ui;
     Controller* controller;
-
+public slots :
+    void stopClicked();
+    void playClicked();
+    void rewindClicked();
 };
 
 #endif // MAINWINDOW_H
