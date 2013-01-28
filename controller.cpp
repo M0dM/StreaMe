@@ -14,7 +14,7 @@ Controller::~Controller(){
 }
 
 void Controller::ShowMainWindow(){
-    this->mainwindow->showMaximized();
+    this->mainwindow->show();
 }
 
 void Controller::displayVideoSources(){
