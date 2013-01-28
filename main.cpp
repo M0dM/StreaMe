@@ -1,9 +1,6 @@
 #include <QApplication>
 
-#include <iostream>
-
 #include "controller.h"
-#include "winavtools.h"
 
 using namespace std;
 

@@ -2,8 +2,23 @@
 
 using namespace std;
 
-StreamTools::StreamTools(Controller *controller) : WinAvTools(){
+
+StreamTools::StreamTools(Controller *controller, QObject *parent) : WinAvTools(), QThread(parent){
     this->controller = controller;
+}
+
+StreamTools::~StreamTools(){
+    if(ffmpegProcess->pid() > 0){ //if the process is running, the pid is > 0
+        ffmpegProcess->kill(); // we kill the running process
+        cout << "I killed the process like a pig ! :)" << endl;
+    }
+}
+
+
+void StreamTools::run() //The function called for threading
+{
+    this->captureAudioVideoFile(10,"veryfast","outThread.mp4");
+    exec();
 }
 
 string StreamTools::getStreamCommand(){
@@ -45,7 +60,7 @@ void StreamTools::captureVideoFile(int time, string preset, string file){
     this->setStreamCommand(" -preset  " + preset + " " + file);
 
     cout << getDevicesCommand() << getStreamCommand() << endl;
-    QProcess *captAvFile = new QProcess();
+    ffmpegProcess = new QProcess();
 
     QString path("..\\StreaMe\\ffmpeg\\bin\\ffmpeg.exe");
     string pathVideoFiles("..\\StreaMe\\ffmpeg\\catchedFiles\\" + file);
@@ -55,16 +70,18 @@ void StreamTools::captureVideoFile(int time, string preset, string file){
     arguments << QString::fromStdString("-f") << QString::fromStdString("dshow") << QString::fromStdString("-i") << QString::fromStdString(getDevicesCommand()) << QString::fromStdString("-preset") << QString::fromStdString(preset) << QString::fromStdString(pathVideoFiles);
 
     //Starting the process
-    captAvFile->start(path,arguments,QIODevice::ReadWrite);
+    ffmpegProcess->start(path,arguments,QIODevice::ReadWrite);
 
-    if (captAvFile->waitForStarted()){
+    if (ffmpegProcess->waitForStarted()){
 
         Sleep(time * 1000);
 
-        captAvFile->write(new char('q')); // needs a pointer of character (here the letter 'q')
+        ffmpegProcess->write(new char('q')); // needs a pointer of character (here the letter 'q')
         // Extremely important : without waiting for bytes written, the character written in not read
-        captAvFile->waitForBytesWritten();
+        ffmpegProcess->waitForBytesWritten();
     }
+
+
 }
 
 void StreamTools::captureAudioVideoFile(int time, string preset, string file){
@@ -74,7 +91,7 @@ void StreamTools::captureAudioVideoFile(int time, string preset, string file){
     // build the rest of the command (prest and file name) For testing also...
     this->setStreamCommand(" -preset  " + preset + " " + file);
 
-    QProcess *captAvFile = new QProcess();
+    ffmpegProcess = new QProcess();
 
     QString path("..\\StreaMe\\ffmpeg\\bin\\ffmpeg.exe");
     string pathVideoFiles("..\\StreaMe\\ffmpeg\\catchedFiles\\" + file);
@@ -84,14 +101,16 @@ void StreamTools::captureAudioVideoFile(int time, string preset, string file){
     arguments << QString::fromStdString("-f") << QString::fromStdString("dshow") << QString::fromStdString("-i") << QString::fromStdString(getDevicesCommand()) << QString::fromStdString("-preset") << QString::fromStdString(preset) << QString::fromStdString(pathVideoFiles);
 
     //Starting the process
-    captAvFile->start(path,arguments,QIODevice::ReadWrite);
+    ffmpegProcess->start(path,arguments,QIODevice::ReadWrite);
 
-    if (captAvFile->waitForStarted()){
+    if (ffmpegProcess->waitForStarted()){
 
         Sleep(time * 1000);
 
-        captAvFile->write(new char('q')); // needs a pointer of character (here the letter 'q')
+        ffmpegProcess->write(new char('q')); // needs a pointer of character (here the letter 'q')
         // Extremely important : without waiting for bytes written, the character written in not read
-        captAvFile->waitForBytesWritten();
+        ffmpegProcess->waitForBytesWritten();
     }
+
+
 }

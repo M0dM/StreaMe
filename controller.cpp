@@ -9,7 +9,7 @@ Controller::Controller()
 }
 
 Controller::~Controller(){
-    delete this->mainwindow;
+    delete this->mainwindow;  
     delete this->streamTools;
 }
 
@@ -36,5 +36,5 @@ void Controller::displayAudioSources(){
 }
 
 void Controller::captureFileTest(){
-    streamTools->captureAudioVideoFile(5,"superfast","out.mp4");
+    streamTools->start();
 }

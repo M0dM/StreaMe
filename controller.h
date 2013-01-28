@@ -5,7 +5,6 @@
 #include "project.h"
 #include "streamtools.h"
 
-
 class MainWindow;
 class Project;
 class StreamTools;
