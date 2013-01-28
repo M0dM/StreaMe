@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     controller.ShowMainWindow();
 
-    controller.captureFileTest();
+    controller.twitchStream();
 
     return a.exec();
 

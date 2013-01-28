@@ -35,6 +35,6 @@ void Controller::displayAudioSources(){
     }
 }
 
-void Controller::captureFileTest(){
+void Controller::twitchStream(){
     streamTools->start();
 }

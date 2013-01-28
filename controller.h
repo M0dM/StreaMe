@@ -17,7 +17,7 @@ public:
     void ShowMainWindow();
     void displayVideoSources();
     void displayAudioSources();
-    void captureFileTest();
+    void twitchStream();
 
 private:
     MainWindow * mainwindow;

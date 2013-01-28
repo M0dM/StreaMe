@@ -17,8 +17,8 @@ public:
     void run();
     std::vector<Source*> getVideoSources();
     std::vector<Source*> getAudioSources();
-    void captureVideoFile(int time = 10, std::string preset = "ultrafast", std::string file = "out.mp4");
     void captureAudioVideoFile(int time = 10, std::string preset = "ultrafast", std::string file = "out.mp4");
+    void stream(std::string size = "640x360", std::string videoBitrate = "1000k", std::string audioBitrate = "22050", std::string rtmpUrl = "rtmp://live.twitch.tv/app/live_39774900_NpAMoM4dg3MTooePEZREpKUkynwivr");
 
 private:
     Controller *controller;
