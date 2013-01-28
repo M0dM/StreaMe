@@ -6,317 +6,281 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
-    <height>541</height>
+    <width>800</width>
+    <height>540</height>
    </rect>
   </property>
-  <property name="cursor">
-   <cursorShape>ArrowCursor</cursorShape>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
-   <string>StreaMe</string>
-  </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
-  </property>
-  <property name="locale">
-   <locale language="English" country="Ireland"/>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_5">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>100</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Sources</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>100</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QListWidget" name="listWidget">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>100</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <item>
-           <property name="text">
-            <string>Source 1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Source 2</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
+   <property name="minimumSize">
+    <size>
+     <width>800</width>
+     <height>500</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Sources</string>
+        </property>
+       </widget>
       </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Show</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_3">
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="listWidget_2">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <item>
-               <property name="text">
-                <string>Source</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <item>
-             <widget class="QFrame" name="frame">
-              <property name="minimumSize">
-               <size>
-                <width>16777214</width>
-                <height>300</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <property name="sizeConstraint">
-               <enum>QLayout::SetDefaultConstraint</enum>
-              </property>
-              <item>
-               <widget class="QPushButton" name="pushButton_3">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="New.qrc">
-                  <normaloff>:/new/Previous/first-resultset-icone-8101-16.png</normaloff>:/new/Previous/first-resultset-icone-8101-16.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="New.qrc">
-                  <normaloff>:/new/Stop/stop-command-blue-icone-6073-16.png</normaloff>:/new/Stop/stop-command-blue-icone-6073-16.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="New.qrc">
-                  <normaloff>:/new/Play/player-icone-7795-16.png</normaloff>:/new/Play/player-icone-7795-16.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLCDNumber" name="lcdNumber">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>100</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <underline>false</underline>
-                 </font>
-                </property>
-                <property name="value" stdset="0">
-                 <double>19.219999999999999</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QTabWidget" name="tabWidget">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16667715</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab_3">
-           <attribute name="title">
-            <string>Tab 1</string>
-           </attribute>
-          </widget>
-          <widget class="QWidget" name="tab_4">
-           <attribute name="title">
-            <string>Tab 2</string>
-           </attribute>
-          </widget>
-         </widget>
-        </item>
-       </layout>
+      <item row="1" column="0" rowspan="3">
+       <widget class="QListWidget" name="listWidget">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Player</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Tab 1</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="title">
+          <string>Tab 2</string>
+         </attribute>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="1" rowspan="2">
+       <widget class="QListWidget" name="listWidget_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Show</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QWidget" name="widget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>0</y>
+           <width>75</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="New.qrc">
+           <normaloff>:/new/Stop/stop-command-blue-icone-6073-16.png</normaloff>:/new/Stop/stop-command-blue-icone-6073-16.png</iconset>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="geometry">
+          <rect>
+           <x>430</x>
+           <y>0</y>
+           <width>75</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="New.qrc">
+           <normaloff>:/new/Play/player-icone-7795-16.png</normaloff>:/new/Play/player-icone-7795-16.png</iconset>
+         </property>
+        </widget>
+        <widget class="Phonon::VolumeSlider" name="volumeSlider">
+         <property name="geometry">
+          <rect>
+           <x>510</x>
+           <y>0</y>
+           <width>109</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="geometry">
+          <rect>
+           <x>250</x>
+           <y>0</y>
+           <width>75</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="New.qrc">
+           <normaloff>:/new/Previous/first-resultset-icone-8101-16.png</normaloff>:/new/Previous/first-resultset-icone-8101-16.png</iconset>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="Phonon::VideoPlayer" name="videoPlayer">
+        <property name="minimumSize">
+         <size>
+          <width>600</width>
+          <height>310</height>
+         </size>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -327,11 +291,11 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>944</width>
+     <width>800</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuFichier">
     <property name="title">
      <string>File</string>
     </property>
@@ -339,21 +303,21 @@
     <addaction name="actionOpen_Project"/>
     <addaction name="separator"/>
     <addaction name="actionSave_Project"/>
-    <addaction name="actionSave_Project_as"/>
+    <addaction name="actionSave_Project_As"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
+   <widget class="QMenu" name="menuEdition">
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionRenam"/>
+    <addaction name="actionRename"/>
    </widget>
    <widget class="QMenu" name="menuConfig">
     <property name="title">
      <string>Config</string>
     </property>
-    <addaction name="actionChoose_platform"/>
+    <addaction name="actionChoose_Platform"/>
     <addaction name="actionConfigure_parameters"/>
    </widget>
    <widget class="QMenu" name="menuShow">
@@ -363,9 +327,9 @@
     <addaction name="actionStart"/>
     <addaction name="actionStop"/>
    </widget>
-   <widget class="QMenu" name="menuSource">
+   <widget class="QMenu" name="menuSources">
     <property name="title">
-     <string>Source</string>
+     <string>Sources</string>
     </property>
     <addaction name="actionAdd_source"/>
     <addaction name="actionRemove_source"/>
@@ -375,12 +339,13 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionAbout_StreaMe"/>
    </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
+   <addaction name="menuFichier"/>
+   <addaction name="menuEdition"/>
    <addaction name="menuConfig"/>
    <addaction name="menuShow"/>
-   <addaction name="menuSource"/>
+   <addaction name="menuSources"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -407,9 +372,9 @@
     <string>Save Project</string>
    </property>
   </action>
-  <action name="actionSave_Project_as">
+  <action name="actionSave_Project_As">
    <property name="text">
-    <string>Save Project as</string>
+    <string>Save Project As</string>
    </property>
   </action>
   <action name="actionClose">
@@ -417,14 +382,14 @@
     <string>Close</string>
    </property>
   </action>
-  <action name="actionRenam">
+  <action name="actionRename">
    <property name="text">
     <string>Rename</string>
    </property>
   </action>
-  <action name="actionChoose_platform">
+  <action name="actionChoose_Platform">
    <property name="text">
-    <string>Choose platform</string>
+    <string>Choose Platform</string>
    </property>
   </action>
   <action name="actionConfigure_parameters">
@@ -457,8 +422,25 @@
     <string>Add object</string>
    </property>
   </action>
+  <action name="actionAbout_StreaMe">
+   <property name="text">
+    <string>About StreaMe</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>Phonon::VideoPlayer</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/videoplayer.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Phonon::VolumeSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/volumeslider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="New.qrc"/>
  </resources>
