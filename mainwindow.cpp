@@ -8,7 +8,7 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     this->controller=controller;
     ui->setupUi(this);
 
-    QString fileName("Futurama [1x01] The Space Pilot 3000.avi");
+    QString fileName("test.avi");
 
 
          ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -22,4 +22,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setFreeSources(QStringList freeSources){
+    ui->listFreeSources->addItems(freeSources);
 }

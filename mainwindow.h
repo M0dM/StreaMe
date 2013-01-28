@@ -15,7 +15,9 @@
 #include <QMainWindow>
 #include "controller.h"
 
+
 class Controller;
+class Source;
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +30,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(Controller* controller,QWidget *parent = 0);
     ~MainWindow();
+    void setFreeSources(QStringList freeSources);
 private:
     Ui::MainWindow *ui;
     Controller* controller;

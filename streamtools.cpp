@@ -53,6 +53,9 @@ vector<Source*> StreamTools::getAudioSources(){
     return audioSources;
 }
 
+vector<Source*> StreamTools::getAllSources(){
+    return getSources();
+}
 
 void StreamTools::captureAudioVideoFile(int time, string preset, string file){ //Depreciated
 
@@ -104,6 +107,6 @@ void StreamTools::stream(string size, string videoBitrate, string audioBitrate ,
             data.append(ffmpegProcess->readAll());
     }
 
-    cout << data << endl;
+    //cout << data << endl;
 }
 
