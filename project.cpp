@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QString>
 #include <source.h>
+#include <iostream>
 
 using namespace std;
 
@@ -53,8 +54,8 @@ bool Project::save(string fileUrl){
     //          ...
     writer.writeStartElement("sources");
 
-    for(unsigned int i=0; i<sources.size(); i++){
-
+    for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
+    {
         // Adding source element
         // <project>
         //      <sources>
@@ -67,15 +68,18 @@ bool Project::save(string fileUrl){
         //      <sources>
         //          <source>
         //              <name>sourceName</name>
-        writer.writeTextElement("name", sources[i].getName().c_str());
-
+        cout << "plantepas" << endl;
+        writer.writeTextElement("name", (*i).getName().c_str());
+        cout << "plantepas" << endl;
         // Adding type element and calling this element with the source type
         // <project>
         //      <sources>
         //          <source>
         //              <name>sourceName</name>
         //              <type>sourceType</type>
-        writer.writeTextElement("type", sources[i].getType().c_str());
+        cout << "plantepas" << endl;
+        writer.writeTextElement("type", (*i).getType().c_str());
+        cout << "plantepas" << endl;
 
         // Closing source element
         // <project>
@@ -84,8 +88,10 @@ bool Project::save(string fileUrl){
         //              <name>sourceName</name>
         //              <type>sourceType</type>
         //          </source>
+        cout << "plantepas" << endl;
         writer.writeEndElement();
-
+        cout << "plantepas" << endl;
+        i++;
     }
 
     // Closing sources element
@@ -95,7 +101,7 @@ bool Project::save(string fileUrl){
     //              <name>sourceName</name>
     //              <type>sourceType</type>
     //          </source>
-    //        </sources>
+    //      </sources>
     writer.writeEndElement();
 
     // Closing project element

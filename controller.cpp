@@ -49,3 +49,7 @@ void Controller::displayAllSources(){
 
     mainwindow->setFreeSources(listFSources);
 }
+
+Project* Controller::getProject(){
+    return this->project;
+}
