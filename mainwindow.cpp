@@ -17,11 +17,11 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
 
     //Test reading a video file
-    QString fileName("test.avi");
-    //QString fileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe-build-Desktop-Debug\\test.avi");
+    //QString fileName("test.avi");
+    QString fileName("C:\\Users\\nansp_000\\Dropbox\\Projets\\Qt Creator\\StreaMe\\ffmpeg\\catchedFiles\\out.mpeg");
     //QBuffer *someBuffer;
-    ui->videoPlayer->load(fileName);
-    ui->videoPlayer->play();
+    //ui->videoPlayer->load(fileName);
+    ui->videoPlayer->play(fileName);
     ui->videoPlayer->show();
 
 }
