@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QMainWindow(parent),
@@ -12,6 +14,7 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->buttonStop, SIGNAL(clicked()),this,SLOT(stopClicked()));
     QObject::connect(ui->buttonPlay, SIGNAL(clicked()),this,SLOT(playClicked()));
     QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
+    QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -31,6 +34,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::newProjectTriggered(){
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
+    if(this->getController()->getProject()->save(fileName.toStdString())==true){
+        QMessageBox msgBox;
+        msgBox.setText("The StreaMe project was saved successfully.");
+        msgBox.exec();
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Problem when saving the new StreaMe project.");
+        msgBox.exec();
+    }
+}
 
 void MainWindow::stopClicked(){
     ui->videoPlayer->stop();
@@ -50,4 +66,8 @@ void MainWindow::rewindClicked(){
 
 void MainWindow::setFreeSources(QStringList freeSources){
     ui->listFreeSources->addItems(freeSources);
+}
+
+Controller* MainWindow::getController(){
+    return controller;
 }

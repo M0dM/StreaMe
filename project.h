@@ -14,6 +14,8 @@ class Project
 {
 public:
     Project(Controller* controller);
+    bool save(string fileUrl); // return true if successfull
+    bool load(string fileUrl); // return true if successfull
 private:
     Controller* controller;
     vector<Source> sources;
@@ -22,8 +24,6 @@ private:
     vector<Source> getSources();
     void setLive(Live* live);
     void setSources(vector<Source> sources);
-    bool save(string fileUrl); // return true if successfull
-    bool load(string fileUrl); // return true if successfull
 };
 
 #endif // PROJECT_H

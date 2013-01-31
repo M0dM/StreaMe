@@ -35,7 +35,9 @@ public:
 private:
     Ui::MainWindow *ui;
     Controller* controller;
+    Controller* getController();
 public slots :
+    void newProjectTriggered();
     void stopClicked();
     void playClicked();
     void rewindClicked();
