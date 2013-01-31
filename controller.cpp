@@ -39,8 +39,7 @@ void Controller::twitchStream(){
     streamTools->start();
 }
 
-void Controller::displayAllSources(){
-    cout << streamTools->getAllSources().size() << endl;
+void Controller::displayFreeSources(){
 
     QStringList listFSources;
     for(unsigned int i(0); i < streamTools->getAllSources().size(); i++)

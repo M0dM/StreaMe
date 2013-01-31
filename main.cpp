@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 
     controller.ShowMainWindow();
 
-    controller.displayAllSources();
+    controller.displayFreeSources();
 
-    controller.twitchStream();
+    //controller.twitchStream();
 
     return a.exec();
 

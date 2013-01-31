@@ -18,7 +18,7 @@ public:
     void displayVideoSources();
     void displayAudioSources();
     void twitchStream();
-    void displayAllSources();
+    void displayFreeSources(); // display free sources on the the main window's list
 
 private:
     MainWindow * mainwindow;
