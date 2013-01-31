@@ -17,12 +17,35 @@ Controller* Project::getController(){
     return this->controller;
 }
 
-vector<Source> Project::getSources(){
-    return this->sources;
+vector<Source*> Project::getUsedSources(){
+    return this->usedSources;
 }
 
-void Project::setSources(vector<Source> sources){
-    this->sources=sources;
+void Project::setUsedSources(vector<Source*> sources){
+    this->usedSources=sources;
+}
+
+void Project::addUsedSource(Source* source){
+    this->usedSources.push_back(source);
+}
+
+void Project::removeUsedSource(string sourceName){
+    //remove the item by finding his position in the usedSource vector, and remove the item on this position
+
+    unsigned int i(0);
+    bool found(false);
+    while(i < usedSources.size() && !found){
+        if(usedSources[i]->getName() == sourceName)
+            found=true;
+        i++;
+    }
+    usedSources.erase(usedSources.begin() + --i); // remove on the position 'i'
+}
+
+void Project::test_displayUsedSources(){
+    for(unsigned int i(0); i<usedSources.size();i++)
+        cout << usedSources[i]->getName() <<" (" << usedSources[i]->getType() << ")" << endl;
+    cout << "---" <<endl;
 }
 
 void Project::setLive(Live* live){
@@ -58,44 +81,44 @@ bool Project::save(string fileUrl){
     //for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
     //@todo : test avec boucle
     //{
-        // Adding source element
-        // <project>
-        //      <sources>
-        //          <source>
-        //              ...
-        writer.writeStartElement("source");
+    // Adding source element
+    // <project>
+    //      <sources>
+    //          <source>
+    //              ...
+    writer.writeStartElement("source");
 
-        // Adding name element and calling this element with the source name
-        // <project>
-        //      <sources>
-        //          <source>
-        //              <name>sourceName</name>
-        cout << "plantepas" << endl;
-        //writer.writeTextElement("name", (*i).getName().c_str());
-        writer.writeTextElement("name", "NAMETEST");
-        cout << "plantepas" << endl;
-        // Adding type element and calling this element with the source type
-        // <project>
-        //      <sources>
-        //          <source>
-        //              <name>sourceName</name>
-        //              <type>sourceType</type>
-        cout << "plantepas" << endl;
-        //writer.writeTextElement("type", (*i).getType().c_str());
-        writer.writeTextElement("type", "TYPETEST");
-        cout << "plantepas" << endl;
+    // Adding name element and calling this element with the source name
+    // <project>
+    //      <sources>
+    //          <source>
+    //              <name>sourceName</name>
+    cout << "plantepas" << endl;
+    //writer.writeTextElement("name", (*i).getName().c_str());
+    writer.writeTextElement("name", "NAMETEST");
+    cout << "plantepas" << endl;
+    // Adding type element and calling this element with the source type
+    // <project>
+    //      <sources>
+    //          <source>
+    //              <name>sourceName</name>
+    //              <type>sourceType</type>
+    cout << "plantepas" << endl;
+    //writer.writeTextElement("type", (*i).getType().c_str());
+    writer.writeTextElement("type", "TYPETEST");
+    cout << "plantepas" << endl;
 
-        // Closing source element
-        // <project>
-        //      <sources>
-        //          <source>
-        //              <name>sourceName</name>
-        //              <type>sourceType</type>
-        //          </source>
-        cout << "plantepas" << endl;
-        writer.writeEndElement();
-        cout << "plantepas" << endl;
-        //i++;
+    // Closing source element
+    // <project>
+    //      <sources>
+    //          <source>
+    //              <name>sourceName</name>
+    //              <type>sourceType</type>
+    //          </source>
+    cout << "plantepas" << endl;
+    writer.writeEndElement();
+    cout << "plantepas" << endl;
+    //i++;
     //}
 
     // Closing sources element
@@ -143,7 +166,7 @@ bool Project::load(string fileUrl){
                         cout << reader.readElementText().toStdString() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "type")
-                            cout << reader.readElementText().toStdString() << endl;
+                                cout << reader.readElementText().toStdString() << endl;
                         }
                     }
                 }

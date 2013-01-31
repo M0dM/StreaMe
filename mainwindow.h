@@ -32,6 +32,7 @@ public:
     explicit MainWindow(Controller* controller,QWidget *parent = 0);
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
+    void setUsedSources(QStringList usedSources);
 private:
     Ui::MainWindow *ui;
     Controller* controller;
@@ -42,6 +43,8 @@ public slots :
     void stopClicked();
     void playClicked();
     void rewindClicked();
+    void useSourceClicked();
+    void notUseSourceClicked();
 };
 
 #endif // MAINWINDOW_H

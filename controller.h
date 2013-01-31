@@ -17,14 +17,17 @@ public:
     void ShowMainWindow();
     void displayVideoSources();
     void displayAudioSources();
+    void useSource(string sourceName);
+    void notUseSource(string sourceName);
     void twitchStream();
-    void displayFreeSources(); // display free sources on the the main window's list
-
+    void displayFreeSources(); //display the free sources in the interface => = (all sources) - (used sources)
+    void displayUsedSources(); //display the used sources (given by the project class)
+    Project* getProject();
+    void setProject(Project*);
 private:
     MainWindow * mainwindow;
     Project *project;
     StreamTools *streamTools;
-
 };
 
 #endif // CONTROLLER_H

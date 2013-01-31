@@ -11,6 +11,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     ui->setupUi(this);
 
     // Connect signal buttons
+    QObject::connect(ui->buttonUseSource, SIGNAL(clicked()),this,SLOT(useSourceClicked()));
+    QObject::connect(ui->buttonNotUseSource, SIGNAL(clicked()),this,SLOT(notUseSourceClicked()));
     QObject::connect(ui->buttonStop, SIGNAL(clicked()),this,SLOT(stopClicked()));
     QObject::connect(ui->buttonPlay, SIGNAL(clicked()),this,SLOT(playClicked()));
     QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
@@ -80,7 +82,25 @@ void MainWindow::rewindClicked(){
 }
 
 void MainWindow::setFreeSources(QStringList freeSources){
+    ui->listFreeSources->clear();
     ui->listFreeSources->addItems(freeSources);
+}
+
+void MainWindow::setUsedSources(QStringList usedSources){
+    ui->listUsedSources->clear();
+    ui->listUsedSources->addItems(usedSources);
+}
+
+void MainWindow::useSourceClicked(){
+    if(ui->listFreeSources->currentRow()>=0)
+        controller->useSource(ui->listFreeSources->item(ui->listFreeSources->currentRow())->text().toStdString());
+}
+
+void MainWindow::notUseSourceClicked(){
+    if(ui->listUsedSources->currentRow()>=0)
+
+        controller->notUseSource(ui->listUsedSources->item(ui->listUsedSources->currentRow())->text().toStdString());
+
 }
 
 Controller* MainWindow::getController(){

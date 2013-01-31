@@ -5,11 +5,12 @@ Controller::Controller()
 {
     this->mainwindow = new MainWindow(this);
     this->streamTools = new StreamTools(this);
+    this->project = new Project(this);
 
 }
 
 Controller::~Controller(){
-    delete this->mainwindow;  
+    delete this->mainwindow;
     delete this->streamTools;
 }
 
@@ -40,15 +41,65 @@ void Controller::twitchStream(){
 }
 
 void Controller::displayFreeSources(){
-
+    vector<Source*> allSources(streamTools->getAllSources()), usedSources(project->getUsedSources());
+    //usedSources.push_back(new Source("Microphone (Realtek High Definition Audio)","audio"));
+    bool used(false);
+    unsigned int j(0);
     QStringList listFSources;
-    for(unsigned int i(0); i < streamTools->getAllSources().size(); i++)
-        listFSources.push_back(QString::fromStdString(streamTools->getAllSources()[i]->getName()));
 
+    for(unsigned int i(0); i < allSources.size(); i++){
 
+        while( (j < usedSources.size()) && !used){ // browse the used vector to check if the source is used
+            if(allSources[i]->getName() == usedSources[j]->getName())
+                used = true;
+            else
+                j++;
+        }
+
+        if(!used) //if not used, the source is free, so we add it on the list
+            listFSources.push_back(QString::fromStdString((allSources[i]->getName())));
+
+        used = false; // used = false to enter in the next iteration
+        j = 0; // same thing
+    }
     mainwindow->setFreeSources(listFSources);
+}
+
+void Controller::displayUsedSources(){
+    QStringList listUSources;
+    for(unsigned int i(0); i < project->getUsedSources().size(); i++){
+        listUSources.push_back(QString::fromStdString((project->getUsedSources()[i]->getName())));
+    }
+    mainwindow->setUsedSources(listUSources);
 }
 
 Project* Controller::getProject(){
     return this->project;
+}
+
+void Controller::setProject(Project* newProject){
+    this->project = newProject;
+}
+
+void Controller::useSource(string sourceName){
+
+    Source *selectedSource(0);
+
+    for(unsigned int i(0); i < streamTools->getAllSources().size(); i++){
+        if(streamTools->getAllSources()[i]->getName() == sourceName)
+            selectedSource = streamTools->getAllSources()[i];
+    }
+
+    if(selectedSource != 0){
+        project->addUsedSource(selectedSource);
+        displayFreeSources();
+        displayUsedSources();
+    }
+}
+
+void Controller::notUseSource(string sourceName){
+
+    project->removeUsedSource(sourceName);
+    displayFreeSources();
+    displayUsedSources();
 }

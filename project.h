@@ -16,14 +16,19 @@ public:
     Project(Controller* controller);
     bool save(string fileUrl); // return true if successfull
     bool load(string fileUrl); // return true if successfull
+    vector<Source*> getUsedSources();
+    void addUsedSource(Source* source);
+    void removeUsedSource(std::string sourceName);
+    void test_displayUsedSources();
+
 private:
     Controller* controller;
-    vector<Source> sources;
+    vector<Source*> usedSources;
     Live* live;
+
     Controller* getController();
-    vector<Source> getSources();
     void setLive(Live* live);
-    void setSources(vector<Source> sources);
+    void setUsedSources(vector<Source*> usedSources);
 };
 
 #endif // PROJECT_H
