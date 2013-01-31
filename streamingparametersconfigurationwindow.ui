@@ -29,7 +29,7 @@
     <string>Video parameters:</string>
    </property>
   </widget>
-  <widget class="Line" name="line">
+  <widget class="Line" name="line1">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -310,7 +310,7 @@
     <string>Audio Stereo / Mono:</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
+  <widget class="Line" name="line0">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -336,7 +336,7 @@
     <string>Auto configuration:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="autoConfiguratioLabel">
    <property name="geometry">
     <rect>
      <x>25</x>
@@ -349,7 +349,7 @@
     <string>Enable / Disable auto configuration:</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider">
+  <widget class="QSlider" name="uploadSpeedHorizontalSlider">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -377,7 +377,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="uploadSpeedLabel">
    <property name="geometry">
     <rect>
      <x>25</x>
@@ -422,7 +422,7 @@
     <string>Disable</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="uploadSpeedValueLabel">
    <property name="geometry">
     <rect>
      <x>100</x>
