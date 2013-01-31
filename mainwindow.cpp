@@ -64,18 +64,23 @@ void MainWindow::openProjectTriggered(){
 }
 
 void MainWindow::stopClicked(){
+    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
     ui->videoPlayer->stop();
     cout << "Stop clicked" << endl;
 }
 
 void MainWindow::playClicked(){
+    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     ui->videoPlayer->pause();
     cout << "Play clicked" << endl;
 }
 
 void MainWindow::rewindClicked(){
+    ui->statutBarLabel->setText("StatusBar: Streaming status - rewinding");
     ui->videoPlayer->stop();
+    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
     ui->videoPlayer->play();
+    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     cout << "Rewind clicked" << endl;
 }
 
