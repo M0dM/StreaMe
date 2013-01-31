@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>420</width>
-    <height>236</height>
+    <height>235</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
     <rect>
      <x>10</x>
      <y>23</y>
-     <width>401</width>
+     <width>400</width>
      <height>16</height>
     </rect>
    </property>
@@ -52,10 +52,10 @@
     <string>Video bitrate:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="videoBitrateLineEdit">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>140</x>
      <y>40</y>
      <width>80</width>
      <height>20</height>
@@ -65,7 +65,7 @@
   <widget class="QLabel" name="videoBitrateMetricLabel">
    <property name="geometry">
     <rect>
-     <x>215</x>
+     <x>225</x>
      <y>40</y>
      <width>91</width>
      <height>16</height>
@@ -91,7 +91,7 @@
   <widget class="QComboBox" name="videoBitrateComboBox">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>140</x>
      <y>70</y>
      <width>80</width>
      <height>20</height>
@@ -122,7 +122,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>110</y>
+     <y>105</y>
      <width>150</width>
      <height>13</height>
     </rect>
@@ -131,12 +131,12 @@
     <string>Audio parameters:</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
+  <widget class="Line" name="line2">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
-     <width>401</width>
+     <y>115</y>
+     <width>400</width>
      <height>16</height>
     </rect>
    </property>
@@ -148,7 +148,7 @@
    <property name="geometry">
     <rect>
      <x>25</x>
-     <y>140</y>
+     <y>135</y>
      <width>100</width>
      <height>16</height>
     </rect>
@@ -160,8 +160,8 @@
   <widget class="QComboBox" name="audioBitrateComboBox">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>140</y>
+     <x>140</x>
+     <y>135</y>
      <width>220</width>
      <height>20</height>
     </rect>
@@ -191,7 +191,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>190</y>
+     <y>200</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -204,7 +204,7 @@
    <property name="geometry">
     <rect>
      <x>315</x>
-     <y>190</y>
+     <y>200</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -213,17 +213,56 @@
     <string>Exit</string>
    </property>
   </widget>
-  <widget class="Line" name="line_3">
+  <widget class="Line" name="line3">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>175</y>
-     <width>401</width>
+     <y>190</y>
+     <width>400</width>
      <height>16</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="stereoRadioButton">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>165</y>
+     <width>82</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Stereo</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="monoRadioButton">
+   <property name="geometry">
+    <rect>
+     <x>205</x>
+     <y>165</y>
+     <width>82</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mono</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="audioStereoMonoLabel">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>165</y>
+     <width>100</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Audio Stereo / Mono:</string>
    </property>
   </widget>
  </widget>
