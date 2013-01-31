@@ -38,6 +38,7 @@ private:
     Controller* getController();
 public slots :
     void newProjectTriggered();
+    void openProjectTriggered();
     void stopClicked();
     void playClicked();
     void rewindClicked();

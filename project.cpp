@@ -1,5 +1,6 @@
 #include "project.h"
 #include <QXmlStreamWriter>
+#include <QXmlStreamReader>
 #include <QFile>
 #include <QString>
 #include <source.h>
@@ -54,8 +55,9 @@ bool Project::save(string fileUrl){
     //          ...
     writer.writeStartElement("sources");
 
-    for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
-    {
+    //for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
+    //@todo : test avec boucle
+    //{
         // Adding source element
         // <project>
         //      <sources>
@@ -69,7 +71,8 @@ bool Project::save(string fileUrl){
         //          <source>
         //              <name>sourceName</name>
         cout << "plantepas" << endl;
-        writer.writeTextElement("name", (*i).getName().c_str());
+        //writer.writeTextElement("name", (*i).getName().c_str());
+        writer.writeTextElement("name", "NAMETEST");
         cout << "plantepas" << endl;
         // Adding type element and calling this element with the source type
         // <project>
@@ -78,7 +81,8 @@ bool Project::save(string fileUrl){
         //              <name>sourceName</name>
         //              <type>sourceType</type>
         cout << "plantepas" << endl;
-        writer.writeTextElement("type", (*i).getType().c_str());
+        //writer.writeTextElement("type", (*i).getType().c_str());
+        writer.writeTextElement("type", "TYPETEST");
         cout << "plantepas" << endl;
 
         // Closing source element
@@ -91,8 +95,8 @@ bool Project::save(string fileUrl){
         cout << "plantepas" << endl;
         writer.writeEndElement();
         cout << "plantepas" << endl;
-        i++;
-    }
+        //i++;
+    //}
 
     // Closing sources element
     // <project>
@@ -128,26 +132,23 @@ bool Project::load(string fileUrl){
     QXmlStreamReader reader;
     QString fileName = fileUrl.c_str();
     QFile file(fileName);
+    cout << fileName.toStdString() << endl;
     file.open(QFile::ReadOnly | QFile::Text); // Openning the XML file in text mode
     reader.setDevice(&file); // Initialising the reader object on the xml file
-
-    reader.readNext();
-    while (!reader.atEnd())
-    {
-        while (reader.name()== "source"){
-            reader.readNext();
-            if(reader.name()== "nom"){
-                QString sourceName = reader.readElementText();
-                reader.readNext();
-                if(reader.name()== "type"){
-                    QString sourceType = reader.readElementText();
-                    Source* newSource = new Source(sourceName.toStdString(), sourceType.toStdString());
-                    this->sources.push_back(*newSource);
-                    reader.readNext();
+    while (!reader.atEnd()){
+        if(reader.readNextStartElement()){
+            if(reader.name().toString().toStdString() == "source"){
+                if(reader.readNextStartElement()){
+                    if(reader.name().toString().toStdString() == "name"){
+                        cout << reader.readElementText().toStdString() << endl;
+                        if(reader.readNextStartElement()){
+                            if(reader.name().toString().toStdString() == "type")
+                            cout << reader.readElementText().toStdString() << endl;
+                        }
+                    }
                 }
             }
         }
-        reader.readNext(); // On va au prochain token
     }
     file.close();
     return true;

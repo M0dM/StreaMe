@@ -15,6 +15,7 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->buttonPlay, SIGNAL(clicked()),this,SLOT(playClicked()));
     QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
     QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
+    QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -44,6 +45,20 @@ void MainWindow::newProjectTriggered(){
     else{
         QMessageBox msgBox;
         msgBox.setText("Problem when saving the new StreaMe project.");
+        msgBox.exec();
+    }
+}
+
+void MainWindow::openProjectTriggered(){
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"),"/",tr("StreaMe File (*.sm)"));
+    if(this->getController()->getProject()->load(fileName.toStdString())==true){
+        QMessageBox msgBox;
+        msgBox.setText("The StreaMe project was corectly loaded.");
+        msgBox.exec();
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Problem when loading the StreaMe project.");
         msgBox.exec();
     }
 }
