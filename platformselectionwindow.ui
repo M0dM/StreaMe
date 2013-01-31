@@ -31,10 +31,20 @@
     <rect>
      <x>130</x>
      <y>25</y>
-     <width>100</width>
+     <width>150</width>
      <height>20</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>justin.tv / twitch.tv</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ustream.tv</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="streamKeyLabel">
    <property name="geometry">
