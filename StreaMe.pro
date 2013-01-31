@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     winavtools.cpp \
     streamtools.cpp \
     camera.cpp \
-    microphone.cpp
+    microphone.cpp \
+    platformselectionwindow.cpp \
+    streamingparametersconfigurationwindow.cpp
 
 HEADERS  += mainwindow.h \
     project.h \
@@ -32,9 +34,13 @@ HEADERS  += mainwindow.h \
     winavtools.h \
     streamtools.h \
     camera.h \
-    microphone.h
+    microphone.h \
+    platformselectionwindow.h \
+    streamingparametersconfigurationwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    platformselectionwindow.ui \
+    streamingparametersconfigurationwindow.ui
 
 RESOURCES += \
     New.qrc
