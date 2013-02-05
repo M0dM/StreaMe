@@ -1,5 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "streamingparametersconfigurationwindow.h"
+#include "ui_streamingparametersconfigurationwindow.h"
+#include "platformselectionwindow.h"
+#include "ui_platformselectionwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -19,6 +23,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
     QObject::connect(ui->videoPlayer->mediaObject(),SIGNAL(seekableChanged(bool)),SLOT(seekchange()));
+    QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
+    QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -161,6 +167,16 @@ void MainWindow::useSourceClicked(){
 void MainWindow::notUseSourceClicked(){
     if(ui->listUsedSources->currentRow()>=0)
         controller->notUseSource(ui->listUsedSources->item(ui->listUsedSources->currentRow())->text().toStdString());
+}
+
+void MainWindow::configureParametersTrigged(){
+    StreamingParametersUi = new StreamingParametersConfigurationWindow();
+    StreamingParametersUi->show();
+}
+
+void MainWindow::choosePlatformTrigged(){
+    PlatformSelectionUi = new platformSelectionWindow();
+    PlatformSelectionUi->show();
 }
 
 Controller* MainWindow::getController(){

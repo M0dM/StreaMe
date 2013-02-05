@@ -15,6 +15,7 @@
 #include <phonon/objectdescriptionmodel.h>
 #include <QBuffer>
 #include <QMainWindow>
+#include <QWidget>
 #include "controller.h"
 #include "windows.h"
 
@@ -49,6 +50,8 @@ private:
     QByteArray *array1;
     QByteArray *array2;
     QFile *file;
+    QWidget *StreamingParametersUi;
+    QWidget *PlatformSelectionUi;
 public slots :
     void stopClicked();
     void playClicked();
@@ -60,6 +63,8 @@ public slots :
     void openProjectTriggered();
     void useSourceClicked();
     void notUseSourceClicked();
+    void configureParametersTrigged();
+    void choosePlatformTrigged();
 };
 
 #endif // MAINWINDOW_H
