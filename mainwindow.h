@@ -34,7 +34,11 @@ public:
     void closeEvent(QCloseEvent *event = 0);
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
+    void setUsedSources(QStringList usedSources);
+    void useSourceClicked();
+    void notUseSourceClicked();
     void startVideo(QBuffer *someBuffer);
+    Controller* getController();
 private:
     Ui::MainWindow *ui;
     Controller* controller;
@@ -54,6 +58,8 @@ public slots :
     void seekchange();
     void enqueueNextSource();
     void setNewTime();
+    void newProjectTriggered();
+    void openProjectTriggered();
 };
 
 #endif // MAINWINDOW_H
