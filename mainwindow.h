@@ -14,9 +14,10 @@
 #include <phonon/objectdescriptionmodel.h>
 #include <QBuffer>
 #include <QMainWindow>
-#include "controller.h"
+#include <QWidget>
 #include "platformselectionwindow.h"
 #include "streamingparametersconfigurationwindow.h"
+#include "controller.h"
 
 
 class Controller;
@@ -39,8 +40,8 @@ private:
     Ui::MainWindow *ui;
     Controller* controller;
     Controller* getController();
-    StreamingParametersConfigurationWindow *StreamingParametersUi;
-    platformSelectionWindow *PlatformSelectionUi;
+    QWidget *StreamingParametersUi;
+    QWidget *PlatformSelectionUi;
 public slots :
     void newProjectTriggered();
     void openProjectTriggered();

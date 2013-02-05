@@ -1,6 +1,7 @@
 #include "streamingparametersconfigurationwindow.h"
 #include "ui_streamingparametersconfigurationwindow.h"
 
+
 StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StreamingParametersConfigurationWindow)
@@ -25,3 +26,10 @@ StreamingParametersConfigurationWindow::~StreamingParametersConfigurationWindow(
     delete ui;
 }
 
+//StreamingParametersConfigurationWindow::okPushButtonClicked(){
+
+//}
+
+//StreamingParametersConfigurationWindow::exitPushButtonClicked(){
+
+//}
