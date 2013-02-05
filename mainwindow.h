@@ -35,8 +35,6 @@ public:
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
     void setUsedSources(QStringList usedSources);
-    void useSourceClicked();
-    void notUseSourceClicked();
     void startVideo(QBuffer *someBuffer);
     Controller* getController();
 private:
@@ -60,6 +58,8 @@ public slots :
     void setNewTime();
     void newProjectTriggered();
     void openProjectTriggered();
+    void useSourceClicked();
+    void notUseSourceClicked();
 };
 
 #endif // MAINWINDOW_H
