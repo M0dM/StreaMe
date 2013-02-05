@@ -18,6 +18,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
     QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
+    QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
+    QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -63,6 +65,16 @@ void MainWindow::openProjectTriggered(){
         msgBox.setText("Problem when loading the StreaMe project.");
         msgBox.exec();
     }
+}
+
+void MainWindow::configureParametersTrigged(){
+    StreamingParametersUi = new StreamingParametersConfigurationWindow();
+    StreamingParametersUi->show();
+}
+
+void MainWindow::choosePlatformTrigged(){
+    PlatformSelectionUi = new platformSelectionWindow();
+    PlatformSelectionUi->show();
 }
 
 void MainWindow::stopClicked(){

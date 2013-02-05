@@ -15,6 +15,8 @@
 #include <QBuffer>
 #include <QMainWindow>
 #include "controller.h"
+#include "platformselectionwindow.h"
+#include "streamingparametersconfigurationwindow.h"
 
 
 class Controller;
@@ -37,6 +39,8 @@ private:
     Ui::MainWindow *ui;
     Controller* controller;
     Controller* getController();
+    StreamingParametersConfigurationWindow *StreamingParametersUi;
+    platformSelectionWindow *PlatformSelectionUi;
 public slots :
     void newProjectTriggered();
     void openProjectTriggered();
@@ -45,6 +49,8 @@ public slots :
     void rewindClicked();
     void useSourceClicked();
     void notUseSourceClicked();
+    void configureParametersTrigged();
+    void choosePlatformTrigged();
 };
 
 #endif // MAINWINDOW_H
