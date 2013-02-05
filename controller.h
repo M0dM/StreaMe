@@ -18,11 +18,12 @@ public:
     void displayVideoSources();
     void displayAudioSources();
     void twitchStream();
-
+    void displayAllSources();
 private:
     MainWindow * mainwindow;
     Project *project;
     StreamTools *streamTools;
+
 };
 
 #endif // CONTROLLER_H

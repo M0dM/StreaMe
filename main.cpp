@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
 
     controller.ShowMainWindow();
 
+    controller.displayAllSources();
+
     controller.twitchStream();
 
     return a.exec();

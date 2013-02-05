@@ -52,7 +52,7 @@
        </widget>
       </item>
       <item row="1" column="0" rowspan="3">
-       <widget class="QListWidget" name="listWidget">
+       <widget class="QListWidget" name="listFreeSources">
         <property name="maximumSize">
          <size>
           <width>100</width>

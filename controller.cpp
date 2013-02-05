@@ -5,7 +5,6 @@ Controller::Controller()
 {
     this->mainwindow = new MainWindow(this);
     this->streamTools = new StreamTools(this);
-
 }
 
 Controller::~Controller(){
@@ -15,6 +14,7 @@ Controller::~Controller(){
 
 void Controller::ShowMainWindow(){
     this->mainwindow->show();
+    //this->mainwindow->testFile();
 }
 
 void Controller::displayVideoSources(){
@@ -38,3 +38,20 @@ void Controller::displayAudioSources(){
 void Controller::twitchStream(){
     streamTools->start();
 }
+
+void Controller::displayAllSources(){
+    cout << streamTools->getAllSources().size() << endl;
+
+    QStringList listFSources;
+    for(unsigned int i(0); i < streamTools->getAllSources().size(); i++){
+        listFSources.push_back(QString::fromStdString(streamTools->getAllSources()[i]->getName()));
+        cout << streamTools->getAllSources()[i]->getName();
+
+    }
+    mainwindow->setFreeSources(listFSources);
+}
+
+
+
+
+
