@@ -2,6 +2,7 @@
 #define STREAMINGPARAMETERSCONFIGURATIONWINDOW_H
 
 #include <controller.h>
+#include <QObject>
 
 namespace Ui {
 class StreamingParametersConfigurationWindow;
@@ -18,17 +19,17 @@ public:
 private:
     Ui::StreamingParametersConfigurationWindow *ui;
 
-//public slots:
-////    void videoSizeComboBoxIndexChanged(int);
-////    void videoFormatComboBoxIndexChanged(int);
-////    void enableAutoConfigurationRadioButtonClicked(bool);
-////    void disableAutoConfigurationRadioButtonClicked(bool);
-////    void uploadSpeedHorizontalSliderClicked(int);
-////    void audioBitrateComboBoxIndexChanged(int);
-////    void stereoRadioButtonClicked(bool);
-////    void monoRadioButtonClicked(bool);
-//    void okPushButtonClicked();
-//    void exitPushButtonClicked();
+public slots:
+    void videoSizeComboBoxIndexChanged(int);
+    void videoFormatComboBoxIndexChanged(int);
+    void enableAutoConfigurationRadioButtonClicked(bool);
+    void disableAutoConfigurationRadioButtonClicked(bool);
+    void uploadSpeedHorizontalSliderChanged(int);
+    void audioBitrateComboBoxIndexChanged(int);
+    void stereoRadioButtonClicked(bool);
+    void monoRadioButtonClicked(bool);
+    void okPushButtonClicked();
+    void exitPushButtonClicked();
 
 };
 
