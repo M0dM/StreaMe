@@ -16,7 +16,6 @@
 #include "microphone.h"
 
 class Source;
-class Controller;
 class Camera;
 class Microphone;
 

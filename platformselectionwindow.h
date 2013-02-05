@@ -17,6 +17,10 @@ public:
     
 private:
     Ui::platformSelectionWindow *ui;
+
+public slots:
+    void okPushButtonClicked();
+    void exitPushButtonClicked();
 };
 
 #endif // PLATFORMSELECTIONWINDOW_H

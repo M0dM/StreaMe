@@ -31,9 +31,12 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(Controller* controller,QWidget *parent = 0);
+    void closeEvent(QCloseEvent *event = 0);
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
+    void setUsedSources(QStringList usedSources);
     void startVideo(QBuffer *someBuffer);
+    Controller* getController();
 private:
     Ui::MainWindow *ui;
     Controller* controller;
@@ -53,6 +56,10 @@ public slots :
     void seekchange();
     void enqueueNextSource();
     void setNewTime();
+    void newProjectTriggered();
+    void openProjectTriggered();
+    void useSourceClicked();
+    void notUseSourceClicked();
 };
 
 #endif // MAINWINDOW_H

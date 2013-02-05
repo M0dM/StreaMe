@@ -19,8 +19,6 @@ int main(int argc, char *argv[])
     controller->displayFreeSources();
     controller->displayUsedSources();
 
-    //controller.twitchStream();
-
     return a.exec();
 
 }
