@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <Phonon>
 #include <QUrl>
+#include <QFile>
 #include <phonon/MediaSource>
 #include <Phonon/VideoPlayer>
 #include <phonon/audiooutput.h>
@@ -33,19 +34,26 @@ public:
     void closeEvent(QCloseEvent *event = 0);
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
-    void setUsedSources(QStringList usedSources);
+    void startVideo(QBuffer *someBuffer);
 private:
     Ui::MainWindow *ui;
     Controller* controller;
-    Controller* getController();
+    qint64 pos;
+    Phonon::MediaObject *mediaObject ;
+    Phonon::VideoWidget *videoWidget ;
+    Phonon::AudioOutput *audioOutput ;
+    QBuffer *bu2 ;
+    QBuffer *bu ;
+    QByteArray *array1;
+    QByteArray *array2;
+    QFile *file;
 public slots :
-    void newProjectTriggered();
-    void openProjectTriggered();
     void stopClicked();
     void playClicked();
     void rewindClicked();
-    void useSourceClicked();
-    void notUseSourceClicked();
+    void seekchange();
+    void enqueueNextSource();
+    void setNewTime();
 };
 
 #endif // MAINWINDOW_H
