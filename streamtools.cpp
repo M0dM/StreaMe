@@ -109,7 +109,7 @@ void StreamTools::stream(string rtmpUrl, string size, string videoBitrate, strin
     //        arguments << QString::fromStdString("-threads") << QString::fromStdString("2");
     //        arguments << QString::fromStdString("-f") << QString::fromStdString("flv");
     //        arguments << QString::fromStdString(rtmpUrl);
-    arguments << QString::fromStdString("pourquoi.mp4");
+    arguments << QString::fromStdString("pourquoi.mpeg");
 
     cout << this->getDevicesCommand() << endl;
     this->setDevicesCommand("","");

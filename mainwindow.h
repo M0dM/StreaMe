@@ -16,7 +16,7 @@
 #include <QBuffer>
 #include <QMainWindow>
 #include "controller.h"
-
+#include "windows.h"
 
 class Controller;
 class Source;

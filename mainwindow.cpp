@@ -53,7 +53,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
 
 
 void MainWindow::startVideo(QBuffer *someBuffer){
-    file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
+    file->setFileName("C:\\Users\\nansp_000\\Dropbox\\Projets\\Qt Creator\\StreaMe-build-Desktop-Debug\\pourquoi.mpeg");
     file->open(QIODevice::ReadOnly);
 
     *array1 += file->read(300000);
@@ -103,8 +103,8 @@ void MainWindow::stopClicked(){
 }
 
 void MainWindow::playClicked(){
+    //controller->twitchStream();
     startVideo(bu);
-    controller->twitchStream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();
     //cout << "Play clicked" << endl;
@@ -161,7 +161,6 @@ void MainWindow::useSourceClicked(){
 void MainWindow::notUseSourceClicked(){
     if(ui->listUsedSources->currentRow()>=0)
         controller->notUseSource(ui->listUsedSources->item(ui->listUsedSources->currentRow())->text().toStdString());
-
 }
 
 Controller* MainWindow::getController(){
