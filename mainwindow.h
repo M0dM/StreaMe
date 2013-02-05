@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <Phonon>
 #include <QUrl>
+#include <QFile>
 #include <phonon/MediaSource>
 #include <Phonon/VideoPlayer>
 #include <phonon/audiooutput.h>
@@ -14,9 +15,6 @@
 #include <phonon/objectdescriptionmodel.h>
 #include <QBuffer>
 #include <QMainWindow>
-#include <QWidget>
-#include "platformselectionwindow.h"
-#include "streamingparametersconfigurationwindow.h"
 #include "controller.h"
 
 
@@ -33,25 +31,35 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(Controller* controller,QWidget *parent = 0);
+    void closeEvent(QCloseEvent *event = 0);
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
     void setUsedSources(QStringList usedSources);
+    void useSourceClicked();
+    void notUseSourceClicked();
+    void startVideo(QBuffer *someBuffer);
+    Controller* getController();
 private:
     Ui::MainWindow *ui;
     Controller* controller;
-    Controller* getController();
-    QWidget *StreamingParametersUi;
-    QWidget *PlatformSelectionUi;
+    qint64 pos;
+    Phonon::MediaObject *mediaObject ;
+    Phonon::VideoWidget *videoWidget ;
+    Phonon::AudioOutput *audioOutput ;
+    QBuffer *bu2 ;
+    QBuffer *bu ;
+    QByteArray *array1;
+    QByteArray *array2;
+    QFile *file;
 public slots :
-    void newProjectTriggered();
-    void openProjectTriggered();
     void stopClicked();
     void playClicked();
     void rewindClicked();
-    void useSourceClicked();
-    void notUseSourceClicked();
-    void configureParametersTrigged();
-    void choosePlatformTrigged();
+    void seekchange();
+    void enqueueNextSource();
+    void setNewTime();
+    void newProjectTriggered();
+    void openProjectTriggered();
 };
 
 #endif // MAINWINDOW_H

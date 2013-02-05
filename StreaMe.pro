@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     camera.cpp \
     microphone.cpp \
     platformselectionwindow.cpp \
-    streamingparametersconfigurationwindow.cpp
+    streamingparametersconfigurationwindow.cpp \
+    streamthread.cpp
 
 HEADERS  += mainwindow.h \
     project.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     camera.h \
     microphone.h \
     platformselectionwindow.h \
-    streamingparametersconfigurationwindow.h
+    streamingparametersconfigurationwindow.h \
+    streamthread.h
 
 FORMS    += mainwindow.ui \
     platformselectionwindow.ui \
@@ -44,3 +46,4 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     New.qrc
+    win32:RC_FILE = streame.rc

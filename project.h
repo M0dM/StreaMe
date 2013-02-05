@@ -25,7 +25,6 @@ private:
     Controller* controller;
     vector<Source*> usedSources;
     Live* live;
-
     Controller* getController();
     void setLive(Live* live);
     void setUsedSources(vector<Source*> usedSources);
