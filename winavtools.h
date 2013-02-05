@@ -29,8 +29,8 @@ public:
     Source *peekAudioSource() const;
 
 private:
-    std::vector<Source*> sources;
-    void detectSources(); //detect all sources and add them into the correspondant vector (audioSources or videoSources)
+    std::vector<Source*> sources; //all sources available on the computer
+    void detectSources(); //detect all sources and add them to the sources vector
     void setSources(std::vector<Source*>);
     void pushSource(Source *source);
 

@@ -8,13 +8,18 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Controller controller;
+    Controller *controller = new Controller();
 
-    controller.ShowMainWindow();
+    //Project *newProject = new Project(controller);
+    //newProject->addUsedSource(new Source("Microphone (Realtek High Definition Audio)","audio"));
+    //controller->setProject(newProject);
 
-    controller.displayAllSources();
+    controller->ShowMainWindow();
 
-    controller.twitchStream();
+    controller->displayFreeSources();
+    controller->displayUsedSources();
+
+    //controller.twitchStream();
 
     return a.exec();
 

@@ -99,14 +99,21 @@ void StreamTools::stream(string size, string videoBitrate, string audioBitrate ,
     QStringList arguments;
     arguments << QString::fromStdString("-f") << QString::fromStdString("dshow") << QString::fromStdString("-i") << QString::fromStdString(getDevicesCommand()) << QString::fromStdString("-s") << QString::fromStdString(size) << QString::fromStdString("-b:v") << QString::fromStdString(videoBitrate) << QString::fromStdString("-r") << QString::fromStdString("30") << QString::fromStdString("-c:v") << QString::fromStdString("libx264") << QString::fromStdString("-pix_fmt") << QString::fromStdString("yuv420p") << QString::fromStdString("-c:a") << QString::fromStdString("libmp3lame") << QString::fromStdString("-ab") << QString::fromStdString(audioBitrate) << QString::fromStdString("-ar") << QString::fromStdString("22050") << QString::fromStdString("-threads") << QString::fromStdString("2") << QString::fromStdString("-f") << QString::fromStdString("flv") << QString::fromStdString(rtmpUrl);
 
-    ffmpegProcess->setProcessChannelMode(QProcess::MergedChannels); // get all channels for the output
+//    cout << endl << endl;
+
+//    for(int i(0); i < arguments.size(); i++)
+//        cout << arguments.value(i).toStdString() + " ";
+
+//    cout << endl << endl;
+
+//    ffmpegProcess->setProcessChannelMode(QProcess::MergedChannels); // get all channels for the output
     ffmpegProcess->start(path,arguments,QIODevice::ReadWrite); //Starting the process
 
-    if(ffmpegProcess->waitForStarted()){
-        while(ffmpegProcess->waitForReadyRead())
-            data.append(ffmpegProcess->readAll());
-    }
+//    if(ffmpegProcess->waitForStarted()){
+//        while(ffmpegProcess->waitForReadyRead())
+//            data.append(ffmpegProcess->readAll());
+//    }
 
-    //cout << data << endl;
+//    cout << data << endl;
 }
 

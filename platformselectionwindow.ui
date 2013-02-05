@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>platformSelectionWindow</class>
+ <widget class="QWidget" name="platformSelectionWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>420</width>
+    <height>140</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Select Streaming Platform</string>
+  </property>
+  <widget class="QLabel" name="streamPlatformLabel">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>25</y>
+     <width>100</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Streaming Platform:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>25</y>
+     <width>150</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>justin.tv / twitch.tv</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ustream.tv</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="streamKeyLabel">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>60</y>
+     <width>100</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Streaming Key:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="StreamKeylineEdit">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>60</y>
+     <width>260</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitBuntton">
+   <property name="geometry">
+    <rect>
+     <x>315</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="okButton">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>400</width>
+     <height>3</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

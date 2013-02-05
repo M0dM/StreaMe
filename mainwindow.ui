@@ -107,7 +107,7 @@
        </widget>
       </item>
       <item row="1" column="2" rowspan="2">
-       <widget class="QListWidget" name="listWidget_2">
+       <widget class="QListWidget" name="listUsedSources">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -290,7 +290,7 @@
           <height>0</height>
          </size>
         </property>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="buttonUseSource">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -313,7 +313,7 @@
            <normaloff>:/new/Add/ressources/fleche-bleue-a-droite-icone-6287-32.png</normaloff>:/new/Add/ressources/fleche-bleue-a-droite-icone-6287-32.png</iconset>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="buttonNotUseSource">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -340,6 +340,13 @@
       </item>
      </layout>
     </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="statutBarLabel">
+      <property name="text">
+       <string>StatusBar: Streaming status - stopped  </string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -348,7 +355,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -412,7 +419,6 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Project">
    <property name="text">
     <string>New Project</string>
