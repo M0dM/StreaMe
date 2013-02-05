@@ -30,6 +30,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(Controller* controller,QWidget *parent = 0);
+    void closeEvent(QCloseEvent *event = 0);
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
     void setUsedSources(QStringList usedSources);

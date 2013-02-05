@@ -27,14 +27,19 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QString fileName("C:\\Users\\nansp_000\\Dropbox\\Projets\\Qt Creator\\StreaMe\\ffmpeg\\catchedFiles\\out.mpeg");
     //QBuffer *someBuffer;
     //ui->videoPlayer->load(fileName);
-    ui->videoPlayer->play(fileName);
-    ui->videoPlayer->show();
+    //ui->videoPlayer->play(fileName);
+    //ui->videoPlayer->show();
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete controller;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event){
+    delete this;
 }
 
 void MainWindow::newProjectTriggered(){
@@ -66,15 +71,17 @@ void MainWindow::openProjectTriggered(){
 }
 
 void MainWindow::stopClicked(){
-    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
-    ui->videoPlayer->stop();
-    cout << "Stop clicked" << endl;
+    controller->stopStream();
+    //    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
+    //    ui->videoPlayer->stop();
+    //    cout << "Stop clicked" << endl;
 }
 
 void MainWindow::playClicked(){
-    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
-    ui->videoPlayer->pause();
-    cout << "Play clicked" << endl;
+    controller->twitchStream();
+    //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
+    //ui->videoPlayer->pause();
+    //cout << "Play clicked" << endl;
 }
 
 void MainWindow::rewindClicked(){

@@ -10,7 +10,6 @@ Controller::Controller()
 }
 
 Controller::~Controller(){
-    delete this->mainwindow;
     delete this->streamTools;
 }
 
@@ -37,7 +36,11 @@ void Controller::displayAudioSources(){
 }
 
 void Controller::twitchStream(){
-    streamTools->start();
+    streamTools->startStream();
+}
+
+void Controller::stopStream(){
+    streamTools->stopStream();
 }
 
 void Controller::displayFreeSources(){
@@ -102,4 +105,8 @@ void Controller::notUseSource(string sourceName){
     project->removeUsedSource(sourceName);
     displayFreeSources();
     displayUsedSources();
+}
+
+vector<Source*> Controller::getProjectUsedSouces(){
+    return project->getUsedSources();
 }
