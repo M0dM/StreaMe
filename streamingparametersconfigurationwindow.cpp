@@ -129,9 +129,6 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
     // set values into the project file
     Project* project = this->getController()->getProject();
 
-    // set values
-    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
-    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
 
     if(ui->enableAutoConfigurationRadioButton->isChecked()){
         project->setAutoConfiguration(true);
