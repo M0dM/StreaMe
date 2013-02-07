@@ -11,6 +11,20 @@ using namespace std;
 Project::Project(Controller* controller)
 {
     this->controller=controller;
+
+    // setting default values for the streaming platform
+    this->setPlatformIndex(0);
+    this->setStreamingKey("");
+
+    // setting default values for streaming configuration
+    this->setVideoSizeIndex(0);
+    this->setVideoFormatIndex(0);
+    this->setAutoConfiguration(true);
+    this->setUploadSpeed(1000);
+    this->setVideoBitrate(1000);
+    this->setAudioBitrateIndex(0);
+    this->setAudioBitrateIndex(0);
+    this->setStereoConfiguration(true);
 }
 
 Controller* Project::getController(){

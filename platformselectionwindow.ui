@@ -59,7 +59,7 @@
     <string>Streaming Key:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="StreamKeylineEdit">
+  <widget class="QLineEdit" name="streamKeylineEdit">
    <property name="geometry">
     <rect>
      <x>130</x>
