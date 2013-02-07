@@ -17,6 +17,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include "controller.h"
+#include "windows.h"
 
 
 class Controller;
@@ -42,7 +43,7 @@ public:
 private:
     Ui::MainWindow *ui;
     Controller* controller;
-    qint64 pos;
+    qint64 pos,fileSize,oldFileSize;
     Phonon::MediaObject *mediaObject ;
     Phonon::VideoWidget *videoWidget ;
     Phonon::AudioOutput *audioOutput ;
@@ -68,6 +69,7 @@ public slots :
     void notUseSourceClicked();
     void configureParametersTrigged();
     void choosePlatformTrigged();
+    void videoAlmostFinished();
 };
 
 #endif // MAINWINDOW_H

@@ -70,16 +70,17 @@ void MainWindow::closeEvent(QCloseEvent *event){
 void MainWindow::startVideo(){
     file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
     file->open(QIODevice::ReadOnly);
-
+    fileSize=file->size();
     *array1 += file->read(file->size());
     bu->setBuffer(array1);
 
     mediaObject->setCurrentSource(bu);
     mediaObject->play();
-    mediaObject->setTransitionTime(-10);
+    mediaObject->setTransitionTime(-100);
+    mediaObject->setPrefinishMark(200);
     QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
     QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
-
+    QObject::connect(mediaObject, SIGNAL(prefinishMarkReached(qint32)), SLOT(videoAlmostFinished()));
 }
 
 
@@ -142,16 +143,29 @@ void MainWindow::seekchange(){
 void MainWindow::enqueueNextSource(){
     cout << "enqueue " << endl;
     pos=mediaObject->totalTime();
+    oldFileSize=fileSize;
     file->close();
     file->open(QIODevice::ReadOnly);
     cout << "media pos :" << pos <<endl;
-    *array2 = file->read(file->size());
-    bu2->setBuffer(array2);
-    mediaObject->enqueue(bu2);
+    fileSize=file->size();
+    if(fileSize!=oldFileSize)
+    {
+        *array2 = file->read(file->size());
+        bu2->close();
+        bu2->setBuffer(array2);
+        mediaObject->enqueue(bu2);
+    }
+
 }
 
 void MainWindow::setNewTime(){
-    mediaObject->seek(pos-10);
+    cout << "setNewtime" << endl;
+
+
+    mediaObject->seek(pos-100);
+    Sleep(200);
+    videoWidget->setBrightness(0);
+    videoWidget->setContrast(0);
 }
 
 void MainWindow::setFreeSources(QStringList freeSources){
@@ -189,4 +203,10 @@ void MainWindow::resizeEvent (QResizeEvent * event){
     videoWidget->setMinimumHeight(ui->videoPlayer->height());
     videoWidget->setMaximumHeight(ui->videoPlayer->maximumHeight());
     videoWidget->setMaximumWidth(ui->videoPlayer->maximumWidth());
+}
+
+void MainWindow::videoAlmostFinished(){
+    cout << "DAAAAAH !" << endl;
+    videoWidget->setBrightness(-1);
+    videoWidget->setContrast(-1);
 }
