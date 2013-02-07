@@ -126,24 +126,24 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
 //    std::string myString = "45";
 //    int value = atoi(myString.c_str()); //value = 45
 
-    // set values
-    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
-    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
+//    // set values
+//    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
+//    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
 
-    if(project->getAutoConfiguration() == true){
-        ui->enableAutoConfigurationRadioButton->setChecked(true);
-        ui->disableAutoConfigurationRadioButton->setChecked(false);
-        ui->groupBox->setEnabled(false);
-    }
+//    if(project->getAutoConfiguration() == true){
+//        ui->enableAutoConfigurationRadioButton->setChecked(true);
+//        ui->disableAutoConfigurationRadioButton->setChecked(false);
+//        ui->groupBox->setEnabled(false);
+//    }
 
-    project->setUploadSpeed(ui->uploadSpeedValueLabel->text());
-    project->setVideoBitrate(ui->videoBitrateLineEdit->text());
-    project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());
+//    project->setUploadSpeed(ui->uploadSpeedValueLabel->text());
+//    project->setVideoBitrate(ui->videoBitrateLineEdit->text());
+//    project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());
 
-    if(project->getStereoConfiguration() == true){
-        ui->stereoRadioButton->setChecked(true);
-        ui->monoRadioButton->setChecked(false);
-    }
+//    if(project->getStereoConfiguration() == true){
+//        ui->stereoRadioButton->setChecked(true);
+//        ui->monoRadioButton->setChecked(false);
+//    }
 
 
 
