@@ -112,5 +112,6 @@ vector<Source*> Controller::getProjectUsedSouces(){
 }
 
 void Controller::streamStarted(){
-    cout << "Stream process started !" << endl;
+//    Sleep(3000);
+//    mainwindow->startVideo();
 }
