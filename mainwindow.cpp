@@ -109,11 +109,9 @@ void MainWindow::stopClicked(){
 }
 
 void MainWindow::playClicked(){
-    //controller->twitchStream();
-    startVideo(bu);
-    //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
-    //ui->videoPlayer->pause();
-    //cout << "Play clicked" << endl;
+    controller->twitchStream();
+//    startVideo(bu);
+//    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
 }
 
 void MainWindow::rewindClicked(){

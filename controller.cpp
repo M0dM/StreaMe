@@ -110,3 +110,7 @@ void Controller::notUseSource(string sourceName){
 vector<Source*> Controller::getProjectUsedSouces(){
     return project->getUsedSources();
 }
+
+void Controller::streamStarted(){
+    cout << "Stream process started !" << endl;
+}

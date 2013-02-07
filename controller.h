@@ -26,6 +26,7 @@ public:
     Project* getProject();
     void setProject(Project*);
     vector<Source*> getProjectUsedSouces();
+    void streamStarted();
 private:
     MainWindow * mainwindow;
     Project *project;
