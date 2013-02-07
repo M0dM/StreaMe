@@ -120,7 +120,6 @@ void MainWindow::stopClicked(){
 
 void MainWindow::playClicked(){
     //startVideo();
-    cout << "yo" << endl;
     controller->twitchStream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();
