@@ -176,7 +176,6 @@ void MainWindow::useSourceClicked(){
 void MainWindow::notUseSourceClicked(){
     if(ui->listUsedSources->currentRow()>=0)
         controller->notUseSource(ui->listUsedSources->item(ui->listUsedSources->currentRow())->text().toStdString());
-
 }
 
 void MainWindow::configureParametersTrigged(){

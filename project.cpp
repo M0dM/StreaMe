@@ -176,3 +176,80 @@ bool Project::load(string fileUrl){
     file.close();
     return true;
 }
+
+// Streaming platform attributes acessors
+int Project::getPlatformIndex(){
+    return this->platformIndex;
+}
+
+string Project::getStreamingKey(){
+    return this->streamingKey;
+}
+
+// Streaming platform attributes mutators
+void Project::setPlatformIndex(int index){
+    this->platformIndex = index;
+}
+
+void Project::setStreamingKey(string key){
+    this->streamingKey = key;
+}
+
+// Streaming configuration attributes acessors and mutators
+int Project::getVideoSizeIndex(){
+    return this->videoSizeIndex;
+}
+
+void Project::setVideoSizeIndex(int index){
+    this->videoSizeIndex = index;
+}
+
+int Project::getVideoFormatIndex(){
+    return this->videoFormatIndex;
+}
+
+void Project::setVideoFormatIndex(int index){
+    this->videoFormatIndex = index;
+}
+
+bool Project::getAutoConfiguration(){
+    return this->autoConfiguration;
+}
+
+void Project::setAutoConfiguration(bool value){
+    this->autoConfiguration = value;
+}
+
+int Project::getUploadSpeed(){
+    return this->uploadSpeed;
+}
+
+void Project::setUploadSpeed(int uploadSpeed){
+    this->uploadSpeed = uploadSpeed;
+}
+
+int Project::getVideoBitrate(){
+    return this->videoBitrate;
+}
+
+void Project::setVideoBitrate(int videoBitrate){
+    this->videoBitrate = videoBitrate;
+}
+
+int Project::getAudioBitrateIndex(){
+    return this->audioBitrateIndex;
+}
+
+void Project::setAudioBitrateIndex(int index){
+    this->audioBitrateIndex = index;
+}
+
+bool Project::getStereoConfiguration(){
+    return this->stereoConfiguration;
+}
+
+void Project::setStereoConfiguration(bool value){
+    this->stereoConfiguration = value;
+}
+
+
