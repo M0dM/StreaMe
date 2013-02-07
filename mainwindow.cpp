@@ -68,7 +68,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
 
 
 void MainWindow::startVideo(){
-    file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
+    file->setFileName("C:\\Users\\nansp_000\\Dropbox\\Projets\\Qt Creator\\StreaMe-build-Desktop-Debug\\why.mpeg");
     file->open(QIODevice::ReadOnly);
     fileSize=file->size();
     *array1 += file->read(file->size());
@@ -120,7 +120,7 @@ void MainWindow::stopClicked(){
 }
 
 void MainWindow::playClicked(){
-    startVideo();
+    //startVideo();
     controller->twitchStream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();

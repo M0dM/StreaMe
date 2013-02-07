@@ -5,6 +5,8 @@
 #include "project.h"
 #include "streamtools.h"
 
+#include "windows.h"
+
 class MainWindow;
 class Project;
 class StreamTools;
@@ -26,6 +28,7 @@ public:
     Project* getProject();
     void setProject(Project*);
     vector<Source*> getProjectUsedSouces();
+    void streamStarted();
 private:
     MainWindow * mainwindow;
     Project *project;

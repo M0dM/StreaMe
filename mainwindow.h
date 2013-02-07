@@ -19,7 +19,6 @@
 #include "controller.h"
 #include "windows.h"
 
-
 class Controller;
 class Source;
 
