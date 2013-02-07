@@ -68,7 +68,7 @@
     <number>10000</number>
    </property>
    <property name="singleStep">
-    <number>10</number>
+    <number>50</number>
    </property>
    <property name="pageStep">
     <number>100</number>
@@ -101,7 +101,7 @@
     <rect>
      <x>210</x>
      <y>120</y>
-     <width>82</width>
+     <width>55</width>
      <height>17</height>
     </rect>
    </property>
@@ -117,7 +117,7 @@
     <rect>
      <x>280</x>
      <y>120</y>
-     <width>82</width>
+     <width>55</width>
      <height>17</height>
     </rect>
    </property>
@@ -251,7 +251,7 @@
      <rect>
       <x>215</x>
       <y>140</y>
-      <width>82</width>
+      <width>55</width>
       <height>17</height>
      </rect>
     </property>
@@ -344,7 +344,7 @@
      <rect>
       <x>150</x>
       <y>140</y>
-      <width>82</width>
+      <width>55</width>
       <height>17</height>
      </rect>
     </property>

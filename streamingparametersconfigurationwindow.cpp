@@ -1,6 +1,7 @@
 #include "streamingparametersconfigurationwindow.h"
 #include "ui_streamingparametersconfigurationwindow.h"
 #include <iostream>
+#include <sstream>
 
 StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(Controller* controller, QWidget *parent) :
     QWidget(parent),
@@ -8,6 +9,40 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(C
 {
     StreamingParametersConfigurationWindow::setController(controller);
     ui->setupUi(this);
+
+    // get project for set the project saved values
+    Project* project = this->getController()->getProject();
+    // convert integer values to string
+    std::ostringstream oss;
+    oss << project->getUploadSpeed();
+    string stdStringUploadSpeed = oss.str();
+    oss.str("");
+    oss << project->getVideoBitrate();
+    string stdStringVideoBitrate = oss.str();
+
+    // convert to qstring
+    QString qstringUploadSpeed = QString::fromStdString(stdStringUploadSpeed);
+    QString qstringVideoBitrate = QString::fromStdString(stdStringVideoBitrate);
+
+    // set values
+    ui->videoSizeComboBox->setCurrentIndex(project->getVideoSizeIndex());
+    ui->videoFormatComboBox->setCurrentIndex(project->getVideoFormatIndex());
+
+    if(project->getAutoConfiguration() == true){
+        ui->enableAutoConfigurationRadioButton->setChecked(true);
+        ui->disableAutoConfigurationRadioButton->setChecked(false);
+        ui->groupBox->setEnabled(false);
+    }
+
+    ui->uploadSpeedHorizontalSlider->setValue(project->getUploadSpeed());
+    ui->uploadSpeedValueLabel->setText(qstringUploadSpeed);
+    ui->videoBitrateLineEdit->setText(qstringVideoBitrate);
+    ui->audioBitrateComboBox->setCurrentIndex(project->getAudioBitrateIndex());
+
+    if(project->getStereoConfiguration() == true){
+        ui->stereoRadioButton->setChecked(true);
+        ui->monoRadioButton->setChecked(false);
+    }
 
     // Connect signal buttons
    QObject::connect(ui->videoSizeComboBox, SIGNAL(currentIndexChanged(int)),this,SLOT(videoSizeComboBoxIndexChanged(int)));
@@ -36,11 +71,11 @@ StreamingParametersConfigurationWindow::~StreamingParametersConfigurationWindow(
 }
 
 void StreamingParametersConfigurationWindow::videoSizeComboBoxIndexChanged(int index){
-    cout << index << endl;
+    cout << "video size choosed index: " << index << endl;
 }
 
 void StreamingParametersConfigurationWindow::videoFormatComboBoxIndexChanged(int index){
-    cout << index << endl;
+    cout << "video format choosed index: " << index << endl;
 }
 
 void StreamingParametersConfigurationWindow::enableAutoConfigurationRadioButtonClicked(bool value){
@@ -56,33 +91,63 @@ void StreamingParametersConfigurationWindow::disableAutoConfigurationRadioButton
 }
 
 void StreamingParametersConfigurationWindow::uploadSpeedHorizontalSliderChanged(int value){
-    cout << value << endl;
+
+    // convert integer values to string
+    value = value - value%50;
+    std::ostringstream oss;
+    oss << value;
+    string stdStringValue = oss.str();
+
+    // convert to qstring
+    QString qstringValue = QString::fromStdString(stdStringValue);
+    ui->uploadSpeedValueLabel->setText(qstringValue);
 }
 
 void StreamingParametersConfigurationWindow::audioBitrateComboBoxIndexChanged(int index){
-    cout << index << endl;
+    cout << "audio bitrate changed to index: " << index << endl;
 }
 
 void StreamingParametersConfigurationWindow::stereoRadioButtonClicked(bool value){
     if(value){
-        cout << "true" << endl;
-    }
-    else{
-        cout << "false" << endl;
+        cout << "stereo audio choosed" << endl;
     }
 }
 
 void StreamingParametersConfigurationWindow::monoRadioButtonClicked(bool value){
     if(value){
-        cout << "true" << endl;
-    }
-    else{
-        cout << "false" << endl;
+        cout << "mono audio choosed" << endl;
     }
 }
 
 void StreamingParametersConfigurationWindow::okPushButtonClicked(){
 
+    // set values into the project file
+    Project* project = this->getController()->getProject();
+//    std::string myString = "45";
+//    int value = atoi(myString.c_str()); //value = 45
+
+    // set values
+    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
+    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
+
+    if(project->getAutoConfiguration() == true){
+        ui->enableAutoConfigurationRadioButton->setChecked(true);
+        ui->disableAutoConfigurationRadioButton->setChecked(false);
+        ui->groupBox->setEnabled(false);
+    }
+
+    project->setUploadSpeed(ui->uploadSpeedValueLabel->text());
+    project->setVideoBitrate(ui->videoBitrateLineEdit->text());
+    project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());
+
+    if(project->getStereoConfiguration() == true){
+        ui->stereoRadioButton->setChecked(true);
+        ui->monoRadioButton->setChecked(false);
+    }
+
+
+
+    delete this;
 }
 
 void StreamingParametersConfigurationWindow::exitPushButtonClicked(){
