@@ -38,8 +38,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
     Phonon::createPath(mediaObject, audioOutput);
 
-    videoWidget->setMinimumWidth(610);
-    videoWidget->setMinimumHeight(300);
+    videoWidget->setMinimumWidth(ui->videoPlayer->width());
+    videoWidget->setMinimumHeight(ui->videoPlayer->height());
 
     bu = new QBuffer();
     array1= new QByteArray();
@@ -67,15 +67,16 @@ void MainWindow::closeEvent(QCloseEvent *event){
 }
 
 
-void MainWindow::startVideo(QBuffer *someBuffer){
+void MainWindow::startVideo(){
     file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
     file->open(QIODevice::ReadOnly);
 
-    *array1 += file->read(300000);
+    *array1 += file->read(file->size());
     bu->setBuffer(array1);
 
     mediaObject->setCurrentSource(bu);
     mediaObject->play();
+    mediaObject->setTransitionTime(-10);
     QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
     QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
 
@@ -118,7 +119,7 @@ void MainWindow::stopClicked(){
 }
 
 void MainWindow::playClicked(){
-    startVideo(bu);
+    //startVideo();
     controller->twitchStream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();
@@ -142,11 +143,7 @@ void MainWindow::enqueueNextSource(){
     cout << "enqueue " << endl;
     pos=mediaObject->totalTime();
     file->close();
-    //file->~QFile();
-    //file = new QFile();
-    //file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
     file->open(QIODevice::ReadOnly);
-    //file->seek(pos);
     cout << "media pos :" << pos <<endl;
     *array2 = file->read(file->size());
     bu2->setBuffer(array2);
@@ -154,8 +151,7 @@ void MainWindow::enqueueNextSource(){
 }
 
 void MainWindow::setNewTime(){
-    cout << "changed !!!!" << endl ;
-    mediaObject->seek(pos);
+    mediaObject->seek(pos-10);
 }
 
 void MainWindow::setFreeSources(QStringList freeSources){
@@ -186,4 +182,11 @@ void MainWindow::configureParametersTrigged(){
 void MainWindow::choosePlatformTrigged(){
     PlatformSelectionUi = new platformSelectionWindow(this->getController());
     PlatformSelectionUi->show();
+}
+
+void MainWindow::resizeEvent (QResizeEvent * event){
+    videoWidget->setMinimumWidth(ui->videoPlayer->width());
+    videoWidget->setMinimumHeight(ui->videoPlayer->height());
+    videoWidget->setMaximumHeight(ui->videoPlayer->maximumHeight());
+    videoWidget->setMaximumWidth(ui->videoPlayer->maximumWidth());
 }
