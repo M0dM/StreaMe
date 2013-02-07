@@ -42,6 +42,10 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(C
     if(project->getStereoConfiguration() == true){
         ui->stereoRadioButton->setChecked(true);
         ui->monoRadioButton->setChecked(false);
+    }else
+    {
+        ui->stereoRadioButton->setChecked(false);
+        ui->monoRadioButton->setChecked(true);
     }
 
     // Connect signal buttons
@@ -123,29 +127,33 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
 
     // set values into the project file
     Project* project = this->getController()->getProject();
-//    std::string myString = "45";
-//    int value = atoi(myString.c_str()); //value = 45
-
-//    // set values
-//    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
-//    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
-
-//    if(project->getAutoConfiguration() == true){
-//        ui->enableAutoConfigurationRadioButton->setChecked(true);
-//        ui->disableAutoConfigurationRadioButton->setChecked(false);
-//        ui->groupBox->setEnabled(false);
-//    }
-
-//    project->setUploadSpeed(ui->uploadSpeedValueLabel->text());
-//    project->setVideoBitrate(ui->videoBitrateLineEdit->text());
-//    project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());
-
-//    if(project->getStereoConfiguration() == true){
-//        ui->stereoRadioButton->setChecked(true);
-//        ui->monoRadioButton->setChecked(false);
-//    }
 
 
+    if(ui->enableAutoConfigurationRadioButton->isChecked()){
+        project->setAutoConfiguration(true);
+    }
+    else{
+        project->setAutoConfiguration(false);
+    }
+
+    string stdStringUploadString = ui->uploadSpeedValueLabel->text().toStdString();
+    string stdStringVideoBitrate = ui->videoBitrateLineEdit->text().toStdString();
+    istringstream bufferUploadString(stdStringUploadString);
+    istringstream bufferVideoBitrate(stdStringVideoBitrate);
+    int intUploadSpeed, intVideoBitrate;
+    bufferUploadString >> intUploadSpeed;
+    bufferVideoBitrate >> intVideoBitrate;
+
+    project->setUploadSpeed(intUploadSpeed);
+    project->setVideoBitrate(intVideoBitrate);
+    project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());
+
+    if(ui->stereoRadioButton->isChecked()){
+        project->setStereoConfiguration(true);
+    }
+    else{
+        project->setStereoConfiguration(false);
+    }
 
     delete this;
 }
