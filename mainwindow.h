@@ -65,6 +65,7 @@ public slots :
     void notUseSourceClicked();
     void configureParametersTrigged();
     void choosePlatformTrigged();
+    void windowResized();
 };
 
 #endif // MAINWINDOW_H

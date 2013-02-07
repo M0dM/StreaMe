@@ -25,6 +25,7 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->videoPlayer->mediaObject(),SIGNAL(seekableChanged(bool)),SLOT(seekchange()));
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
+    QObject::connect(ui->videoPlayer,SIGNAL(resizeEvent(QResizeEvent)),SLOT(windowResized()));
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -37,8 +38,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
     Phonon::createPath(mediaObject, audioOutput);
 
-    videoWidget->setMinimumWidth(610);
-    videoWidget->setMinimumHeight(300);
+    videoWidget->setMinimumWidth(ui->videoPlayer->width());
+    videoWidget->setMinimumHeight(ui->videoPlayer->height());
 
     bu = new QBuffer();
     array1= new QByteArray();
@@ -182,4 +183,8 @@ void MainWindow::choosePlatformTrigged(){
 
 Controller* MainWindow::getController(){
     return controller;
+}
+
+void MainWindow::windowResized(){
+    cout << "WINDOW reszed" << endl;
 }
