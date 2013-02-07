@@ -1,8 +1,8 @@
 #ifndef STREAMINGPARAMETERSCONFIGURATIONWINDOW_H
 #define STREAMINGPARAMETERSCONFIGURATIONWINDOW_H
 
-#include <controller.h>
 #include <QObject>
+#include "controller.h"
 
 namespace Ui {
 class StreamingParametersConfigurationWindow;
@@ -13,11 +13,14 @@ class StreamingParametersConfigurationWindow : public QWidget
     Q_OBJECT
     
 public:
-    explicit StreamingParametersConfigurationWindow(QWidget *parent = 0);
+    explicit StreamingParametersConfigurationWindow(Controller* controller, QWidget *parent = 0);
     ~StreamingParametersConfigurationWindow();
+    Controller* getController();
+    void setController(Controller* controller);
     
 private:
     Ui::StreamingParametersConfigurationWindow *ui;
+    Controller* controller;
 
 public slots:
     void videoSizeComboBoxIndexChanged(int);

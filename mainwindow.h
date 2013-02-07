@@ -36,8 +36,9 @@ public:
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
     void setUsedSources(QStringList usedSources);
-    void startVideo(QBuffer *someBuffer);
+    void startVideo();
     Controller* getController();
+    void setController(Controller* controller);
 private:
     Ui::MainWindow *ui;
     Controller* controller;
@@ -52,6 +53,8 @@ private:
     QFile *file;
     QWidget *StreamingParametersUi;
     QWidget *PlatformSelectionUi;
+protected:
+    void resizeEvent(QResizeEvent * event );
 public slots :
     void stopClicked();
     void playClicked();

@@ -2,10 +2,11 @@
 #include "ui_streamingparametersconfigurationwindow.h"
 #include <iostream>
 
-StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(QWidget *parent) :
+StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(Controller* controller, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StreamingParametersConfigurationWindow)
 {
+    StreamingParametersConfigurationWindow::setController(controller);
     ui->setupUi(this);
 
     // Connect signal buttons
@@ -19,6 +20,14 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(Q
    QObject::connect(ui->monoRadioButton, SIGNAL(clicked(bool)),this,SLOT(monoRadioButtonClicked(bool)));
    QObject::connect(ui->okPushButton, SIGNAL(clicked()),this,SLOT(okPushButtonClicked()));
    QObject::connect(ui->exitPushButton, SIGNAL(clicked()),this,SLOT(exitPushButtonClicked()));
+}
+
+Controller* StreamingParametersConfigurationWindow::getController(){
+    return controller;
+}
+
+void StreamingParametersConfigurationWindow::setController(Controller* controller){
+    this->controller = controller;
 }
 
 StreamingParametersConfigurationWindow::~StreamingParametersConfigurationWindow()
@@ -36,19 +45,13 @@ void StreamingParametersConfigurationWindow::videoFormatComboBoxIndexChanged(int
 
 void StreamingParametersConfigurationWindow::enableAutoConfigurationRadioButtonClicked(bool value){
     if(value){
-        cout << "true" << endl;
-    }
-    else{
-        cout << "false" << endl;
-    }
+        ui->groupBox->setEnabled(false);
+   }
 }
 
 void StreamingParametersConfigurationWindow::disableAutoConfigurationRadioButtonClicked(bool value){
     if(value){
-        cout << "true" << endl;
-    }
-    else{
-        cout << "false" << endl;
+        ui->groupBox->setEnabled(true);
     }
 }
 
@@ -83,5 +86,5 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
 }
 
 void StreamingParametersConfigurationWindow::exitPushButtonClicked(){
-
+    delete this;
 }

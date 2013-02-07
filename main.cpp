@@ -1,5 +1,4 @@
 #include <QApplication>
-
 #include "controller.h"
 
 using namespace std;
