@@ -12,6 +12,7 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(C
 
     // get project for set the project saved values
     Project* project = this->getController()->getProject();
+
     // convert integer values to string
     std::ostringstream oss;
     oss << project->getUploadSpeed();
