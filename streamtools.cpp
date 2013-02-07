@@ -4,8 +4,8 @@ using namespace std;
 
 StreamTools::StreamTools(Controller *controller) : WinAvTools(){
     this->controller = controller;
-    this->ffmpegProcess = new QProcess();
     this->sThread = new StreamThread(this);
+    this->ffmpegProcess = new QProcess(sThread);
 }
 
 StreamTools::~StreamTools(){
