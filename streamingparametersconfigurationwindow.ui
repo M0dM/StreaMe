@@ -109,7 +109,7 @@
     <string>Enable</string>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QRadioButton" name="disableAutoConfigurationRadioButton">
@@ -123,6 +123,9 @@
    </property>
    <property name="text">
     <string>Disable</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="uploadSpeedValueLabel">
@@ -210,6 +213,9 @@
    </item>
   </widget>
   <widget class="QGroupBox" name="groupBox">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -223,7 +229,7 @@
    </property>
    <widget class="QLabel" name="videoParametersLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -239,7 +245,7 @@
    </widget>
    <widget class="QRadioButton" name="monoRadioButton">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -255,7 +261,7 @@
    </widget>
    <widget class="QLabel" name="videoBitrateMetricLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -271,7 +277,7 @@
    </widget>
    <widget class="QLineEdit" name="videoBitrateLineEdit">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -284,7 +290,7 @@
    </widget>
    <widget class="QLabel" name="audioParametersLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -300,7 +306,7 @@
    </widget>
    <widget class="QLabel" name="audioBitrateLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -316,7 +322,7 @@
    </widget>
    <widget class="QLabel" name="audioStereoMonoLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -332,7 +338,7 @@
    </widget>
    <widget class="QRadioButton" name="stereoRadioButton">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -345,10 +351,13 @@
     <property name="text">
      <string>Stereo</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="Line" name="line3">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -364,7 +373,7 @@
    </widget>
    <widget class="QLabel" name="videoBitrateLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -380,7 +389,7 @@
    </widget>
    <widget class="Line" name="line2">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -396,7 +405,7 @@
    </widget>
    <widget class="QComboBox" name="audioBitrateComboBox">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>

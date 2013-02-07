@@ -45,19 +45,13 @@ void StreamingParametersConfigurationWindow::videoFormatComboBoxIndexChanged(int
 
 void StreamingParametersConfigurationWindow::enableAutoConfigurationRadioButtonClicked(bool value){
     if(value){
-        cout << "true" << endl;
-    }
-    else{
-        cout << "false" << endl;
-    }
+        ui->groupBox->setEnabled(false);
+   }
 }
 
 void StreamingParametersConfigurationWindow::disableAutoConfigurationRadioButtonClicked(bool value){
     if(value){
-        cout << "true" << endl;
-    }
-    else{
-        cout << "false" << endl;
+        ui->groupBox->setEnabled(true);
     }
 }
 
@@ -92,5 +86,5 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
 }
 
 void StreamingParametersConfigurationWindow::exitPushButtonClicked(){
-
+    delete this;
 }
