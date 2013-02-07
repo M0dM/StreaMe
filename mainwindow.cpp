@@ -11,8 +11,9 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    this->controller=controller;
+    MainWindow::setController(controller);
     ui->setupUi(this);
+
 
     // Connect signal buttons
     QObject::connect(ui->buttonUseSource, SIGNAL(clicked()),this,SLOT(useSourceClicked()));
@@ -51,6 +52,14 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete controller;
+}
+
+Controller* MainWindow::getController(){
+    return controller;
+}
+
+void MainWindow::setController(Controller* controller){
+    this->controller = controller;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event){
@@ -171,15 +180,11 @@ void MainWindow::notUseSourceClicked(){
 }
 
 void MainWindow::configureParametersTrigged(){
-    StreamingParametersUi = new StreamingParametersConfigurationWindow();
+    StreamingParametersUi = new StreamingParametersConfigurationWindow(this->getController());
     StreamingParametersUi->show();
 }
 
 void MainWindow::choosePlatformTrigged(){
-    PlatformSelectionUi = new platformSelectionWindow();
+    PlatformSelectionUi = new platformSelectionWindow(this->getController());
     PlatformSelectionUi->show();
-}
-
-Controller* MainWindow::getController(){
-    return controller;
 }

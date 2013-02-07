@@ -38,6 +38,7 @@ public:
     void setUsedSources(QStringList usedSources);
     void startVideo(QBuffer *someBuffer);
     Controller* getController();
+    void setController(Controller* controller);
 private:
     Ui::MainWindow *ui;
     Controller* controller;
