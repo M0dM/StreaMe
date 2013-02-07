@@ -11,8 +11,9 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    this->controller=controller;
+    MainWindow::setController(controller);
     ui->setupUi(this);
+
 
     // Connect signal buttons
     QObject::connect(ui->buttonUseSource, SIGNAL(clicked()),this,SLOT(useSourceClicked()));
@@ -25,7 +26,6 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->videoPlayer->mediaObject(),SIGNAL(seekableChanged(bool)),SLOT(seekchange()));
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
-    QObject::connect(ui->videoPlayer,SIGNAL(resizeEvent(QResizeEvent)),SLOT(windowResized()));
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
@@ -54,20 +54,29 @@ MainWindow::~MainWindow()
     delete controller;
 }
 
+Controller* MainWindow::getController(){
+    return controller;
+}
+
+void MainWindow::setController(Controller* controller){
+    this->controller = controller;
+}
+
 void MainWindow::closeEvent(QCloseEvent *event){
     delete this;
 }
 
 
-void MainWindow::startVideo(QBuffer *someBuffer){
+void MainWindow::startVideo(){
     file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
     file->open(QIODevice::ReadOnly);
 
-    *array1 += file->read(300000);
+    *array1 += file->read(file->size());
     bu->setBuffer(array1);
 
     mediaObject->setCurrentSource(bu);
     mediaObject->play();
+    mediaObject->setTransitionTime(-10);
     QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
     QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
 
@@ -110,7 +119,7 @@ void MainWindow::stopClicked(){
 }
 
 void MainWindow::playClicked(){
-    startVideo(bu);
+    startVideo();
     controller->twitchStream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();
@@ -134,11 +143,7 @@ void MainWindow::enqueueNextSource(){
     cout << "enqueue " << endl;
     pos=mediaObject->totalTime();
     file->close();
-    //file->~QFile();
-    //file = new QFile();
-    //file->setFileName("C:\\Users\\Romaric\\Documents\\Cours\\StreaMe\\ffmpeg\\bin\\out2.mpeg");
     file->open(QIODevice::ReadOnly);
-    //file->seek(pos);
     cout << "media pos :" << pos <<endl;
     *array2 = file->read(file->size());
     bu2->setBuffer(array2);
@@ -146,8 +151,7 @@ void MainWindow::enqueueNextSource(){
 }
 
 void MainWindow::setNewTime(){
-    cout << "changed !!!!" << endl ;
-    mediaObject->seek(pos);
+    mediaObject->seek(pos-10);
 }
 
 void MainWindow::setFreeSources(QStringList freeSources){
@@ -172,19 +176,18 @@ void MainWindow::notUseSourceClicked(){
 }
 
 void MainWindow::configureParametersTrigged(){
-    StreamingParametersUi = new StreamingParametersConfigurationWindow();
+    StreamingParametersUi = new StreamingParametersConfigurationWindow(this->getController());
     StreamingParametersUi->show();
 }
 
 void MainWindow::choosePlatformTrigged(){
-    PlatformSelectionUi = new platformSelectionWindow();
+    PlatformSelectionUi = new platformSelectionWindow(this->getController());
     PlatformSelectionUi->show();
 }
 
-Controller* MainWindow::getController(){
-    return controller;
-}
-
-void MainWindow::windowResized(){
-    cout << "WINDOW reszed" << endl;
+void MainWindow::resizeEvent (QResizeEvent * event){
+    videoWidget->setMinimumWidth(ui->videoPlayer->width());
+    videoWidget->setMinimumHeight(ui->videoPlayer->height());
+    videoWidget->setMaximumHeight(ui->videoPlayer->maximumHeight());
+    videoWidget->setMaximumWidth(ui->videoPlayer->maximumWidth());
 }
