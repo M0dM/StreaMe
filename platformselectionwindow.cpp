@@ -12,10 +12,9 @@ platformSelectionWindow::platformSelectionWindow(Controller* controller, QWidget
 
     // get project for set the project saved values
     Project* project = this->getController()->getProject();
-    QString qstringStreamingKey = QString::fromStdString(project->getStreamingKey());
     // set values
     ui->comboBox->setCurrentIndex(project->getPlatformIndex());
-    ui->streamKeylineEdit->setText(qstringStreamingKey);
+    ui->streamKeylineEdit->setText(project->getStreamingKeyQstring());
 
     // Connect signal buttons
     QObject::connect(ui->okPushButton, SIGNAL(clicked()),this,SLOT(okPushButtonClicked()));
@@ -38,7 +37,7 @@ platformSelectionWindow::~platformSelectionWindow()
 void platformSelectionWindow::okPushButtonClicked(){
     Project* project = this->getController()->getProject();
     project->setPlatformIndex(ui->comboBox->currentIndex());
-    project->setStreamingKey(ui->streamKeylineEdit->text().toStdString());
+    project->setStreamingKey(ui->streamKeylineEdit->text());
     delete this;
 }
 

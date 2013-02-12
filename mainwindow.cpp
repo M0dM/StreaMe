@@ -23,6 +23,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
     QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
+    QObject::connect(ui->actionSave_Project, SIGNAL(triggered()),this,SLOT(saveProjectTriggered()));
+    QObject::connect(ui->actionSave_Project_As, SIGNAL(triggered()),this,SLOT(saveProjectAsTriggered()));
     QObject::connect(ui->videoPlayer->mediaObject(),SIGNAL(seekableChanged(bool)),SLOT(seekchange()));
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
@@ -88,31 +90,68 @@ void MainWindow::startVideo(){
 
 void MainWindow::newProjectTriggered(){
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
-    if(this->getController()->getProject()->save(fileName.toStdString())==true){
-        QMessageBox msgBox;
-        msgBox.setText("The StreaMe project was saved successfully.");
-        msgBox.exec();
-    }
-    else{
-        QMessageBox msgBox;
-        msgBox.setText("Problem when saving the new StreaMe project.");
-        msgBox.exec();
+    if(fileName.toStdString() != ""){
+        if(this->getController()->getProject()->save(fileName.toStdString()) == true){
+            QMessageBox msgBox;
+            msgBox.setText("The StreaMe project was saved successfully.");
+            msgBox.exec();
+        }
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Problem when saving the new StreaMe project.");
+            msgBox.exec();
+        }
     }
 }
 
 void MainWindow::openProjectTriggered(){
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"),"/",tr("StreaMe File (*.sm)"));
-    if(this->getController()->getProject()->load(fileName.toStdString())==true){
-        QMessageBox msgBox;
-        msgBox.setText("The StreaMe project was corectly loaded.");
-        msgBox.exec();
-    }
-    else{
-        QMessageBox msgBox;
-        msgBox.setText("Problem when loading the StreaMe project.");
-        msgBox.exec();
+    if(fileName.toStdString() != ""){
+        if(this->getController()->getProject()->load(fileName.toStdString())==true){
+            QMessageBox msgBox;
+            msgBox.setText("The StreaMe project was corectly loaded.");
+            msgBox.exec();
+        }
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Problem when loading the StreaMe project.");
+            msgBox.exec();
+        }
     }
 }
+
+void MainWindow::saveProjectTriggered(){
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
+    if(fileName.toStdString() != ""){
+        if(this->getController()->getProject()->save(fileName.toStdString()) == true){
+            QMessageBox msgBox;
+            msgBox.setText("The StreaMe project was saved successfully.");
+            msgBox.exec();
+        }
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Problem when saving the new StreaMe project.");
+            msgBox.exec();
+        }
+    }
+}
+
+void MainWindow::saveProjectAsTriggered(){
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
+    if(fileName.toStdString() != ""){
+        if(this->getController()->getProject()->save(fileName.toStdString()) == true){
+            QMessageBox msgBox;
+            msgBox.setText("The StreaMe project was saved successfully.");
+            msgBox.exec();
+        }
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Problem when saving the new StreaMe project.");
+            msgBox.exec();
+        }
+    }
+}
+
 
 void MainWindow::stopClicked(){
     controller->stopStream();
@@ -123,7 +162,7 @@ void MainWindow::stopClicked(){
 
 void MainWindow::playClicked(){
     //startVideo();
-    controller->twitchStream();
+    controller->stream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();
     //cout << "Play clicked" << endl;

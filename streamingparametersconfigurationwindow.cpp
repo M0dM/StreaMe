@@ -76,7 +76,7 @@ StreamingParametersConfigurationWindow::~StreamingParametersConfigurationWindow(
 }
 
 void StreamingParametersConfigurationWindow::videoSizeComboBoxIndexChanged(int index){
-    cout << "video size choosed index: " << index << endl;
+    //cout << "video size choosed index: " << index << endl;
 }
 
 void StreamingParametersConfigurationWindow::videoFormatComboBoxIndexChanged(int index){
@@ -145,6 +145,8 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
     bufferUploadString >> intUploadSpeed;
     bufferVideoBitrate >> intVideoBitrate;
 
+    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
+    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
     project->setUploadSpeed(intUploadSpeed);
     project->setVideoBitrate(intVideoBitrate);
     project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());

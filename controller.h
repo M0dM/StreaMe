@@ -4,6 +4,8 @@
 #include "mainwindow.h"
 #include "project.h"
 #include "streamtools.h"
+#include <sstream>
+#include <string.h>
 
 #include "windows.h"
 
@@ -21,7 +23,7 @@ public:
     void displayAudioSources();
     void useSource(string sourceName);
     void notUseSource(string sourceName);
-    void twitchStream();
+    void stream();
     void stopStream();
     void displayFreeSources(); //display the free sources in the interface => = (all sources) - (used sources)
     void displayUsedSources(); //display the used sources (given by the project class)
@@ -29,10 +31,14 @@ public:
     void setProject(Project*);
     vector<Source*> getProjectUsedSouces();
     void streamStarted();
+    string getProjectFileUrl();
+    void setProjectFileUrl(string url = "");
+    bool isProjectFile();
 private:
     MainWindow * mainwindow;
     Project *project;
     StreamTools *streamTools;
+    string ProjectFileUrl;
 };
 
 #endif // CONTROLLER_H
