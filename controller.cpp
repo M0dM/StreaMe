@@ -202,3 +202,8 @@ bool Controller::isProjectFile(){
     }
     return false;
 }
+
+void Controller::generateNewProject(){
+    delete(this->getProject());
+    this->setProject(new Project(this));
+}

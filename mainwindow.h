@@ -39,6 +39,7 @@ public:
     void startVideo();
     Controller* getController();
     void setController(Controller* controller);
+    void generateNewProject();
 private:
     Ui::MainWindow *ui;
     Controller* controller;

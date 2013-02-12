@@ -34,6 +34,7 @@ public:
     string getProjectFileUrl();
     void setProjectFileUrl(string url = "");
     bool isProjectFile();
+    void generateNewProject();
 private:
     MainWindow * mainwindow;
     Project *project;

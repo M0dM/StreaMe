@@ -89,6 +89,7 @@ void MainWindow::startVideo(){
 
 
 void MainWindow::newProjectTriggered(){
+    this->getController()->generateNewProject();
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
     if(fileName.toStdString() != ""){
         if(this->getController()->getProject()->save(fileName.toStdString()) == true){
@@ -121,18 +122,23 @@ void MainWindow::openProjectTriggered(){
 }
 
 void MainWindow::saveProjectTriggered(){
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
-    if(fileName.toStdString() != ""){
-        if(this->getController()->getProject()->save(fileName.toStdString()) == true){
-            QMessageBox msgBox;
-            msgBox.setText("The StreaMe project was saved successfully.");
-            msgBox.exec();
+    if(this->getController()->getProjectFileUrl() == ""){
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
+        if(fileName.toStdString() != ""){
+            if(this->getController()->getProject()->save(fileName.toStdString()) == true){
+                QMessageBox msgBox;
+                msgBox.setText("The StreaMe project was saved successfully.");
+                msgBox.exec();
+            }
+            else{
+                QMessageBox msgBox;
+                msgBox.setText("Problem when saving the new StreaMe project.");
+                msgBox.exec();
+            }
         }
-        else{
-            QMessageBox msgBox;
-            msgBox.setText("Problem when saving the new StreaMe project.");
-            msgBox.exec();
-        }
+    }
+    else{
+        this->getController()->getProject()->save(this->getController()->getProjectFileUrl());
     }
 }
 
@@ -142,6 +148,7 @@ void MainWindow::saveProjectAsTriggered(){
         if(this->getController()->getProject()->save(fileName.toStdString()) == true){
             QMessageBox msgBox;
             msgBox.setText("The StreaMe project was saved successfully.");
+            this->getController()->setProjectFileUrl(fileName.toStdString());
             msgBox.exec();
         }
         else{

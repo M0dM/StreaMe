@@ -151,10 +151,12 @@ bool Project::load(string fileUrl){
                 cout << "Platform: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "index"){
-                        cout << "\tindex: " << reader.readElementText().toStdString() << endl;
+                        this->setPlatformIndex(reader.readElementText());
+                        cout << "\tindex: " << this->getPlatformIndex() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "key"){
-                                cout << "\tkey: " << reader.readElementText().toStdString() << endl << endl;
+                                this->setStreamingKey(reader.readElementText());
+                                cout << "\tkey: " << this->getStreamingKeyQstring().toStdString() << endl << endl;
                             }
                         }
                     }
@@ -165,25 +167,32 @@ bool Project::load(string fileUrl){
                 cout << "Streaming Quality: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "video_size"){
-                        cout << "\tvideo size: " << reader.readElementText().toStdString() << endl;
+                        this->setVideoSizeIndex(reader.readElementText());
+                        cout << "\tvideo size: " << this->getVideoSizeIndexQstring().toStdString() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "video_format"){
-                                cout << "\tvideo format: " << reader.readElementText().toStdString() << endl;
+                                this->setVideoFormatIndex(reader.readElementText());
+                                cout << "\tvideo format: " << this->getVideoFormatIndexQstring().toStdString() << endl;
                                 if(reader.readNextStartElement()){
                                     if(reader.name().toString().toStdString() == "auto_configuration"){
-                                        cout << "\tauto configuration: " << reader.readElementText().toStdString() << endl;
+                                        this->setAutoConfiguration(reader.readElementText());
+                                        cout << "\tauto configuration: " << this->getAutoConfigurationQstring().toStdString() << endl;
                                         if(reader.readNextStartElement()){
                                             if(reader.name().toString().toStdString() == "upload_speed"){
-                                                cout << "\tupload speed: " << reader.readElementText().toStdString() << endl;
+                                                this->setUploadSpeed(reader.readElementText());
+                                                cout << "\tupload speed: " << this->getUploadSpeedQstring().toStdString() << endl;
                                                 if(reader.readNextStartElement()){
                                                     if(reader.name().toString().toStdString() == "video_bitrate"){
-                                                        cout << "\tvideo bitrate: " << reader.readElementText().toStdString() << endl;
+                                                        this->setVideoBitrate(reader.readElementText());
+                                                        cout << "\tvideo bitrate: " << this->getVideoBitrateQstring().toStdString() << endl;
                                                         if(reader.readNextStartElement()){
                                                             if(reader.name().toString().toStdString() == "audio_bitrate"){
-                                                                cout << "\taudio bitrate: " << reader.readElementText().toStdString() << endl;
+                                                                this->setAudioBitrateIndex(reader.readElementText());
+                                                                cout << "\taudio bitrate: " << this->getAudioBitrateIndexQstring().toStdString() << endl;
                                                                 if(reader.readNextStartElement()){
                                                                     if(reader.name().toString().toStdString() == "stereo_configuration"){
-                                                                        cout << "\tstereo configuration: " << reader.readElementText().toStdString() << endl << endl;
+                                                                        this->setStereoConfiguration(reader.readElementText());
+                                                                        cout << "\tstereo configuration: " << this->getStereoConfigurationQstring().toStdString() << endl << endl;
                                                                     }
                                                                 }
                                                             }
@@ -225,6 +234,10 @@ void Project::setPlatformIndex(int index){
     this->platformIndex = index;
 }
 
+void Project::setPlatformIndex(QString index){
+    this->platformIndex = index.toInt();
+}
+
 void Project::setStreamingKey(QString key){
     this->streamingKey = key;
 }
@@ -243,6 +256,10 @@ void Project::setVideoSizeIndex(int index){
     this->videoSizeIndex = index;
 }
 
+void Project::setVideoSizeIndex(QString index){
+    this->videoSizeIndex = index.toInt();
+}
+
 int Project::getVideoFormatIndex(){
     return this->videoFormatIndex;
 }
@@ -254,6 +271,10 @@ QString Project::getVideoFormatIndexQstring(){
 
 void Project::setVideoFormatIndex(int index){
     this->videoFormatIndex = index;
+}
+
+void Project::setVideoFormatIndex(QString index){
+    this->videoFormatIndex = index.toInt();
 }
 
 bool Project::getAutoConfiguration(){
@@ -269,6 +290,10 @@ void Project::setAutoConfiguration(bool value){
     this->autoConfiguration = value;
 }
 
+void Project::setAutoConfiguration(QString value){
+    this->autoConfiguration = value.toInt();
+}
+
 int Project::getUploadSpeed(){
     return this->uploadSpeed;
 }
@@ -280,6 +305,10 @@ QString Project::getUploadSpeedQstring(){
 
 void Project::setUploadSpeed(int uploadSpeed){
     this->uploadSpeed = uploadSpeed;
+}
+
+void Project::setUploadSpeed(QString uploadSpeed){
+    this->uploadSpeed = uploadSpeed.toInt();
 }
 
 int Project::getVideoBitrate(){
@@ -296,6 +325,10 @@ void Project::setVideoBitrate(int videoBitrate){
     this->videoBitrate = videoBitrate;
 }
 
+void Project::setVideoBitrate(QString videoBitrate){
+    this->videoBitrate = videoBitrate.toInt();
+}
+
 int Project::getAudioBitrateIndex(){
     return this->audioBitrateIndex;
 }
@@ -307,6 +340,10 @@ QString Project::getAudioBitrateIndexQstring(){
 
 void Project::setAudioBitrateIndex(int index){
     this->audioBitrateIndex = index;
+}
+
+void Project::setAudioBitrateIndex(QString index){
+    this->audioBitrateIndex = index.toInt();
 }
 
 bool Project::getStereoConfiguration(){
@@ -323,3 +360,6 @@ void Project::setStereoConfiguration(bool value){
 }
 
 
+void Project::setStereoConfiguration(QString value){
+    this->stereoConfiguration = value.toInt();
+}
