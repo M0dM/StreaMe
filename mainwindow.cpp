@@ -156,16 +156,11 @@ void MainWindow::saveProjectAsTriggered(){
 void MainWindow::stopClicked(){
     controller->stopStream();
     //    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
-    //    ui->videoPlayer->stop();
-    //    cout << "Stop clicked" << endl;
 }
 
 void MainWindow::playClicked(){
-    //startVideo();
     controller->stream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
-    //ui->videoPlayer->pause();
-    //cout << "Play clicked" << endl;
 }
 
 void MainWindow::rewindClicked(){
@@ -177,17 +172,12 @@ void MainWindow::rewindClicked(){
     cout << "Rewind clicked" << endl;
 }
 
-void MainWindow::seekchange(){
-    cout << "SEEK Change" << endl ;
-}
 
 void MainWindow::enqueueNextSource(){
-    cout << "enqueue " << endl;
     pos=mediaObject->totalTime();
     oldFileSize=fileSize;
     file->close();
     file->open(QIODevice::ReadOnly);
-    cout << "media pos :" << pos <<endl;
     fileSize=file->size();
     if(fileSize!=oldFileSize)
     {
@@ -200,7 +190,6 @@ void MainWindow::enqueueNextSource(){
 }
 
 void MainWindow::setNewTime(){
-    cout << "setNewtime" << endl;
     float i=0.0;
     int val=-1;
     mediaObject->seek(pos);
@@ -250,7 +239,6 @@ void MainWindow::resizeEvent (QResizeEvent * event){
 }
 
 void MainWindow::videoAlmostFinished(){
-    cout << "DAAAAAH !" << endl;
         float i=0.0;
         int val=0;
 

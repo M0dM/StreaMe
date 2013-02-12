@@ -23,7 +23,7 @@ void StreamThread::run() //The function called for threading
     QStringList arguments;
 
     arguments << QString::fromStdString("-f") << QString::fromStdString("dshow") << QString::fromStdString("-i") << QString::fromStdString(stools->getHardDevicesCommand());
-        arguments << QString::fromStdString("-s") << QString::fromStdString(this->size);
+       /* arguments << QString::fromStdString("-s") << QString::fromStdString(this->size);
         arguments << QString::fromStdString("-r") << QString::fromStdString("30");
         arguments << QString::fromStdString("-b:v") << QString::fromStdString(this->videoBitrate);
         arguments << QString::fromStdString("-c:v") << QString::fromStdString("libx264");
@@ -33,7 +33,7 @@ void StreamThread::run() //The function called for threading
         arguments << QString::fromStdString("-ar") << QString::fromStdString("22050");
         arguments << QString::fromStdString("-threads") << QString::fromStdString("2");
         arguments << QString::fromStdString("-f") << QString::fromStdString("flv");
-        arguments << QString::fromStdString(this->rtmpUrl);
+        arguments << QString::fromStdString(this->rtmpUrl);*/
         arguments << QString::fromStdString("why.mpeg");
 
     stools->resetHardDevicesCommand();

@@ -59,7 +59,6 @@ public slots :
     void stopClicked();
     void playClicked();
     void rewindClicked();
-    void seekchange();
     void enqueueNextSource();
     void setNewTime();
     void newProjectTriggered();

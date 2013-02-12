@@ -69,10 +69,10 @@ void Controller::stream(){
         if(project->getVideoFormatIndex() == 0)// if format == 16/9
             size = "720x480";
         else // else if format == 4/3
-            size = "640×480";
+            size = "640x480";
         break;
     case 2: // size = 720p
-        size = "1280×720";
+        size = "1280x720";
         break;
     default:
         break;
@@ -108,6 +108,7 @@ void Controller::stream(){
     cout << videoBitrate << endl;
     cout << audioBitrate << endl;
     streamTools->startStream(url,size,videoBitrate,audioBitrate);
+    //streamTools->startStream();
 }
 
 void Controller::stopStream(){
