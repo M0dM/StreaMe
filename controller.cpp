@@ -44,11 +44,11 @@ void Controller::stream(){
     {
     case 0: //Platform == Justin.tv
         url = "rtmp://live.twitch.tv/app/";
-        url += project->getStreamingKey();
+        url += project->getStreamingKeyQstring().toStdString();
         break;
     case 1: // Platform == Ustream
         url = "rtmp://1.13181675.fme.ustream.tv/ustreamVideo/13181675/";
-        url += project->getStreamingKey();
+        url += project->getStreamingKeyQstring().toStdString();
         url += " flashver=FMLE/3.0\20(compatible;\20FMSc/1.0)";
         break;
     default:

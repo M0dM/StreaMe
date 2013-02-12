@@ -107,7 +107,7 @@ bool Project::save(string fileUrl){
                 writer.writeTextElement("auto_configuration", this->getAutoConfigurationQstring());
                 writer.writeTextElement("upload_speed", this->getUploadSpeedQstring());
                 writer.writeTextElement("video_bitrate", this->getVideoBitrateQstring());
-                writer.writeTextElement("audio_bitrate_index", this->getAudioBitrateIndexQstring());
+                writer.writeTextElement("audio_bitrate", this->getAudioBitrateIndexQstring());
                 writer.writeTextElement("stereo_configuration", this->getStereoConfigurationQstring());
             writer.writeEndElement();
         writer.writeEndElement();
@@ -129,15 +129,73 @@ bool Project::load(string fileUrl){
     while (!reader.atEnd()){
         if(reader.readNextStartElement()){
             if(reader.name().toString().toStdString() == "source"){
+                cout << "SOURCE: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "name"){
-                        cout << reader.readElementText().toStdString() << endl;
+                        cout << "NAME: " << reader.readElementText().toStdString() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "type")
-                                cout << reader.readElementText().toStdString() << endl;
+                                cout << "TYPE: " << reader.readElementText().toStdString() << endl;
+                                if(reader.readNextStartElement()){
+                                    if(reader.name().toString().toStdString() == "used")
+                                        cout << "USED: " << reader.readElementText().toStdString() << endl;
+                                }
                         }
                     }
                 }
+            }
+            if(reader.name().toString().toStdString() == "platform"){
+                cout << "PLATFORM: " << endl;
+                if(reader.readNextStartElement()){
+                    if(reader.name().toString().toStdString() == "index"){
+                        cout << "INDEX: " << reader.readElementText().toStdString() << endl;
+                        if(reader.readNextStartElement()){
+                            if(reader.name().toString().toStdString() == "key"){
+                                cout << "KEY: " << reader.readElementText().toStdString() << endl;
+                            }
+                        }
+                    }
+                }
+
+            }
+            if(reader.name().toString().toStdString() == "streaming_quality"){
+                cout << "STREAMING_QUALITY: " << endl;
+                if(reader.readNextStartElement()){
+                    if(reader.name().toString().toStdString() == "video_size"){
+                        cout << "VIDEO_SIZE: " << reader.readElementText().toStdString() << endl;
+                        if(reader.readNextStartElement()){
+                            if(reader.name().toString().toStdString() == "video_format"){
+                                cout << "VIDEO_FORMAT: " << reader.readElementText().toStdString() << endl;
+                                if(reader.readNextStartElement()){
+                                    if(reader.name().toString().toStdString() == "auto_configuration"){
+                                        cout << "AUTO_CONFIGURATION: " << reader.readElementText().toStdString() << endl;
+                                        if(reader.readNextStartElement()){
+                                            if(reader.name().toString().toStdString() == "upload_speed"){
+                                                cout << "UPLOAD_SPEED: " << reader.readElementText().toStdString() << endl;
+                                                if(reader.readNextStartElement()){
+                                                    if(reader.name().toString().toStdString() == "video_bitrate"){
+                                                        cout << "VIDEO_BITRATE: " << reader.readElementText().toStdString() << endl;
+                                                        if(reader.readNextStartElement()){
+                                                            if(reader.name().toString().toStdString() == "audio_bitrate"){
+                                                                cout << "AUDIO_BITRATE: " << reader.readElementText().toStdString() << endl;
+                                                                if(reader.readNextStartElement()){
+                                                                    if(reader.name().toString().toStdString() == "stereo_configuration"){
+                                                                        cout << "STEREO_CONFIGURATION: " << reader.readElementText().toStdString() << endl;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
         }
     }
