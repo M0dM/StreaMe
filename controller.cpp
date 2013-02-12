@@ -69,10 +69,10 @@ void Controller::stream(){
         if(project->getVideoFormatIndex() == 0)// if format == 16/9
             size = "720x480";
         else // else if format == 4/3
-            size = "640Ã—480";
+            size = "640×480";
         break;
     case 2: // size = 720p
-        size = "1280Ã—720";
+        size = "1280×720";
         break;
     default:
         break;
@@ -183,7 +183,7 @@ vector<Source*> Controller::getProjectUsedSouces(){
 }
 
 void Controller::streamStarted(){
-    Sleep(7000);
+    Sleep(5000);
     mainwindow->startVideo();
 }
 

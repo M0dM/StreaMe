@@ -48,6 +48,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     bu2 = new QBuffer();
     array2= new QByteArray();
     file = new QFile();
+    file->setFileName("why.mpeg");
+    file->remove();
 }
 
 MainWindow::~MainWindow()
@@ -70,7 +72,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
 
 
 void MainWindow::startVideo(){
-    file->setFileName("C:\\Users\\nansp_000\\Dropbox\\Projets\\Qt Creator\\StreaMe-build-Desktop-Debug\\why.mpeg");
+    file->setFileName("why.mpeg");
     file->open(QIODevice::ReadOnly);
     fileSize=file->size();
     *array1 += file->read(file->size());
@@ -78,7 +80,7 @@ void MainWindow::startVideo(){
 
     mediaObject->setCurrentSource(bu);
     mediaObject->play();
-    mediaObject->setTransitionTime(-100);
+    //mediaObject->setTransitionTime(-100);
     mediaObject->setPrefinishMark(200);
     QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
     QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
@@ -206,11 +208,15 @@ void MainWindow::enqueueNextSource(){
 
 void MainWindow::setNewTime(){
     cout << "setNewtime" << endl;
-
-    mediaObject->seek(pos-100);
-    Sleep(200);
-    videoWidget->setBrightness(0);
-    videoWidget->setContrast(0);
+    float i=0.0;
+    int val=-1;
+    mediaObject->seek(pos);
+    while(i<1.0){
+        Sleep(20);
+        videoWidget->setBrightness(val+i);
+        videoWidget->setContrast(val+i);
+        i=i+0.1;
+    }
 }
 
 void MainWindow::setFreeSources(QStringList freeSources){
@@ -252,6 +258,13 @@ void MainWindow::resizeEvent (QResizeEvent * event){
 
 void MainWindow::videoAlmostFinished(){
     cout << "DAAAAAH !" << endl;
-    videoWidget->setBrightness(-1);
-    videoWidget->setContrast(-1);
+        float i=0.0;
+        int val=0;
+
+        while(i<1.0){
+            Sleep(20);
+            videoWidget->setBrightness(val-i);
+            videoWidget->setContrast(val-i);
+            i=i+0.1;
+        }
 }
