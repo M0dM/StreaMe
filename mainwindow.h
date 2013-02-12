@@ -64,6 +64,8 @@ public slots :
     void setNewTime();
     void newProjectTriggered();
     void openProjectTriggered();
+    void saveProjectTriggered();
+    void saveProjectAsTriggered();
     void useSourceClicked();
     void notUseSourceClicked();
     void configureParametersTrigged();

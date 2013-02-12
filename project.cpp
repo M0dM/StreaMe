@@ -126,32 +126,35 @@ bool Project::load(string fileUrl){
     cout << fileName.toStdString() << endl;
     file.open(QFile::ReadOnly | QFile::Text); // Openning the XML file in text mode
     reader.setDevice(&file); // Initialising the reader object on the xml file
+    cout << endl << "*  OPENNING PROJECT FILE:" << fileName.toStdString() << endl;
+    cout << endl << ">> LOADING CONFIGURATION: " << endl << endl;
+    cout << "Sources: " << endl;
     while (!reader.atEnd()){
         if(reader.readNextStartElement()){
             if(reader.name().toString().toStdString() == "source"){
-                cout << "SOURCE: " << endl;
+                cout << "\tSource: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "name"){
-                        cout << "NAME: " << reader.readElementText().toStdString() << endl;
+                        cout << "\tname: " << reader.readElementText().toStdString() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "type")
-                                cout << "TYPE: " << reader.readElementText().toStdString() << endl;
+                                cout << "\ttype: " << reader.readElementText().toStdString() << endl;
                                 if(reader.readNextStartElement()){
                                     if(reader.name().toString().toStdString() == "used")
-                                        cout << "USED: " << reader.readElementText().toStdString() << endl;
+                                        cout << "\tused: " << reader.readElementText().toStdString() << endl << endl;
                                 }
                         }
                     }
                 }
             }
             if(reader.name().toString().toStdString() == "platform"){
-                cout << "PLATFORM: " << endl;
+                cout << "Platform: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "index"){
-                        cout << "INDEX: " << reader.readElementText().toStdString() << endl;
+                        cout << "\tindex: " << reader.readElementText().toStdString() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "key"){
-                                cout << "KEY: " << reader.readElementText().toStdString() << endl;
+                                cout << "\tkey: " << reader.readElementText().toStdString() << endl << endl;
                             }
                         }
                     }
@@ -159,28 +162,28 @@ bool Project::load(string fileUrl){
 
             }
             if(reader.name().toString().toStdString() == "streaming_quality"){
-                cout << "STREAMING_QUALITY: " << endl;
+                cout << "Streaming Quality: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "video_size"){
-                        cout << "VIDEO_SIZE: " << reader.readElementText().toStdString() << endl;
+                        cout << "\tvideo size: " << reader.readElementText().toStdString() << endl;
                         if(reader.readNextStartElement()){
                             if(reader.name().toString().toStdString() == "video_format"){
-                                cout << "VIDEO_FORMAT: " << reader.readElementText().toStdString() << endl;
+                                cout << "\tvideo format: " << reader.readElementText().toStdString() << endl;
                                 if(reader.readNextStartElement()){
                                     if(reader.name().toString().toStdString() == "auto_configuration"){
-                                        cout << "AUTO_CONFIGURATION: " << reader.readElementText().toStdString() << endl;
+                                        cout << "\tauto configuration: " << reader.readElementText().toStdString() << endl;
                                         if(reader.readNextStartElement()){
                                             if(reader.name().toString().toStdString() == "upload_speed"){
-                                                cout << "UPLOAD_SPEED: " << reader.readElementText().toStdString() << endl;
+                                                cout << "\tupload speed: " << reader.readElementText().toStdString() << endl;
                                                 if(reader.readNextStartElement()){
                                                     if(reader.name().toString().toStdString() == "video_bitrate"){
-                                                        cout << "VIDEO_BITRATE: " << reader.readElementText().toStdString() << endl;
+                                                        cout << "\tvideo bitrate: " << reader.readElementText().toStdString() << endl;
                                                         if(reader.readNextStartElement()){
                                                             if(reader.name().toString().toStdString() == "audio_bitrate"){
-                                                                cout << "AUDIO_BITRATE: " << reader.readElementText().toStdString() << endl;
+                                                                cout << "\taudio bitrate: " << reader.readElementText().toStdString() << endl;
                                                                 if(reader.readNextStartElement()){
                                                                     if(reader.name().toString().toStdString() == "stereo_configuration"){
-                                                                        cout << "STEREO_CONFIGURATION: " << reader.readElementText().toStdString() << endl;
+                                                                        cout << "\tstereo configuration: " << reader.readElementText().toStdString() << endl << endl;
                                                                     }
                                                                 }
                                                             }
@@ -195,10 +198,10 @@ bool Project::load(string fileUrl){
                         }
                     }
                 }
-
             }
         }
     }
+    cout << ">> CONFIGURATION LOADED" << endl;
     file.close();
     return true;
 }
