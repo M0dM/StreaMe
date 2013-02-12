@@ -145,6 +145,8 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
     bufferUploadString >> intUploadSpeed;
     bufferVideoBitrate >> intVideoBitrate;
 
+    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
+    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
     project->setUploadSpeed(intUploadSpeed);
     project->setVideoBitrate(intVideoBitrate);
     project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());

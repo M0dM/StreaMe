@@ -14,7 +14,7 @@ Project::Project(Controller* controller)
 
     // setting default values for the streaming platform
     this->setPlatformIndex(0);
-    this->setStreamingKey("");
+    this->setStreamingKey(QString::fromStdString(""));
 
     // setting default values for streaming configuration
     this->setVideoSizeIndex(0);
@@ -80,83 +80,37 @@ bool Project::save(string fileUrl){
 
     // Writing XML Header : <?xml version="1.0" encoding="UTF-8" ?>
     writer.writeStartDocument();
+        writer.writeStartElement("project");
+            writer.writeStartElement("sources");
+            //for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
+            //@todo : test avec boucle
+            //{
+                writer.writeStartElement("source");
+                    writer.writeTextElement("name", "NAMETEST");
+                    //writer.writeTextElement("type", (*i).getType().c_str());
+                    writer.writeTextElement("type", "TYPETEST");
+                    writer.writeTextElement("used", "used_bool_value");
+                writer.writeEndElement();
+            //i++;
+            //}
+            writer.writeEndElement();
 
-    // Writing root XML element
-    // <project>
-    //      ...
-    writer.writeStartElement("project");
 
-    // Adding sources element
-    // <project>
-    //      <sources>
-    //          ...
-    writer.writeStartElement("sources");
+            writer.writeStartElement("platform");
+                writer.writeTextElement("index", this->getPlatformIndexQstring());
+                writer.writeTextElement("key", this->getStreamingKeyQstring());
+            writer.writeEndElement();
 
-    //for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
-    //@todo : test avec boucle
-    //{
-    // Adding source element
-    // <project>
-    //      <sources>
-    //          <source>
-    //              ...
-    writer.writeStartElement("source");
-
-    // Adding name element and calling this element with the source name
-    // <project>
-    //      <sources>
-    //          <source>
-    //              <name>sourceName</name>
-    cout << "plantepas" << endl;
-    //writer.writeTextElement("name", (*i).getName().c_str());
-    writer.writeTextElement("name", "NAMETEST");
-    cout << "plantepas" << endl;
-    // Adding type element and calling this element with the source type
-    // <project>
-    //      <sources>
-    //          <source>
-    //              <name>sourceName</name>
-    //              <type>sourceType</type>
-    cout << "plantepas" << endl;
-    //writer.writeTextElement("type", (*i).getType().c_str());
-    writer.writeTextElement("type", "TYPETEST");
-    cout << "plantepas" << endl;
-
-    // Closing source element
-    // <project>
-    //      <sources>
-    //          <source>
-    //              <name>sourceName</name>
-    //              <type>sourceType</type>
-    //          </source>
-    cout << "plantepas" << endl;
-    writer.writeEndElement();
-    cout << "plantepas" << endl;
-    //i++;
-    //}
-
-    // Closing sources element
-    // <project>
-    //      <sources>
-    //          <source>
-    //              <name>sourceName</name>
-    //              <type>sourceType</type>
-    //          </source>
-    //      </sources>
-    writer.writeEndElement();
-
-    // Closing project element
-    // <project>
-    //      <sources>
-    //          <source>
-    //              <name>sourceName</name>
-    //              <type>sourceType</type>
-    //          </source>
-    //      </sources>
-    //  </project
-    writer.writeEndElement();
-
-    // Ending XML document
+            writer.writeStartElement("streaming_quality");
+                writer.writeTextElement("video_size", this->getVideoSizeIndexQstring());
+                writer.writeTextElement("video_format", this->getVideoFormatIndexQstring());
+                writer.writeTextElement("auto_configuration", this->getAutoConfigurationQstring());
+                writer.writeTextElement("upload_speed", this->getUploadSpeedQstring());
+                writer.writeTextElement("video_bitrate", this->getVideoBitrateQstring());
+                writer.writeTextElement("audio_bitrate_index", this->getAudioBitrateIndexQstring());
+                writer.writeTextElement("stereo_configuration", this->getStereoConfigurationQstring());
+            writer.writeEndElement();
+        writer.writeEndElement();
     writer.writeEndDocument();
 
     // Closing file
@@ -196,7 +150,12 @@ int Project::getPlatformIndex(){
     return this->platformIndex;
 }
 
-string Project::getStreamingKey(){
+QString Project::getPlatformIndexQstring(){
+    QString qstringIndex = QString::number(this->platformIndex);
+    return qstringIndex;
+}
+
+QString Project::getStreamingKeyQstring(){
     return this->streamingKey;
 }
 
@@ -205,13 +164,18 @@ void Project::setPlatformIndex(int index){
     this->platformIndex = index;
 }
 
-void Project::setStreamingKey(string key){
+void Project::setStreamingKey(QString key){
     this->streamingKey = key;
 }
 
 // Streaming configuration attributes acessors and mutators
 int Project::getVideoSizeIndex(){
     return this->videoSizeIndex;
+}
+
+QString Project::getVideoSizeIndexQstring(){
+    QString qstringIndex = QString::number(this->videoSizeIndex);
+    return qstringIndex;
 }
 
 void Project::setVideoSizeIndex(int index){
@@ -222,12 +186,22 @@ int Project::getVideoFormatIndex(){
     return this->videoFormatIndex;
 }
 
+QString Project::getVideoFormatIndexQstring(){
+    QString qstringIndex = QString::number(this->videoFormatIndex);
+    return qstringIndex;
+}
+
 void Project::setVideoFormatIndex(int index){
     this->videoFormatIndex = index;
 }
 
 bool Project::getAutoConfiguration(){
     return this->autoConfiguration;
+}
+
+QString Project::getAutoConfigurationQstring(){
+    QString qstringBool = QString::number(this->autoConfiguration);
+    return qstringBool;
 }
 
 void Project::setAutoConfiguration(bool value){
@@ -238,6 +212,11 @@ int Project::getUploadSpeed(){
     return this->uploadSpeed;
 }
 
+QString Project::getUploadSpeedQstring(){
+    QString qstringInt = QString::number(this->uploadSpeed);
+    return qstringInt;
+}
+
 void Project::setUploadSpeed(int uploadSpeed){
     this->uploadSpeed = uploadSpeed;
 }
@@ -245,6 +224,12 @@ void Project::setUploadSpeed(int uploadSpeed){
 int Project::getVideoBitrate(){
     return this->videoBitrate;
 }
+
+QString Project::getVideoBitrateQstring(){
+    QString qstringInt = QString::number(this->videoBitrate);
+    return qstringInt;
+}
+
 
 void Project::setVideoBitrate(int videoBitrate){
     this->videoBitrate = videoBitrate;
@@ -254,12 +239,22 @@ int Project::getAudioBitrateIndex(){
     return this->audioBitrateIndex;
 }
 
+QString Project::getAudioBitrateIndexQstring(){
+    QString qstringIndex = QString::number(this->audioBitrateIndex);
+    return qstringIndex;
+}
+
 void Project::setAudioBitrateIndex(int index){
     this->audioBitrateIndex = index;
 }
 
 bool Project::getStereoConfiguration(){
     return this->stereoConfiguration;
+}
+
+QString Project::getStereoConfigurationQstring(){
+    QString qstringBool = QString::number(this->stereoConfiguration);
+    return qstringBool;
 }
 
 void Project::setStereoConfiguration(bool value){
