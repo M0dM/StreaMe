@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "project.h"
 #include "streamtools.h"
+#include <sstream>
 
 #include "windows.h"
 
@@ -21,7 +22,7 @@ public:
     void displayAudioSources();
     void useSource(string sourceName);
     void notUseSource(string sourceName);
-    void twitchStream();
+    void stream();
     void stopStream();
     void displayFreeSources(); //display the free sources in the interface => = (all sources) - (used sources)
     void displayUsedSources(); //display the used sources (given by the project class)
