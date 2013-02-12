@@ -35,8 +35,78 @@ void Controller::displayAudioSources(){
     }
 }
 
-void Controller::twitchStream(){
-    streamTools->startStream();
+void Controller::stream(){
+
+    string url, size, videoBitrate, audioBitrate;
+
+    //Switching to define the streaming platform
+    switch(project->getPlatformIndex())
+    {
+    case 0: //Platform == Justin.tv
+        url = "rtmp://live.twitch.tv/app/";
+        url += project->getStreamingKey();
+        break;
+    case 1: // Platform == Ustream
+        url = "rtmp://1.13181675.fme.ustream.tv/ustreamVideo/13181675/";
+        url += project->getStreamingKey();
+        url += " flashver=FMLE/3.0\20(compatible;\20FMSc/1.0)";
+        break;
+    default:
+        break;
+    }
+
+    //Switching to define the streaming video size ("480x360" for example)
+    switch(project->getVideoSizeIndex())
+    {
+    case 0: // size = 360p
+        if(project->getVideoFormatIndex() == 0)// if format == 16/9
+            size = "640x360";
+        else // else if format == 4/3
+            size = "480x360";
+        break;
+    case 1: // size = 480p
+        if(project->getVideoFormatIndex() == 0)// if format == 16/9
+            size = "720x480";
+        else // else if format == 4/3
+            size = "640×480";
+        break;
+    case 2: // size = 720p
+        size = "1280×720";
+        break;
+    default:
+        break;
+    }
+
+
+
+    //Construct the video bitrate string
+    stringstream stringVBitrate(videoBitrate);
+    stringVBitrate << project->getVideoBitrate();
+    videoBitrate = stringVBitrate.str() + "k";
+
+    switch(project->getAudioBitrateIndex())
+    {
+    case 0:
+        audioBitrate = "56k";
+        break;
+    case 1:
+        audioBitrate = "128k";
+        break;
+    case 2:
+        audioBitrate = "256k";
+        break;
+    case 3:
+        audioBitrate = "320k";
+        break;
+    default:
+        break;
+    }
+
+    cout << url << endl;
+    cout << size << endl;
+    cout << videoBitrate << endl;
+    cout << audioBitrate << endl;
+    streamTools->startStream(url,size,videoBitrate,audioBitrate);
 }
 
 void Controller::stopStream(){
@@ -112,6 +182,6 @@ vector<Source*> Controller::getProjectUsedSouces(){
 }
 
 void Controller::streamStarted(){
-//    Sleep(3000);
-//    mainwindow->startVideo();
+    Sleep(7000);
+    mainwindow->startVideo();
 }

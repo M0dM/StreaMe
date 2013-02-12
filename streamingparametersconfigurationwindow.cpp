@@ -76,7 +76,7 @@ StreamingParametersConfigurationWindow::~StreamingParametersConfigurationWindow(
 }
 
 void StreamingParametersConfigurationWindow::videoSizeComboBoxIndexChanged(int index){
-    cout << "video size choosed index: " << index << endl;
+    //cout << "video size choosed index: " << index << endl;
 }
 
 void StreamingParametersConfigurationWindow::videoFormatComboBoxIndexChanged(int index){

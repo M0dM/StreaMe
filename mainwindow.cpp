@@ -121,7 +121,7 @@ void MainWindow::stopClicked(){
 
 void MainWindow::playClicked(){
     //startVideo();
-    controller->twitchStream();
+    controller->stream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
     //ui->videoPlayer->pause();
     //cout << "Play clicked" << endl;
@@ -160,7 +160,6 @@ void MainWindow::enqueueNextSource(){
 
 void MainWindow::setNewTime(){
     cout << "setNewtime" << endl;
-
 
     mediaObject->seek(pos-100);
     Sleep(200);
