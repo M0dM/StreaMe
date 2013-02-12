@@ -5,6 +5,7 @@
 #include "project.h"
 #include "streamtools.h"
 #include <sstream>
+#include <string.h>
 
 #include "windows.h"
 
@@ -30,10 +31,14 @@ public:
     void setProject(Project*);
     vector<Source*> getProjectUsedSouces();
     void streamStarted();
+    string getProjectFileUrl();
+    void setProjectFileUrl(string url = "");
+    bool isProjectFile();
 private:
     MainWindow * mainwindow;
     Project *project;
     StreamTools *streamTools;
+    string ProjectFileUrl;
 };
 
 #endif // CONTROLLER_H

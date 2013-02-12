@@ -6,6 +6,7 @@ Controller::Controller()
     this->mainwindow = new MainWindow(this);
     this->streamTools = new StreamTools(this);
     this->project = new Project(this);
+    this->ProjectFileUrl = "";
 
 }
 
@@ -184,4 +185,19 @@ vector<Source*> Controller::getProjectUsedSouces(){
 void Controller::streamStarted(){
     Sleep(7000);
     mainwindow->startVideo();
+}
+
+string Controller::getProjectFileUrl(){
+    return this->ProjectFileUrl;
+}
+
+void Controller::setProjectFileUrl(string url){
+    this->ProjectFileUrl = url;
+}
+
+bool Controller::isProjectFile(){
+    if(this->ProjectFileUrl != ""){
+        return true;
+    }
+    return false;
 }
