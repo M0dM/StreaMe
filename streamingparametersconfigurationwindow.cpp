@@ -55,7 +55,7 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(C
    QObject::connect(ui->stereoRadioButton, SIGNAL(clicked(bool)),this,SLOT(stereoRadioButtonClicked(bool)));
    QObject::connect(ui->monoRadioButton, SIGNAL(clicked(bool)),this,SLOT(monoRadioButtonClicked(bool)));
    QObject::connect(ui->okPushButton, SIGNAL(clicked()),this,SLOT(okPushButtonClicked()));
-   QObject::connect(ui->exitPushButton, SIGNAL(clicked()),this,SLOT(exitPushButtonClicked()));
+   QObject::connect(ui->cancelButton, SIGNAL(clicked()),this,SLOT(cancelButtonClicked()));
 }
 
 Controller* StreamingParametersConfigurationWindow::getController(){
@@ -160,9 +160,9 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
         project->setStereoConfiguration(false);
     }
 
-    delete this;
+    this->close();
 }
 
-void StreamingParametersConfigurationWindow::exitPushButtonClicked(){
-    delete this;
+void StreamingParametersConfigurationWindow::cancelButtonClicked(){
+    this->close();
 }

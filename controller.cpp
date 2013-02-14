@@ -6,15 +6,20 @@ Controller::Controller()
     this->mainwindow = new MainWindow(this);
     this->streamTools = new StreamTools(this);
     this->project = new Project(this);
+    this->platformSelectionUi = new PlatformSelectionWindow(this);
+    this->newProjectAssistantUi = new NewProjectAssistant(this);
+    this->streamingParametersUi= new StreamingParametersConfigurationWindow(this);
     this->ProjectFileUrl = "";
-
 }
 
 Controller::~Controller(){
+    this->platformSelectionUi->close();
+    this->newProjectAssistantUi->close();
+    this->streamingParametersUi->close();
     delete this->streamTools;
 }
 
-void Controller::ShowMainWindow(){
+void Controller::showMainWindow(){
     this->mainwindow->show();
 }
 
@@ -206,4 +211,16 @@ bool Controller::isProjectFile(){
 void Controller::generateNewProject(){
     delete(this->getProject());
     this->setProject(new Project(this));
+}
+
+void Controller::displayAssistantWindow(){;
+    newProjectAssistantUi->show();
+}
+
+void Controller::displayParametersWindow(){;
+    streamingParametersUi->show();
+}
+
+void Controller::displayPlatformsWindow(){;
+    platformSelectionUi->show();
 }

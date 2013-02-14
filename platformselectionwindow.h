@@ -3,18 +3,18 @@
 
 #include <QWidget>
 #include "controller.h"
-
+#include <QMessageBox>
 namespace Ui {
 class platformSelectionWindow;
 }
 
-class platformSelectionWindow : public QWidget
+class PlatformSelectionWindow : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit platformSelectionWindow(Controller* controller, QWidget *parent = 0);
-    ~platformSelectionWindow();
+    explicit PlatformSelectionWindow(Controller* controller, QWidget *parent = 0);
+    ~PlatformSelectionWindow();
     Controller* getController();
     void setController(Controller* controller);
     
@@ -24,7 +24,8 @@ private:
 
 public slots:
     void okPushButtonClicked();
-    void exitPushButtonClicked();
+    void cancelPushButtonClicked();
+    void advancedButtonClicked();
 };
 
 #endif // PLATFORMSELECTIONWINDOW_H

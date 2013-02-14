@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     //newProject->addUsedSource(new Source("Microphone (Realtek High Definition Audio)","audio"));
     //controller->setProject(newProject);
 
-    controller->ShowMainWindow();
+    controller->showMainWindow();
 
     controller->displayFreeSources();
     controller->displayUsedSources();

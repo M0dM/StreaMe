@@ -437,23 +437,23 @@
     </item>
    </widget>
   </widget>
-  <widget class="QPushButton" name="exitPushButton">
+  <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>315</x>
+     <x>10</x>
      <y>360</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>Cancel</string>
    </property>
   </widget>
   <widget class="QPushButton" name="okPushButton">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>370</x>
      <y>360</y>
      <width>75</width>
      <height>23</height>

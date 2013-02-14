@@ -89,20 +89,8 @@ void MainWindow::startVideo(){
 
 
 void MainWindow::newProjectTriggered(){
-    this->getController()->generateNewProject();
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
-    if(fileName.toStdString() != ""){
-        if(this->getController()->getProject()->save(fileName.toStdString()) == true){
-            QMessageBox msgBox;
-            msgBox.setText("The StreaMe project was saved successfully.");
-            msgBox.exec();
-        }
-        else{
-            QMessageBox msgBox;
-            msgBox.setText("Problem when saving the new StreaMe project.");
-            msgBox.exec();
-        }
-    }
+    controller->generateNewProject();
+    controller->displayAssistantWindow();
 }
 
 void MainWindow::openProjectTriggered(){
@@ -228,21 +216,19 @@ void MainWindow::notUseSourceClicked(){
         controller->notUseSource(ui->listUsedSources->item(ui->listUsedSources->currentRow())->text().toStdString());
 }
 
-void MainWindow::configureParametersTrigged(){
-    StreamingParametersUi = new StreamingParametersConfigurationWindow(this->getController());
-    StreamingParametersUi->show();
-}
-
-void MainWindow::choosePlatformTrigged(){
-    PlatformSelectionUi = new platformSelectionWindow(this->getController());
-    PlatformSelectionUi->show();
-}
-
 void MainWindow::resizeEvent (QResizeEvent * event){
     videoWidget->setMinimumWidth(ui->videoPlayer->width());
     videoWidget->setMinimumHeight(ui->videoPlayer->height());
     videoWidget->setMaximumHeight(ui->videoPlayer->maximumHeight());
     videoWidget->setMaximumWidth(ui->videoPlayer->maximumWidth());
+}
+
+void MainWindow::configureParametersTrigged(){
+    controller->displayParametersWindow();
+}
+
+void MainWindow::choosePlatformTrigged(){
+    controller->displayPlatformsWindow();
 }
 
 void MainWindow::videoAlmostFinished(){
@@ -256,3 +242,4 @@ void MainWindow::videoAlmostFinished(){
             i=i+0.1;
         }
 }
+

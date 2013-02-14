@@ -2,10 +2,14 @@
 #define CONTROLLER_H
 
 #include "mainwindow.h"
+#include "newprojectassistant.h"
+#include "streamingparametersconfigurationwindow.h"
+#include "platformselectionwindow.h"
 #include "project.h"
 #include "streamtools.h"
 #include <sstream>
 #include <string.h>
+
 
 #include "windows.h"
 
@@ -18,7 +22,7 @@ class Controller
 public:
     Controller();
     ~Controller();
-    void ShowMainWindow();
+    void showMainWindow();
     void displayVideoSources();
     void displayAudioSources();
     void useSource(string sourceName);
@@ -35,8 +39,14 @@ public:
     void setProjectFileUrl(string url = "");
     bool isProjectFile();
     void generateNewProject();
+    void displayAssistantWindow();
+    void displayParametersWindow();
+    void displayPlatformsWindow();
 private:
     MainWindow * mainwindow;
+    QWidget *streamingParametersUi;
+    QWidget *platformSelectionUi;
+    QWidget *newProjectAssistantUi;
     Project *project;
     StreamTools *streamTools;
     string ProjectFileUrl;

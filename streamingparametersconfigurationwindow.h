@@ -32,7 +32,7 @@ public slots:
     void stereoRadioButtonClicked(bool);
     void monoRadioButtonClicked(bool);
     void okPushButtonClicked();
-    void exitPushButtonClicked();
+    void cancelButtonClicked();
 
 };
 

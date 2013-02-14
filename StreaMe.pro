@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     microphone.cpp \
     platformselectionwindow.cpp \
     streamingparametersconfigurationwindow.cpp \
-    streamthread.cpp
+    streamthread.cpp \
+    newprojectassistant.cpp
 
 HEADERS  += mainwindow.h \
     project.h \
@@ -38,11 +39,13 @@ HEADERS  += mainwindow.h \
     microphone.h \
     platformselectionwindow.h \
     streamingparametersconfigurationwindow.h \
-    streamthread.h
+    streamthread.h \
+    newprojectassistant.h
 
 FORMS    += mainwindow.ui \
     platformselectionwindow.ui \
-    streamingparametersconfigurationwindow.ui
+    streamingparametersconfigurationwindow.ui \
+    newprojectassistant.ui
 
 RESOURCES += \
     New.qrc

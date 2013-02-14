@@ -1,13 +1,13 @@
 #include "platformselectionwindow.h"
 #include "ui_platformselectionwindow.h"
 #include <QString>
+#include <QMessageBox>
 
-
-platformSelectionWindow::platformSelectionWindow(Controller* controller, QWidget *parent) :
+PlatformSelectionWindow::PlatformSelectionWindow(Controller* controller, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::platformSelectionWindow)
 {
-    platformSelectionWindow::setController(controller);
+    PlatformSelectionWindow::setController(controller);
     ui->setupUi(this);
 
     // get project for set the project saved values
@@ -18,32 +18,42 @@ platformSelectionWindow::platformSelectionWindow(Controller* controller, QWidget
     ui->streamKeylineEdit->setText(project->getStreamingKeyQstring());
 
     // Connect signal buttons
-    QObject::connect(ui->okPushButton, SIGNAL(clicked()),this,SLOT(okPushButtonClicked()));
-    QObject::connect(ui->exitPushButton, SIGNAL(clicked()),this,SLOT(exitPushButtonClicked()));
+    QObject::connect(ui->okButton, SIGNAL(clicked()),this,SLOT(okPushButtonClicked()));
+    QObject::connect(ui->cancelButton, SIGNAL(clicked()),this,SLOT(cancelPushButtonClicked()));
+    QObject::connect(ui->advancedButton, SIGNAL(clicked()),this,SLOT(advancedButtonClicked()));
 }
 
-Controller* platformSelectionWindow::getController(){
+Controller* PlatformSelectionWindow::getController(){
     return controller;
 }
 
-void platformSelectionWindow::setController(Controller* controller){
+void PlatformSelectionWindow::setController(Controller* controller){
     this->controller = controller;
 }
 
-platformSelectionWindow::~platformSelectionWindow()
+PlatformSelectionWindow::~PlatformSelectionWindow()
 {
     delete ui;
 }
 
-void platformSelectionWindow::okPushButtonClicked(){
-    Project* project = this->getController()->getProject();
-    project->setPlatformIndex(ui->comboBox->currentIndex());
-    project->setStreamingKey(ui->streamKeylineEdit->text());
-    delete this;
+void PlatformSelectionWindow::okPushButtonClicked(){
+
+
+    if(!ui->streamKeylineEdit->text().isEmpty()){
+        Project* project = this->getController()->getProject();
+        project->setPlatformIndex(ui->comboBox->currentIndex());
+        project->setStreamingKey(ui->streamKeylineEdit->text());
+        this->close();
+    }
+    else{
+         QMessageBox::critical(this,QString::fromStdString("Mising value"),QString::fromStdString("You must specify a streaming key"));
+    }
 }
 
-void platformSelectionWindow::exitPushButtonClicked(){
-    delete this;
+void PlatformSelectionWindow::cancelPushButtonClicked(){
+    this->close();
 }
 
-
+void PlatformSelectionWindow::advancedButtonClicked(){
+    controller->displayParametersWindow();
+}

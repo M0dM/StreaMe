@@ -52,8 +52,6 @@ private:
     QByteArray *array1;
     QByteArray *array2;
     QFile *file;
-    QWidget *StreamingParametersUi;
-    QWidget *PlatformSelectionUi;
 protected:
     void resizeEvent(QResizeEvent * event );
 public slots :

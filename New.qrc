@@ -14,4 +14,7 @@
     <qresource prefix="/new/Del">
         <file>ressources/fleche-gauche-icone-5290-32.png</file>
     </qresource>
+    <qresource prefix="/pictures/logo">
+        <file>streaMe_logo.png</file>
+    </qresource>
 </RCC>
