@@ -146,6 +146,7 @@ void MainWindow::saveProjectTriggered(){
             if(this->getController()->getProject()->save(fileName.toStdString()) == true){
                 QMessageBox msgBox;
                 msgBox.setText("The StreaMe project was saved successfully.");
+                this->getController()->setProjectFileUrl(fileName.toStdString());
                 msgBox.exec();
             }
             else{

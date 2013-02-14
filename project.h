@@ -4,8 +4,9 @@
 #include "source.h"
 #include "live.h"
 #include <vector>
-#include <string>
+#include <string.h>
 #include <QString>
+#include <controller.h>
 
 class Controller;
 class Source;
@@ -67,6 +68,8 @@ public:
     QString getStereoConfigurationQstring();
     void setStereoConfiguration(bool value);
     void setStereoConfiguration(QString value);
+
+    bool isSource(string sourceName);
 
 private:
     Controller* controller;

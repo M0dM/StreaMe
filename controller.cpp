@@ -208,4 +208,6 @@ void Controller::generateNewProject(){
     this->setProject(new Project(this));
 }
 
-
+vector<Source*> Controller::getAllSources(){
+    return this->streamTools->getAllSources();
+}
