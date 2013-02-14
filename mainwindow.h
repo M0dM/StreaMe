@@ -54,6 +54,9 @@ private:
     QFile *file;
     QWidget *StreamingParametersUi;
     QWidget *PlatformSelectionUi;
+    QTimer *m_chrono;
+    int chrono_value;
+    int minute;
 protected:
     void resizeEvent(QResizeEvent * event );
 public slots :
@@ -71,6 +74,7 @@ public slots :
     void configureParametersTrigged();
     void choosePlatformTrigged();
     void videoAlmostFinished();
+    void update_chrono();
 };
 
 #endif // MAINWINDOW_H

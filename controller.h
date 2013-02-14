@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "project.h"
 #include "streamtools.h"
+#include <QTimer>
 #include <sstream>
 #include <string.h>
 

@@ -25,12 +25,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
     QObject::connect(ui->actionSave_Project, SIGNAL(triggered()),this,SLOT(saveProjectTriggered()));
     QObject::connect(ui->actionSave_Project_As, SIGNAL(triggered()),this,SLOT(saveProjectAsTriggered()));
-    QObject::connect(ui->videoPlayer->mediaObject(),SIGNAL(seekableChanged(bool)),SLOT(seekchange()));
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
-
-    //Set the volume slider
-    ui->volumeSlider->setAudioOutput(ui->videoPlayer->audioOutput());
 
     //test new player
     mediaObject = new Phonon::MediaObject(this);
@@ -39,6 +35,9 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     Phonon::createPath(mediaObject, videoWidget);
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
     Phonon::createPath(mediaObject, audioOutput);
+
+    //Set the volume slider
+    ui->volumeSlider->setAudioOutput(audioOutput);
 
     videoWidget->setMinimumWidth(ui->videoPlayer->width());
     videoWidget->setMinimumHeight(ui->videoPlayer->height());
@@ -50,6 +49,13 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     file = new QFile();
     file->setFileName("why.mpeg");
     file->remove();
+
+    //Def chrono
+    m_chrono = new QTimer();
+    minute=0;
+    chrono_value=0;
+    QObject::connect(m_chrono, SIGNAL(timeout()), SLOT(update_chrono()));
+    m_chrono->setInterval(1000);
 }
 
 MainWindow::~MainWindow()
@@ -79,14 +85,26 @@ void MainWindow::startVideo(){
     bu->setBuffer(array1);
 
     mediaObject->setCurrentSource(bu);
+    chrono_value=0;
+    minute=0;
     mediaObject->play();
     //mediaObject->setTransitionTime(-100);
     mediaObject->setPrefinishMark(200);
     QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
     QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
     QObject::connect(mediaObject, SIGNAL(prefinishMarkReached(qint32)), SLOT(videoAlmostFinished()));
+
+
 }
 
+void MainWindow::update_chrono(){
+    chrono_value++;
+    int chrono_mod = chrono_value % 60;
+    QString timeChrone = QString::number(minute) + QString::fromStdString(":") + QString::number(chrono_mod) ;
+        ui->timeNumber->display(timeChrone);
+    if(chrono_mod==59)
+        minute++;
+}
 
 void MainWindow::newProjectTriggered(){
     this->getController()->generateNewProject();
@@ -162,10 +180,12 @@ void MainWindow::saveProjectAsTriggered(){
 
 void MainWindow::stopClicked(){
     controller->stopStream();
+    m_chrono->stop();
     //    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
 }
 
 void MainWindow::playClicked(){
+    m_chrono->start();
     controller->stream();
     //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
 }
