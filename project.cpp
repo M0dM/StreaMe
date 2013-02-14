@@ -82,17 +82,12 @@ bool Project::save(string fileUrl){
     writer.writeStartDocument();
         writer.writeStartElement("project");
             writer.writeStartElement("sources");
-            //for (vector<Source>::iterator i = sources.begin(); i != sources.end(); ++i)
-            //@todo : test avec boucle
-            //{
+            for(unsigned int i=0; i < usedSources.size(); i++){
                 writer.writeStartElement("source");
-                    writer.writeTextElement("name", "NAMETEST");
-                    //writer.writeTextElement("type", (*i).getType().c_str());
-                    writer.writeTextElement("type", "TYPETEST");
-                    writer.writeTextElement("used", "used_bool_value");
+                    writer.writeTextElement("name", QString::fromStdString(usedSources[i]->getName()));
+                    writer.writeTextElement("type", QString::fromStdString(usedSources[i]->getType()));
                 writer.writeEndElement();
-            //i++;
-            //}
+            }
             writer.writeEndElement();
 
 
@@ -118,6 +113,16 @@ bool Project::save(string fileUrl){
     return true;
 }
 
+bool Project::isSource(string sourceName){
+    vector<Source*> sources = this->getController()->getAllSources();
+    for(unsigned int i=0; i < sources.size(); i++){
+        if (sources[i]->getName() == sourceName){
+            return true;
+        }
+    }
+    return false;
+}
+
 bool Project::load(string fileUrl){
 
     QXmlStreamReader reader;
@@ -135,14 +140,17 @@ bool Project::load(string fileUrl){
                 cout << "\tSource: " << endl;
                 if(reader.readNextStartElement()){
                     if(reader.name().toString().toStdString() == "name"){
-                        cout << "\tname: " << reader.readElementText().toStdString() << endl;
+                        string sourceName = reader.readElementText().toStdString();
+                        if(this->isSource(sourceName)){
+                            this->getController()->useSource(sourceName);
+                        }
+                        cout << "\tname: " << sourceName << endl;
                         if(reader.readNextStartElement()){
-                            if(reader.name().toString().toStdString() == "type")
-                                cout << "\ttype: " << reader.readElementText().toStdString() << endl;
-                                if(reader.readNextStartElement()){
-                                    if(reader.name().toString().toStdString() == "used")
-                                        cout << "\tused: " << reader.readElementText().toStdString() << endl << endl;
-                                }
+                            string sourceType = reader.readElementText().toStdString();
+                            if(reader.name().toString().toStdString() == "type"){
+                                cout << "\ttype: " << sourceType << endl;
+
+                            }
                         }
                     }
                 }

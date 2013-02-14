@@ -207,3 +207,7 @@ void Controller::generateNewProject(){
     delete(this->getProject());
     this->setProject(new Project(this));
 }
+
+vector<Source*> Controller::getAllSources(){
+    return this->streamTools->getAllSources();
+}

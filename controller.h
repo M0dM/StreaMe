@@ -35,6 +35,7 @@ public:
     void setProjectFileUrl(string url = "");
     bool isProjectFile();
     void generateNewProject();
+    vector<Source*> getAllSources();
 private:
     MainWindow * mainwindow;
     Project *project;
