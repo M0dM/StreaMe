@@ -7,6 +7,7 @@
 #include "platformselectionwindow.h"
 #include "project.h"
 #include "streamtools.h"
+#include <QTimer>
 #include <sstream>
 #include <string.h>
 
@@ -42,6 +43,8 @@ public:
     void displayAssistantWindow();
     void displayParametersWindow();
     void displayPlatformsWindow();
+    vector<Source*> getAllSources();
+
 private:
     MainWindow * mainwindow;
     QWidget *streamingParametersUi;

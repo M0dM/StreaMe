@@ -5,17 +5,18 @@ Controller::Controller()
 {
     this->mainwindow = new MainWindow(this);
     this->streamTools = new StreamTools(this);
-    this->project = new Project(this);
-    this->platformSelectionUi = new PlatformSelectionWindow(this);
     this->newProjectAssistantUi = new NewProjectAssistant(this);
-    this->streamingParametersUi= new StreamingParametersConfigurationWindow(this);
+    this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
+    this->platformSelectionUi = new PlatformSelectionWindow(this);
+    this->project = new Project(this);
     this->ProjectFileUrl = "";
+
 }
 
 Controller::~Controller(){
-    this->platformSelectionUi->close();
-    this->newProjectAssistantUi->close();
-    this->streamingParametersUi->close();
+    delete this->newProjectAssistantUi;
+    delete this->streamingParametersUi;
+    delete this->platformSelectionUi;
     delete this->streamTools;
 }
 
@@ -224,3 +225,8 @@ void Controller::displayParametersWindow(){;
 void Controller::displayPlatformsWindow(){;
     platformSelectionUi->show();
 }
+
+vector<Source*> Controller::getAllSources(){
+    return this->streamTools->getAllSources();
+}
+
