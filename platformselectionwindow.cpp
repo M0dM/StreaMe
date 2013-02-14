@@ -12,6 +12,7 @@ platformSelectionWindow::platformSelectionWindow(Controller* controller, QWidget
 
     // get project for set the project saved values
     Project* project = this->getController()->getProject();
+
     // set values
     ui->comboBox->setCurrentIndex(project->getPlatformIndex());
     ui->streamKeylineEdit->setText(project->getStreamingKeyQstring());
