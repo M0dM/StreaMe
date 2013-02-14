@@ -108,21 +108,52 @@ void StreamingParametersConfigurationWindow::uploadSpeedHorizontalSliderChanged(
     // convert to qstring
     QString qstringValue = QString::fromStdString(stdStringValue);
     ui->uploadSpeedValueLabel->setText(qstringValue);
+
+    if(value <1000){
+        ui->videoBitrateLineEdit->setText(QString::fromStdString("500"));
+        ui->audioBitrateComboBox->setCurrentIndex(0);
+        ui->stereoRadioButton->setChecked(false);
+        ui->monoRadioButton->setChecked(true);
+    }
+    else if (value <2000 && value > 1000){
+        ui->videoBitrateLineEdit->setText(QString::fromStdString("1000"));
+        ui->audioBitrateComboBox->setCurrentIndex(1);
+        ui->stereoRadioButton->setChecked(true);
+        ui->monoRadioButton->setChecked(false);
+    }
+    else if (value <3000 && value > 2000){
+        ui->videoBitrateLineEdit->setText(QString::fromStdString("1300"));
+        ui->audioBitrateComboBox->setCurrentIndex(2);
+        ui->stereoRadioButton->setChecked(true);
+        ui->monoRadioButton->setChecked(false);
+    }
+    else if (value <5000 && value >3000){
+        ui->videoBitrateLineEdit->setText(QString::fromStdString("1500"));
+        ui->audioBitrateComboBox->setCurrentIndex(3);
+        ui->stereoRadioButton->setChecked(true);
+        ui->monoRadioButton->setChecked(false);
+    }
+    else if (value > 5000){
+        ui->videoBitrateLineEdit->setText(QString::fromStdString("1800"));
+        ui->audioBitrateComboBox->setCurrentIndex(3);
+        ui->stereoRadioButton->setChecked(true);
+        ui->monoRadioButton->setChecked(false);
+    }
 }
 
 void StreamingParametersConfigurationWindow::audioBitrateComboBoxIndexChanged(int index){
-    cout << "audio bitrate changed to index: " << index << endl;
+    //cout << "audio bitrate changed to index: " << index << endl;
 }
 
 void StreamingParametersConfigurationWindow::stereoRadioButtonClicked(bool value){
     if(value){
-        cout << "stereo audio choosed" << endl;
+        //cout << "stereo audio choosed" << endl;
     }
 }
 
 void StreamingParametersConfigurationWindow::monoRadioButtonClicked(bool value){
     if(value){
-        cout << "mono audio choosed" << endl;
+        //cout << "mono audio choosed" << endl;
     }
 }
 
