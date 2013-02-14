@@ -5,11 +5,13 @@ Controller::Controller()
 {
     this->mainwindow = new MainWindow(this);
     this->streamTools = new StreamTools(this);
+
+    this->project = new Project(this);
+    this->ProjectFileUrl = "";
+
     this->newProjectAssistantUi = new NewProjectAssistant(this);
     this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
     this->platformSelectionUi = new PlatformSelectionWindow(this);
-    this->project = new Project(this);
-    this->ProjectFileUrl = "";
 
 }
 
