@@ -46,6 +46,12 @@ public:
     vector<Source*> getAllSources();
     void setMainWindowTitle(string projectName);
     void setProjectName(string projectName);
+    void saveProject();
+    void saveProjectAs();
+    void setPlatformParameters(int platformIndex, string streamingKey);
+    void setProjectAutoConfiguration(boolean value);
+    void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
+    void setProjectStereoConfiguration(boolean value);
 
 private:
     MainWindow * mainwindow;

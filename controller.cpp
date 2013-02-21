@@ -1,5 +1,8 @@
 #include "controller.h"
+#include <QFileDialog>
+#include <QMessageBox>
 using namespace std;
+
 
 Controller::Controller()
 {
@@ -240,3 +243,62 @@ void Controller::setMainWindowTitle(string projectName){
     mainwindow->setWindowTitle(QString::fromStdString("StreaMe - ") + QString::fromStdString(projectName));
 }
 
+void Controller::saveProject(){
+    if(this->getProjectFileUrl() == ""){
+        QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File", "/", "StreaMe File (*.sm)");
+        if(fileName.toStdString() != ""){
+            if(this->getProject()->save(fileName.toStdString()) == true){
+                QMessageBox msgBox;
+                msgBox.setText("The StreaMe project was saved successfully.");
+                this->setProjectFileUrl(fileName.toStdString());
+                msgBox.exec();
+            }
+            else{
+                QMessageBox msgBox;
+                msgBox.setText("Problem when saving the new StreaMe project.");
+                msgBox.exec();
+            }
+        }
+    }
+    else{
+        this->getProject()->save(this->getProjectFileUrl());
+    }
+}
+
+void Controller::saveProjectAs(){
+    QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File","/","StreaMe File (*.sm)");
+    if(fileName.toStdString() != ""){
+        if(this->getProject()->save(fileName.toStdString()) == true){
+            QMessageBox msgBox;
+            msgBox.setText("The StreaMe project was saved successfully.");
+            this->setProjectFileUrl(fileName.toStdString());
+            msgBox.exec();
+        }
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Problem when saving the new StreaMe project.");
+            msgBox.exec();
+        }
+    }
+}
+
+void Controller::setPlatformParameters(int platformIndex, string streamingKey){
+    this->getProject()->setPlatformIndex(platformIndex);
+    this->getProject()->setStreamingKey(QString::fromStdString(streamingKey));
+}
+
+void Controller::setProjectAutoConfiguration(boolean value){
+    this->getProject()->setAutoConfiguration(value);
+}
+
+void Controller::setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex){
+    this->getProject()->setVideoSizeIndex(videoSizeIndex);
+    this->getProject()->setVideoFormatIndex(videoFormatIndex);
+    this->getProject()->setUploadSpeed(uploadSpeed);
+    this->getProject()->setVideoBitrate(videoBitrate);
+    this->getProject()->setAudioBitrateIndex(audioBitrateIndex);
+}
+
+void Controller::setProjectStereoConfiguration(boolean value){
+    this->getProject()->setStereoConfiguration(value);
+}
