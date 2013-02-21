@@ -199,7 +199,7 @@ void MainWindow::setNewTime(){
     int val=-1;
     mediaObject->seek(pos);
     while(i<1.0){
-        Sleep(20);
+        this->controller->mutSleep(20);
         videoWidget->setBrightness(val+i);
         videoWidget->setContrast(val+i);
         i=i+0.1;
@@ -243,10 +243,11 @@ void MainWindow::videoAlmostFinished(){
         float i=0.0;
         int val=0;
         while(i<1.0){
-            Sleep(20);
+            this->controller->mutSleep(20);
             videoWidget->setBrightness(val-i);
             videoWidget->setContrast(val-i);
             i=i+0.1;
         }
+
 }
 

@@ -8,6 +8,8 @@
 #include "project.h"
 #include "streamtools.h"
 #include <QTimer>
+#include <QMutex>
+#include <QWaitCondition>
 #include <sstream>
 #include <string.h>
 
@@ -52,7 +54,7 @@ public:
     void setProjectAutoConfiguration(boolean value);
     void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
     void setProjectStereoConfiguration(boolean value);
-
+    void mutSleep(int time);
 private:
     MainWindow * mainwindow;
     QWidget *streamingParametersUi;

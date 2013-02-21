@@ -1,4 +1,3 @@
-Bug player start stop
 
 Info stream dans les tabs
 event sur le menu show start stop

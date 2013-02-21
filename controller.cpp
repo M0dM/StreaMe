@@ -195,9 +195,19 @@ vector<Source*> Controller::getProjectUsedSouces(){
 }
 
 void Controller::streamStarted(){
-    Sleep(5000);
+    mutSleep(5000);
     mainwindow->startVideo();
+
 }
+
+void Controller::mutSleep(int time){
+    QMutex mutexSleep;
+    mutexSleep.lock();
+    QWaitCondition waitCondition;
+    waitCondition.wait(&mutexSleep, time);
+    mutexSleep.unlock();
+}
+
 
 string Controller::getProjectFileUrl(){
     return this->ProjectFileUrl;
