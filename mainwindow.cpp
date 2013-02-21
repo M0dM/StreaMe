@@ -20,6 +20,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->buttonNotUseSource, SIGNAL(clicked()),this,SLOT(notUseSourceClicked()));
     QObject::connect(ui->buttonStop, SIGNAL(clicked()),this,SLOT(stopClicked()));
     QObject::connect(ui->buttonPlay, SIGNAL(clicked()),this,SLOT(playClicked()));
+    QObject::connect(ui->actionStart, SIGNAL(triggered()),this,SLOT(playClicked()));
+    QObject::connect(ui->actionStop, SIGNAL(triggered()),this,SLOT(stopClicked()));
     QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
     QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
