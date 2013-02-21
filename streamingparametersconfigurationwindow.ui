@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Select Streaming Parameters</string>
+   <string>Advanced Parameters</string>
   </property>
   <widget class="Line" name="line1">
    <property name="geometry">

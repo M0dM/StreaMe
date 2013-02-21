@@ -23,6 +23,7 @@ public:
     void addUsedSource(Source* source);
     void removeUsedSource(std::string sourceName);
     void test_displayUsedSources();
+    void setName(string name);
 
     // Streaming platform attributes acessors and mutators
     int getPlatformIndex();
@@ -76,6 +77,8 @@ private:
     vector<Source*> usedSources;
     Live* live;
     Controller* getController();
+    string name;
+    string getName();
     void setLive(Live* live);
 
     // platform attributes

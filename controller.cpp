@@ -232,3 +232,11 @@ vector<Source*> Controller::getAllSources(){
     return this->streamTools->getAllSources();
 }
 
+void Controller::setProjectName(string projectName){
+    project->setName(projectName);
+}
+
+void Controller::setMainWindowTitle(string projectName){
+    mainwindow->setWindowTitle(QString::fromStdString("StreaMe - ") + QString::fromStdString(projectName));
+}
+

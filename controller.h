@@ -44,6 +44,8 @@ public:
     void displayParametersWindow();
     void displayPlatformsWindow();
     vector<Source*> getAllSources();
+    void setMainWindowTitle(string projectName);
+    void setProjectName(string projectName);
 
 private:
     MainWindow * mainwindow;
