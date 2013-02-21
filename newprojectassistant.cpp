@@ -26,4 +26,6 @@ Controller* NewProjectAssistant::getController(){
 void NewProjectAssistant::nextButtonClicked(){
     this->close();
     controller->displayPlatformsWindow();
+    controller->setProjectName(ui->projectTitleLineEdit->text().toStdString());
+    controller->setMainWindowTitle(ui->projectTitleLineEdit->text().toStdString());
 }

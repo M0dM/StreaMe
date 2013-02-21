@@ -10,14 +10,11 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(C
     StreamingParametersConfigurationWindow::setController(controller);
     ui->setupUi(this);
 
-    // get project for set the project saved values
-    Project* project = this->getController()->getProject();
-
     // set values
-    ui->videoSizeComboBox->setCurrentIndex(project->getVideoSizeIndex());
-    ui->videoFormatComboBox->setCurrentIndex(project->getVideoFormatIndex());
+    ui->videoSizeComboBox->setCurrentIndex(this->getController()->getProject()->getVideoSizeIndex());
+    ui->videoFormatComboBox->setCurrentIndex(this->getController()->getProject()->getVideoFormatIndex());
 
-    if(project->getAutoConfiguration() == true){
+    if(this->getController()->getProject()->getAutoConfiguration() == true){
         ui->enableAutoConfigurationRadioButton->setChecked(true);
         ui->disableAutoConfigurationRadioButton->setChecked(false);
         ui->groupBox->setEnabled(false);
@@ -31,12 +28,12 @@ StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(C
         ui->uploadSpeedValueLabel->setEnabled(false);
     }
 
-    ui->uploadSpeedHorizontalSlider->setValue(project->getUploadSpeed());
-    ui->uploadSpeedValueLabel->setText(project->getUploadSpeedQstring());
-    ui->videoBitrateLineEdit->setText(project->getVideoBitrateQstring());
-    ui->audioBitrateComboBox->setCurrentIndex(project->getAudioBitrateIndex());
+    ui->uploadSpeedHorizontalSlider->setValue(this->getController()->getProject()->getUploadSpeed());
+    ui->uploadSpeedValueLabel->setText(this->getController()->getProject()->getUploadSpeedQstring());
+    ui->videoBitrateLineEdit->setText(this->getController()->getProject()->getVideoBitrateQstring());
+    ui->audioBitrateComboBox->setCurrentIndex(this->getController()->getProject()->getAudioBitrateIndex());
 
-    if(project->getStereoConfiguration() == true){
+    if(this->getController()->getProject()->getStereoConfiguration() == true){
         ui->stereoRadioButton->setChecked(true);
         ui->monoRadioButton->setChecked(false);
     }else
@@ -159,15 +156,11 @@ void StreamingParametersConfigurationWindow::monoRadioButtonClicked(bool value){
 
 void StreamingParametersConfigurationWindow::okPushButtonClicked(){
 
-    // set values into the project file
-    Project* project = this->getController()->getProject();
-
-
     if(ui->enableAutoConfigurationRadioButton->isChecked()){
-        project->setAutoConfiguration(true);
+        this->getController()->setProjectAutoConfiguration(true);
     }
     else{
-        project->setAutoConfiguration(false);
+        this->getController()->setProjectAutoConfiguration(false);
     }
 
     string stdStringUploadString = ui->uploadSpeedValueLabel->text().toStdString();
@@ -178,17 +171,14 @@ void StreamingParametersConfigurationWindow::okPushButtonClicked(){
     bufferUploadString >> intUploadSpeed;
     bufferVideoBitrate >> intVideoBitrate;
 
-    project->setVideoSizeIndex(ui->videoSizeComboBox->currentIndex());
-    project->setVideoFormatIndex(ui->videoFormatComboBox->currentIndex());
-    project->setUploadSpeed(intUploadSpeed);
-    project->setVideoBitrate(intVideoBitrate);
-    project->setAudioBitrateIndex(ui->audioBitrateComboBox->currentIndex());
+    this->getController()->setStreamingParametersValue(ui->videoSizeComboBox->currentIndex(), ui->videoFormatComboBox->currentIndex(),
+                                                       intUploadSpeed, intVideoBitrate, ui->audioBitrateComboBox->currentIndex());
 
     if(ui->stereoRadioButton->isChecked()){
-        project->setStereoConfiguration(true);
+        this->getController()->setProjectStereoConfiguration(true);
     }
     else{
-        project->setStereoConfiguration(false);
+        this->getController()->setProjectStereoConfiguration(false);
     }
 
     this->close();

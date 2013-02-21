@@ -1,0 +1,7 @@
+
+Info stream dans les tabs
+event sur le menu show start stop
+bloquage interface
+
+MVC fenetres benoit
+
