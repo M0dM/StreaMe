@@ -232,3 +232,11 @@ vector<Source*> Controller::getAllSources(){
     return this->streamTools->getAllSources();
 }
 
+void Controller::blockInterface(){
+    mainwindow->disableInterfaceForNewProject();
+}
+
+void Controller::deBlockInterface(){
+    mainwindow->enableInterfaceForNewProject();
+
+}

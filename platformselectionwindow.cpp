@@ -43,6 +43,7 @@ void PlatformSelectionWindow::okPushButtonClicked(){
         Project* project = this->getController()->getProject();
         project->setPlatformIndex(ui->comboBox->currentIndex());
         project->setStreamingKey(ui->streamKeylineEdit->text());
+        controller->deBlockInterface();
         this->close();
     }
     else{

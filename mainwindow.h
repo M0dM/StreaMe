@@ -40,6 +40,8 @@ public:
     Controller* getController();
     void setController(Controller* controller);
     void generateNewProject();
+    void disableInterfaceForNewProject();
+    void enableInterfaceForNewProject();
 private:
     Ui::MainWindow *ui;
     Controller* controller;

@@ -29,6 +29,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->actionSave_Project_As, SIGNAL(triggered()),this,SLOT(saveProjectAsTriggered()));
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
+    QObject::connect(ui->actionClose, SIGNAL(triggered()),this,SLOT(close()));
+
 
     //test new player
     mediaObject = new Phonon::MediaObject(this);
@@ -266,3 +268,30 @@ void MainWindow::videoAlmostFinished(){
         }
 }
 
+void MainWindow::disableInterfaceForNewProject(){
+
+    //1st : Block the main menu smartly
+    ui->actionSave_Project->setEnabled(false);
+    ui->actionSave_Project_As->setEnabled(false);
+    ui->menuEdition->setEnabled(false);
+    ui->menuConfig->setEnabled(false);
+    ui->menuShow->setEnabled(false);
+    ui->menuSources->setEnabled(false);
+
+    //2nd : block all the remaining interface
+    ui->centralWidget->setEnabled(false);
+}
+
+void MainWindow::enableInterfaceForNewProject(){
+
+    //1st : Block the main menu smartly
+    ui->actionSave_Project->setEnabled(true);
+    ui->actionSave_Project_As->setEnabled(true);
+    ui->menuEdition->setEnabled(true);
+    ui->menuConfig->setEnabled(true);
+    ui->menuShow->setEnabled(true);
+    ui->menuSources->setEnabled(true);
+
+    //2nd : block all the remaining interface
+    ui->centralWidget->setEnabled(true);
+}

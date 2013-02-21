@@ -44,6 +44,8 @@ public:
     void displayParametersWindow();
     void displayPlatformsWindow();
     vector<Source*> getAllSources();
+    void blockInterface();
+    void deBlockInterface();
 
 private:
     MainWindow * mainwindow;
