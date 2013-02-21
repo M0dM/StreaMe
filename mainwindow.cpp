@@ -48,6 +48,7 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
 
     //Def chrono
     playerOn=false;
+    firstPlay=false;
     m_chrono = new QTimer();
     minute=0;
     chrono_value=0;
@@ -86,11 +87,13 @@ void MainWindow::startVideo(){
     chrono_value=0;
     minute=0;
     mediaObject->play();
-    //mediaObject->setTransitionTime(-100);
     mediaObject->setPrefinishMark(200);
-    QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
-    QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
-    QObject::connect(mediaObject, SIGNAL(prefinishMarkReached(qint32)), SLOT(videoAlmostFinished()));
+    if(!firstPlay){
+        QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
+        QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
+        QObject::connect(mediaObject, SIGNAL(prefinishMarkReached(qint32)), SLOT(videoAlmostFinished()));
+        firstPlay=true;
+    }
 
 
 }

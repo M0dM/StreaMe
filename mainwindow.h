@@ -55,7 +55,7 @@ private:
     QTimer *m_chrono;
     int chrono_value;
     int minute;
-    bool playerOn;
+    bool playerOn, firstPlay;
 protected:
     void resizeEvent(QResizeEvent * event );
 public slots :

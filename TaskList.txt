@@ -1,13 +1,8 @@
 Bug player start stop
-bug affichage video redimensionnement
-timer
 
 Info stream dans les tabs
 event sur le menu show start stop
 bloquage interface
 
-Barre d'etat
-Nom de la fenetre en fonction du projet
-Nom du projet dans le fichier de sauvegarde
 MVC fenetres benoit
 
