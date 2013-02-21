@@ -30,7 +30,6 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
 
     //test new player
     mediaObject = new Phonon::MediaObject(this);
-
     videoWidget = new Phonon::VideoWidget(ui->videoPlayer);
     Phonon::createPath(mediaObject, videoWidget);
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
@@ -42,15 +41,13 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     videoWidget->setMinimumWidth(ui->videoPlayer->width());
     videoWidget->setMinimumHeight(ui->videoPlayer->height());
 
-    bu = new QBuffer();
-    array1= new QByteArray();
-    bu2 = new QBuffer();
-    array2= new QByteArray();
+
     file = new QFile();
     file->setFileName("why.mpeg");
     file->remove();
 
     //Def chrono
+    playerOn=false;
     m_chrono = new QTimer();
     minute=0;
     chrono_value=0;
@@ -78,6 +75,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
 
 
 void MainWindow::startVideo(){
+    playerOn=true;
     file->setFileName("why.mpeg");
     file->open(QIODevice::ReadOnly);
     fileSize=file->size();
@@ -101,6 +99,7 @@ void MainWindow::update_chrono(){
     chrono_value++;
     int chrono_mod = chrono_value % 60;
     QString timeChrone = QString::number(minute) + QString::fromStdString(":") + QString::number(chrono_mod) ;
+    if(playerOn)
         ui->timeNumber->display(timeChrone);
     if(chrono_mod==59)
         minute++;
@@ -168,15 +167,33 @@ void MainWindow::saveProjectAsTriggered(){
 
 
 void MainWindow::stopClicked(){
+    //Stop the stream and the player
     controller->stopStream();
+    playerOn=false;
+    mediaObject->stop();
+    mediaObject->clear();
+    //Stop and reinitialize the chrono
     m_chrono->stop();
-    //    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
+    chrono_value=0;
+    ui->timeNumber->display(0);
+    //Clear the file and buffers for the player
+    file->remove();
+    bu->~QBuffer();
+    bu2->~QBuffer();
+    array1->~QByteArray();
+    array2->~QByteArray();
+    //Change the status bar
+    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
 }
 
 void MainWindow::playClicked(){
+    bu = new QBuffer();
+    array1= new QByteArray();
+    bu2 = new QBuffer();
+    array2= new QByteArray();
     m_chrono->start();
     controller->stream();
-    //ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
+    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
 }
 
 void MainWindow::rewindClicked(){
@@ -238,10 +255,8 @@ void MainWindow::notUseSourceClicked(){
 }
 
 void MainWindow::resizeEvent (QResizeEvent * event){
-    videoWidget->setMinimumWidth(ui->videoPlayer->width());
-    videoWidget->setMinimumHeight(ui->videoPlayer->height());
-    videoWidget->setMaximumHeight(ui->videoPlayer->maximumHeight());
-    videoWidget->setMaximumWidth(ui->videoPlayer->maximumWidth());
+    videoWidget->setFixedWidth(ui->videoPlayer->width());
+    videoWidget->setFixedHeight(ui->videoPlayer->height());
 }
 
 void MainWindow::configureParametersTrigged(){
@@ -255,7 +270,6 @@ void MainWindow::choosePlatformTrigged(){
 void MainWindow::videoAlmostFinished(){
         float i=0.0;
         int val=0;
-
         while(i<1.0){
             Sleep(20);
             videoWidget->setBrightness(val-i);
