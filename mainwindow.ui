@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>StreaMe</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
@@ -109,9 +109,6 @@
            <normaloff>:/new/Del/ressources/fleche-gauche-icone-5290-32.png</normaloff>:/new/Del/ressources/fleche-gauche-icone-5290-32.png</iconset>
          </property>
         </widget>
-        <zorder>buttonUseSource</zorder>
-        <zorder>buttonNotUseSource</zorder>
-        <zorder>listFreeSources</zorder>
        </widget>
       </item>
       <item row="0" column="2">

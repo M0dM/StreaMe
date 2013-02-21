@@ -15,6 +15,7 @@ Project::Project(Controller* controller)
     // setting default values for the streaming platform
     this->setPlatformIndex(0);
     this->setStreamingKey(QString::fromStdString(""));
+    this->setName("");
 
     // setting default values for streaming configuration
     this->setVideoSizeIndex(0);
@@ -29,6 +30,14 @@ Project::Project(Controller* controller)
 
 Controller* Project::getController(){
     return this->controller;
+}
+
+void Project::setName(string name){
+    this->name = name;
+}
+
+string Project::getName(){
+    return this->name;
 }
 
 vector<Source*> Project::getUsedSources(){
@@ -81,6 +90,7 @@ bool Project::save(string fileUrl){
     // Writing XML Header : <?xml version="1.0" encoding="UTF-8" ?>
     writer.writeStartDocument();
         writer.writeStartElement("project");
+        writer.writeTextElement("name", QString::fromStdString(this->getName()));
             writer.writeStartElement("sources");
             for(unsigned int i=0; i < usedSources.size(); i++){
                 writer.writeStartElement("source");
@@ -136,6 +146,9 @@ bool Project::load(string fileUrl){
     cout << "Sources: " << endl;
     while (!reader.atEnd()){
         if(reader.readNextStartElement()){
+            if(reader.name().toString().toStdString() == "name"){
+                    this->setName(reader.readElementText().toStdString());
+            }
             if(reader.name().toString().toStdString() == "source"){
                 cout << "\tSource: " << endl;
                 if(reader.readNextStartElement()){

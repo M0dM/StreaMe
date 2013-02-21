@@ -76,6 +76,9 @@ private:
     vector<Source*> usedSources;
     Live* live;
     Controller* getController();
+    string name;
+    string getName();
+    void setName(string name);
     void setLive(Live* live);
 
     // platform attributes
