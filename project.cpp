@@ -148,6 +148,7 @@ bool Project::load(string fileUrl){
         if(reader.readNextStartElement()){
             if(reader.name().toString().toStdString() == "name"){
                     this->setName(reader.readElementText().toStdString());
+                    controller->setMainWindowTitle(this->getName());
             }
             if(reader.name().toString().toStdString() == "source"){
                 cout << "\tSource: " << endl;
