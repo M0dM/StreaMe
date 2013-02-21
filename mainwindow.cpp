@@ -4,8 +4,8 @@
 #include "ui_streamingparametersconfigurationwindow.h"
 #include "platformselectionwindow.h"
 #include "ui_platformselectionwindow.h"
-#include <QFileDialog>
 #include <QMessageBox>
+#include <QFileDialog>
 
 MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QMainWindow(parent),
@@ -127,42 +127,11 @@ void MainWindow::openProjectTriggered(){
 }
 
 void MainWindow::saveProjectTriggered(){
-    if(this->getController()->getProjectFileUrl() == ""){
-        QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
-        if(fileName.toStdString() != ""){
-            if(this->getController()->getProject()->save(fileName.toStdString()) == true){
-                QMessageBox msgBox;
-                msgBox.setText("The StreaMe project was saved successfully.");
-                this->getController()->setProjectFileUrl(fileName.toStdString());
-                msgBox.exec();
-            }
-            else{
-                QMessageBox msgBox;
-                msgBox.setText("Problem when saving the new StreaMe project.");
-                msgBox.exec();
-            }
-        }
-    }
-    else{
-        this->getController()->getProject()->save(this->getController()->getProjectFileUrl());
-    }
+    this->getController()->saveProject();
 }
 
 void MainWindow::saveProjectAsTriggered(){
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),"/",tr("StreaMe File (*.sm)"));
-    if(fileName.toStdString() != ""){
-        if(this->getController()->getProject()->save(fileName.toStdString()) == true){
-            QMessageBox msgBox;
-            msgBox.setText("The StreaMe project was saved successfully.");
-            this->getController()->setProjectFileUrl(fileName.toStdString());
-            msgBox.exec();
-        }
-        else{
-            QMessageBox msgBox;
-            msgBox.setText("Problem when saving the new StreaMe project.");
-            msgBox.exec();
-        }
-    }
+    this->getController()->saveProjectAs();
 }
 
 
