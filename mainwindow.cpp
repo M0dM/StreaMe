@@ -120,11 +120,9 @@ void MainWindow::newProjectTriggered(){
 void MainWindow::openProjectTriggered(){
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"),"/",tr("StreaMe File (*.sm)"));
     if(fileName.toStdString() != ""){
-        if(this->getController()->getProject()->load(fileName.toStdString())==true){
-            QMessageBox msgBox;
-            msgBox.setText("The StreaMe project was corectly loaded.");
-            msgBox.exec();
-        }
+        if(this->getController()->getProject()->load(fileName.toStdString())==true)
+            controller->deBlockInterface();
+
         else{
             QMessageBox msgBox;
             msgBox.setText("Problem when loading the StreaMe project.");
