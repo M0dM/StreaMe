@@ -233,6 +233,7 @@ bool Project::load(string fileUrl){
         }
     }
     cout << ">> CONFIGURATION LOADED" << endl;
+    this->getController()->setProjectFileUrl(fileName.toStdString());
     file.close();
     return true;
 }
