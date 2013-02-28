@@ -69,7 +69,7 @@ void WinAvTools::detectSources(){
 
     QProcess *process = new QProcess();
 
-    QString path("..\\StreaMe\\ffmpeg\\bin\\ffmpeg.exe");
+    QString path("ffmpeg\\bin\\ffmpeg.exe");
     // Path working, but we have to come back to the previous folder to choose the "StreaMe" directory.
     //This is because Qt creator uses a debug folder.
     //Maybe pay attention later...

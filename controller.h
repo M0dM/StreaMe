@@ -6,6 +6,7 @@
 #include "streamingparametersconfigurationwindow.h"
 #include "platformselectionwindow.h"
 #include "renameprojectwindow.h"
+#include "choosecreateopenproject.h"
 #include "project.h"
 #include "streamtools.h"
 #include <QTimer>
@@ -62,6 +63,7 @@ public:
     void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
     void setProjectStereoConfiguration(boolean value);
     void mutSleep(int time);
+    void chooseProjectCreate(bool choice);
 
 private:
     MainWindow * mainwindow;
@@ -69,6 +71,7 @@ private:
     QWidget *platformSelectionUi;
     QWidget *newProjectAssistantUi;
     QWidget *renameProjectUi;
+    QWidget *chooseCreateOpenProject;
     Project *project;
     StreamTools *streamTools;
     string ProjectFileUrl;
