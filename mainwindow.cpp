@@ -27,6 +27,7 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
     QObject::connect(ui->actionSave_Project, SIGNAL(triggered()),this,SLOT(saveProjectTriggered()));
     QObject::connect(ui->actionSave_Project_As, SIGNAL(triggered()),this,SLOT(saveProjectAsTriggered()));
+    QObject::connect(ui->actionRename, SIGNAL(triggered()),this,SLOT(renameProjectTriggered()));
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
     QObject::connect(ui->actionClose, SIGNAL(triggered()),this,SLOT(close()));
@@ -120,9 +121,8 @@ void MainWindow::newProjectTriggered(){
 void MainWindow::openProjectTriggered(){
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"),"/",tr("StreaMe File (*.sm)"));
     if(fileName.toStdString() != ""){
-        if(this->getController()->getProject()->load(fileName.toStdString())==true)
+        if(this->getController()->openProjectFile(fileName.toStdString())==true)
             controller->deBlockInterface();
-
         else{
             QMessageBox msgBox;
             msgBox.setText("Problem when loading the StreaMe project.");
@@ -138,6 +138,7 @@ void MainWindow::saveProjectTriggered(){
 void MainWindow::saveProjectAsTriggered(){
     this->getController()->saveProjectAs();
 }
+
 
 
 void MainWindow::stopClicked(){
@@ -234,11 +235,15 @@ void MainWindow::resizeEvent (QResizeEvent * event){
 }
 
 void MainWindow::configureParametersTrigged(){
-    controller->displayParametersWindow();
+    this->getController()->displayParametersWindow();
 }
 
 void MainWindow::choosePlatformTrigged(){
-    controller->displayPlatformsWindow();
+    this->getController()->displayPlatformsWindow();
+}
+
+void MainWindow::renameProjectTriggered(){
+    this->getController()->displayRenameProjectWindow();
 }
 
 void MainWindow::videoAlmostFinished(){

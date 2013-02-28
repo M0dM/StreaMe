@@ -135,6 +135,7 @@ bool Project::isSource(string sourceName){
 
 bool Project::load(string fileUrl){
 
+    string projectName = "";
     QXmlStreamReader reader;
     QString fileName = fileUrl.c_str();
     QFile file(fileName);
@@ -148,7 +149,6 @@ bool Project::load(string fileUrl){
         if(reader.readNextStartElement()){
             if(reader.name().toString().toStdString() == "name"){
                     this->setName(reader.readElementText().toStdString());
-                    controller->setMainWindowTitle(this->getName());
             }
             if(reader.name().toString().toStdString() == "source"){
                 cout << "\tSource: " << endl;
@@ -234,6 +234,7 @@ bool Project::load(string fileUrl){
     }
     cout << ">> CONFIGURATION LOADED" << endl;
     this->getController()->setProjectFileUrl(fileName.toStdString());
+    controller->setMainWindowTitle(this->getName(), false);
     file.close();
     return true;
 }

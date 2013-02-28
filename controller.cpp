@@ -15,6 +15,7 @@ Controller::Controller()
     this->newProjectAssistantUi = new NewProjectAssistant(this);
     this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
     this->platformSelectionUi = new PlatformSelectionWindow(this);
+    this->renameProjectUi = new RenameProjectWindow(this);
 
 }
 
@@ -22,6 +23,7 @@ Controller::~Controller(){
     delete this->newProjectAssistantUi;
     delete this->streamingParametersUi;
     delete this->platformSelectionUi;
+    delete this->renameProjectUi;
     delete this->streamTools;
 }
 
@@ -241,16 +243,26 @@ void Controller::displayPlatformsWindow(){;
     platformSelectionUi->show();
 }
 
+void Controller::displayRenameProjectWindow(){
+    renameProjectUi->show();
+}
+
 vector<Source*> Controller::getAllSources(){
     return this->streamTools->getAllSources();
 }
 
 void Controller::setProjectName(string projectName){
-    project->setName(projectName);
+    this->getProject()->setName(projectName);
 }
 
-void Controller::setMainWindowTitle(string projectName){
-    mainwindow->setWindowTitle(QString::fromStdString("StreaMe - ") + QString::fromStdString(projectName));
+void Controller::setMainWindowTitle(string projectName, boolean newProject){
+    if(this->getProjectFileUrl() == "" || newProject){
+        mainwindow->setWindowTitle(QString::fromStdString(projectName) + QString::fromStdString(" - ") + QString::fromStdString("Unsaved project") + QString::fromStdString(" - StreaMe"));
+    }
+    else{
+        mainwindow->setWindowTitle(QString::fromStdString(projectName) + QString::fromStdString(" - ") + QString::fromStdString(this->getProjectFileUrl()) + QString::fromStdString(" - StreaMe"));
+    }
+
 }
 
 void Controller::blockInterface(){
@@ -269,6 +281,7 @@ void Controller::saveProject(){
                 QMessageBox msgBox;
                 msgBox.setText("The StreaMe project was saved successfully.");
                 this->setProjectFileUrl(fileName.toStdString());
+                this->setMainWindowTitle(this->getProject()->getName(), false);
                 msgBox.exec();
             }
             else{
@@ -298,6 +311,12 @@ void Controller::saveProjectAs(){
             msgBox.exec();
         }
     }
+    this->setMainWindowTitle(this->getProject()->getName(), false);
+}
+
+void Controller::renameProject(string projectName){
+    this->setProjectName(projectName);
+    this->setMainWindowTitle(projectName, false);
 }
 
 void Controller::setPlatformParameters(int platformIndex, string streamingKey){
@@ -319,4 +338,8 @@ void Controller::setStreamingParametersValue(int videoSizeIndex, int videoFormat
 
 void Controller::setProjectStereoConfiguration(boolean value){
     this->getProject()->setStereoConfiguration(value);
+}
+
+bool Controller::openProjectFile(string filename){
+    return this->getProject()->load(filename);
 }
