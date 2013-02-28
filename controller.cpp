@@ -16,6 +16,7 @@ Controller::Controller()
     this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
     this->platformSelectionUi = new PlatformSelectionWindow(this);
     this->renameProjectUi = new RenameProjectWindow(this);
+    this->chooseCreateOpenProject = new  ChooseCreateOpenProject(this);
 
 }
 
@@ -25,10 +26,12 @@ Controller::~Controller(){
     delete this->platformSelectionUi;
     delete this->renameProjectUi;
     delete this->streamTools;
+    delete this->chooseCreateOpenProject;
 }
 
 void Controller::showMainWindow(){
     this->mainwindow->show();
+    this->chooseCreateOpenProject->show();
 }
 
 void Controller::displayVideoSources(){
@@ -331,6 +334,16 @@ void Controller::setProjectStereoConfiguration(boolean value){
 
 bool Controller::openProjectFile(string filename){
     return this->getProject()->load(filename);
+}
+
+void Controller::chooseProjectCreate(bool choice){
+    this->chooseCreateOpenProject->close();
+    if(choice){
+        displayAssistantWindow();
+    }
+    else{
+        this->mainwindow->openProjectTriggered();
+    }
 }
 
 void Controller::addFeedback(string feedback, boolean error){

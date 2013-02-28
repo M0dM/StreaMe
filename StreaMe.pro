@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     streamingparametersconfigurationwindow.cpp \
     streamthread.cpp \
     newprojectassistant.cpp \
-    renameprojectwindow.cpp
+    renameprojectwindow.cpp \
+    choosecreateopenproject.cpp
 
 HEADERS  += mainwindow.h \
     project.h \
@@ -42,13 +43,15 @@ HEADERS  += mainwindow.h \
     streamingparametersconfigurationwindow.h \
     streamthread.h \
     newprojectassistant.h \
-    renameprojectwindow.h
+    renameprojectwindow.h \
+    choosecreateopenproject.h
 
 FORMS    += mainwindow.ui \
     platformselectionwindow.ui \
     streamingparametersconfigurationwindow.ui \
     newprojectassistant.ui \
-    renameprojectwindow.ui
+    renameprojectwindow.ui \
+    choosecreateopenproject.ui
 
 RESOURCES += \
     New.qrc
