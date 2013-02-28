@@ -72,6 +72,7 @@ public slots :
     void openProjectTriggered();
     void saveProjectTriggered();
     void saveProjectAsTriggered();
+    void renameProjectTriggered();
     void useSourceClicked();
     void notUseSourceClicked();
     void configureParametersTrigged();

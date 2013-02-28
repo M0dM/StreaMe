@@ -5,6 +5,7 @@
 #include "newprojectassistant.h"
 #include "streamingparametersconfigurationwindow.h"
 #include "platformselectionwindow.h"
+#include "renameprojectwindow.h"
 #include "project.h"
 #include "streamtools.h"
 #include <QTimer>
@@ -45,19 +46,23 @@ public:
     void displayAssistantWindow();
     void displayParametersWindow();
     void displayPlatformsWindow();
+    void displayRenameProjectWindow();
     vector<Source*> getAllSources();
     void blockInterface();
     void deBlockInterface();
+    bool openProjectFile(string filename);
 
-    void setMainWindowTitle(string projectName);
+    void setMainWindowTitle(string projectName, boolean newProject);
     void setProjectName(string projectName);
     void saveProject();
     void saveProjectAs();
+    void renameProject(string projectName);
     void setPlatformParameters(int platformIndex, string streamingKey);
     void setProjectAutoConfiguration(boolean value);
     void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
     void setProjectStereoConfiguration(boolean value);
     void mutSleep(int time);
+
 
     void addFeedback(string feedback, boolean error = false);
 
@@ -66,6 +71,7 @@ private:
     QWidget *streamingParametersUi;
     QWidget *platformSelectionUi;
     QWidget *newProjectAssistantUi;
+    QWidget *renameProjectUi;
     Project *project;
     StreamTools *streamTools;
     string ProjectFileUrl;

@@ -73,6 +73,7 @@ public:
     bool isSource(string sourceName);
 
     string getName();
+
 private:
     Controller* controller;
     vector<Source*> usedSources;
