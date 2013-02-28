@@ -22,7 +22,6 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->buttonPlay, SIGNAL(clicked()),this,SLOT(playClicked()));
     QObject::connect(ui->actionStart, SIGNAL(triggered()),this,SLOT(playClicked()));
     QObject::connect(ui->actionStop, SIGNAL(triggered()),this,SLOT(stopClicked()));
-    QObject::connect(ui->buttonRewind, SIGNAL(clicked()),this,SLOT(rewindClicked()));
     QObject::connect(ui->actionNew_Project, SIGNAL(triggered()),this,SLOT(newProjectTriggered()));
     QObject::connect(ui->actionOpen_Project, SIGNAL(triggered()),this,SLOT(openProjectTriggered()));
     QObject::connect(ui->actionSave_Project, SIGNAL(triggered()),this,SLOT(saveProjectTriggered()));
@@ -159,6 +158,8 @@ void MainWindow::stopClicked(){
     array2->~QByteArray();
     //Change the status bar
     ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
+    controller->blockStreamingStop();
+    controller->unblockStreamingPlay();
 }
 
 void MainWindow::playClicked(){
@@ -166,21 +167,15 @@ void MainWindow::playClicked(){
     array1= new QByteArray();
     bu2 = new QBuffer();
     array2= new QByteArray();
-    m_chrono->start();
+
     controller->addFeedback("Launching streaming...");
+    controller->blockStreamingPlay();
+    controller->unblockStreamingStop();
+    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
+
+    m_chrono->start();
     controller->stream();
-    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
 }
-
-void MainWindow::rewindClicked(){
-    ui->statutBarLabel->setText("StatusBar: Streaming status - rewinding");
-    ui->videoPlayer->stop();
-    ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
-    ui->videoPlayer->play();
-    ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
-    cout << "Rewind clicked" << endl;
-}
-
 
 void MainWindow::enqueueNextSource(){
     pos=mediaObject->totalTime();
@@ -287,6 +282,22 @@ void MainWindow::enableInterfaceForNewProject(){
     //2nd : block all the remaining interface
     ui->centralWidget->setEnabled(true);
 }
+
+void MainWindow::blockPlay(){
+    ui->buttonPlay->setEnabled(false);
+}
+
+void MainWindow::blockStop(){
+    ui->buttonStop->setEnabled(false);
+}
+void MainWindow::unblockPlay(){
+    ui->buttonPlay->setEnabled(true);
+}
+
+void MainWindow::unblockStop(){
+    ui->buttonStop->setEnabled(true);
+}
+
 
 void MainWindow::addLineFeedback(QString line){
     ui->listWidgetFeedback->addItem(line);

@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     controller->displayUsedSources();
 
     controller->blockInterface();
+    controller->blockStreamingStop();
     return a.exec();
 
 }

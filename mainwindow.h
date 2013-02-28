@@ -43,6 +43,10 @@ public:
     void generateNewProject();
     void disableInterfaceForNewProject();
     void enableInterfaceForNewProject();
+    void blockPlay();
+    void blockStop();
+    void unblockPlay();
+    void unblockStop();
     void addLineFeedback(QString line);
 private:
     Ui::MainWindow *ui;
@@ -65,7 +69,6 @@ protected:
 public slots :
     void stopClicked();
     void playClicked();
-    void rewindClicked();
     void enqueueNextSource();
     void setNewTime();
     void newProjectTriggered();

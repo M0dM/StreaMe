@@ -51,8 +51,12 @@ public:
     vector<Source*> getAllSources();
     void blockInterface();
     void deBlockInterface();
-    bool openProjectFile(string filename);
+    void blockStreamingPlay();
+    void blockStreamingStop();
+    void unblockStreamingPlay();
+    void unblockStreamingStop();
 
+    bool openProjectFile(string filename);
     void setMainWindowTitle(string projectName, boolean newProject);
     void setProjectName(string projectName);
     void saveProject();

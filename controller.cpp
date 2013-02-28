@@ -122,7 +122,7 @@ void Controller::stream(){
     this->addFeedback("Video bitrate : " + videoBitrate);
     this->addFeedback("Audio bitrate : " + audioBitrate);
     streamTools->startStream(url,size,videoBitrate,audioBitrate);
-    //streamTools->startStream();
+
 }
 
 void Controller::stopStream(){
@@ -274,8 +274,22 @@ void Controller::blockInterface(){
 
 void Controller::deBlockInterface(){
     mainwindow->enableInterfaceForNewProject();
-
 }
+
+void Controller::blockStreamingPlay(){
+    mainwindow->blockPlay();
+}
+void Controller::blockStreamingStop(){
+    mainwindow->blockStop();
+}
+void Controller::unblockStreamingPlay(){
+    mainwindow->unblockPlay();
+}
+
+void Controller::unblockStreamingStop(){
+    mainwindow->unblockStop();
+}
+
 void Controller::saveProject(){
     if(this->getProjectFileUrl() == ""){
         QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File", "/", "StreaMe File (*.sm)");

@@ -267,30 +267,6 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <zorder>tabWidget</zorder>
-         </widget>
-        </item>
-        <item alignment="Qt::AlignRight">
-         <widget class="QPushButton" name="buttonRewind">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="New.qrc">
-            <normaloff>:/new/Previous/ressources/first-resultset-icone-8101-16.png</normaloff>:/new/Previous/ressources/first-resultset-icone-8101-16.png</iconset>
-          </property>
          </widget>
         </item>
         <item>
