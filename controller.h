@@ -12,7 +12,7 @@
 #include <QWaitCondition>
 #include <sstream>
 #include <string.h>
-
+#include <QDateTime>
 
 #include "windows.h"
 
@@ -58,6 +58,9 @@ public:
     void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
     void setProjectStereoConfiguration(boolean value);
     void mutSleep(int time);
+
+    void addFeedback(string feedback, boolean error = false);
+
 private:
     MainWindow * mainwindow;
     QWidget *streamingParametersUi;

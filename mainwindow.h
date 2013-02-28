@@ -3,6 +3,7 @@
 #include <Phonon>
 #include <QUrl>
 #include <QFile>
+#include <QString>
 #include <phonon/MediaSource>
 #include <Phonon/VideoPlayer>
 #include <phonon/audiooutput.h>
@@ -42,6 +43,7 @@ public:
     void generateNewProject();
     void disableInterfaceForNewProject();
     void enableInterfaceForNewProject();
+    void addLineFeedback(QString line);
 private:
     Ui::MainWindow *ui;
     Controller* controller;

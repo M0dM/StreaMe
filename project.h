@@ -72,13 +72,13 @@ public:
 
     bool isSource(string sourceName);
 
+    string getName();
 private:
     Controller* controller;
     vector<Source*> usedSources;
     Live* live;
     Controller* getController();
     string name;
-    string getName();
     void setLive(Live* live);
 
     // platform attributes
