@@ -135,7 +135,9 @@ bool Project::isSource(string sourceName){
 
 bool Project::load(string fileUrl){
 
-    string projectName = "";
+    // empty usedSources
+    usedSources.clear();
+
     QXmlStreamReader reader;
     QString fileName = fileUrl.c_str();
     QFile file(fileName);
