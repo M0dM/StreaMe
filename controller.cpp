@@ -278,38 +278,27 @@ void Controller::saveProject(){
         QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File", "/", "StreaMe File (*.sm)");
         if(fileName.toStdString() != ""){
             if(this->getProject()->save(fileName.toStdString()) == true){
-                QMessageBox msgBox;
-                msgBox.setText("The StreaMe project was saved successfully.");
+                this->addFeedback("StreaMe project saved successfully");
                 this->setProjectFileUrl(fileName.toStdString());
                 this->setMainWindowTitle(this->getProject()->getName(), false);
-                msgBox.exec();
             }
-            else{
-                QMessageBox msgBox;
-                msgBox.setText("Problem when saving the new StreaMe project.");
-                msgBox.exec();
-            }
+            else
+                this->addFeedback("Problem when saving the new StreaMe project",true);
         }
     }
-    else{
+    else
         this->getProject()->save(this->getProjectFileUrl());
-    }
 }
 
 void Controller::saveProjectAs(){
     QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File","/","StreaMe File (*.sm)");
     if(fileName.toStdString() != ""){
         if(this->getProject()->save(fileName.toStdString()) == true){
-            QMessageBox msgBox;
-            msgBox.setText("The StreaMe project was saved successfully.");
+            this->addFeedback("StreaMe project saved successfully.");
             this->setProjectFileUrl(fileName.toStdString());
-            msgBox.exec();
         }
-        else{
-            QMessageBox msgBox;
-            msgBox.setText("Problem when saving the new StreaMe project.");
-            msgBox.exec();
-        }
+        else
+            this->addFeedback("Problem when saving the new StreaMe project.",true);
     }
     this->setMainWindowTitle(this->getProject()->getName(), false);
 }
