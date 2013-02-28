@@ -32,7 +32,6 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
     QObject::connect(ui->actionClose, SIGNAL(triggered()),this,SLOT(close()));
 
-
     //test new player
     mediaObject = new Phonon::MediaObject(this);
     videoWidget = new Phonon::VideoWidget(ui->videoPlayer);
@@ -143,6 +142,7 @@ void MainWindow::saveProjectAsTriggered(){
 
 void MainWindow::stopClicked(){
     //Stop the stream and the player
+    controller->addFeedback("Stopping streaming...");
     controller->stopStream();
     playerOn=false;
     mediaObject->stop();
@@ -167,6 +167,7 @@ void MainWindow::playClicked(){
     bu2 = new QBuffer();
     array2= new QByteArray();
     m_chrono->start();
+    controller->addFeedback("Launching streaming...");
     controller->stream();
     ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
 }
@@ -232,6 +233,7 @@ void MainWindow::notUseSourceClicked(){
 void MainWindow::resizeEvent (QResizeEvent * event){
     videoWidget->setFixedWidth(ui->videoPlayer->width());
     videoWidget->setFixedHeight(ui->videoPlayer->height());
+    ui->listWidgetFeedback->setFixedWidth(ui->feedbackTab->width());
 }
 
 void MainWindow::configureParametersTrigged(){
@@ -284,4 +286,9 @@ void MainWindow::enableInterfaceForNewProject(){
 
     //2nd : block all the remaining interface
     ui->centralWidget->setEnabled(true);
+}
+
+void MainWindow::addLineFeedback(QString line){
+    ui->listWidgetFeedback->addItem(line);
+    ui->listWidgetFeedback->scrollToBottom();
 }

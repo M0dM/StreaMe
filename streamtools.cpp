@@ -62,15 +62,14 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
             ffmpegProcess->moveToThread(sThread);
             sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
             sThread->start();
-
         }
         else
-            cout << "Error : StreaMe can accept only one video input as single source" << endl; // REPLACE BY EXCEPTION
+            controller->addFeedback("StreaMe can accept only one video input as single source",true); //ADD EXCEPTION
         break;
     case 2:
         if (this->controller->getProjectUsedSouces()[0]->getType() == "video"){
             if(this->controller->getProjectUsedSouces()[1]->getType() == "video")
-                cout << "Error : StreaMe can accept only a single video input " << endl; // REPLACE BY EXCEPTION
+                controller->addFeedback("StreaMe can accept only a single video input", true); // ADD EXCEPTION
             else if(this->controller->getProjectUsedSouces()[1]->getType() == "audio"){
                 this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getName(),this->controller->getProjectUsedSouces()[1]->getName());
                 ffmpegProcess->moveToThread(sThread);
@@ -78,11 +77,11 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
                 sThread->start();
             }
             else
-                cout << "Stream input list error" <<endl; // REPLACE BY EXCEPTION
+                controller->addFeedback("Anormal stream input list", true); // ADD EXCEPTION
         }
         else if (this->controller->getProjectUsedSouces()[0]->getType() == "audio"){
             if(this->controller->getProjectUsedSouces()[1]->getType() == "audio")
-                cout << "Error : StreaMe can accept only a single audio intput source with a at least one video source " << endl; // REPLACE BY EXCEPTION
+                controller->addFeedback("StreaMe can accept only a single audio intput source with a at least one video source", true); // REPLACE BY EXCEPTION
             else if(this->controller->getProjectUsedSouces()[1]->getType() == "video"){
                 this->setDevicesCommand(this->controller->getProjectUsedSouces()[1]->getName(),this->controller->getProjectUsedSouces()[0]->getName());
                 ffmpegProcess->moveToThread(sThread);
@@ -90,16 +89,15 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
                 sThread->start();
             }
             else
-                cout << "Error : Stream input list error" <<endl; // REPLACE BY EXCEPTION
+                controller->addFeedback("Stream input list error", true); // ADD EXCEPTION
         }
         else
-            cout << "Error : Unrecognized source type while trying to stream" <<endl; // REPLACE BY EXCEPTION
+            controller->addFeedback("Unrecognized source type while trying to stream", true); // ADD EXCEPTION
         break;
     default:
-        cout << "Error : StreaMe can handle only one video source, or one video source and one audio source together" <<endl; // REPLACE BY EXCEPTION
+        controller->addFeedback("StreaMe can handle only one video source, or one video source and one audio source together", true); // ADD EXCEPTION
     }
 }
-
 void StreamTools::stopStream(){
     if(ffmpegProcess->pid() > 0) //if the process is running, the pid is > 0
         ffmpegProcess->kill(); // we kill the running process

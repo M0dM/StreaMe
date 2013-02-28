@@ -94,8 +94,6 @@ void Controller::stream(){
         break;
     }
 
-
-
     //Construct the video bitrate string
     stringstream stringVBitrate(videoBitrate);
     stringVBitrate << project->getVideoBitrate();
@@ -119,10 +117,10 @@ void Controller::stream(){
         break;
     }
 
-    cout << url << endl;
-    cout << size << endl;
-    cout << videoBitrate << endl;
-    cout << audioBitrate << endl;
+    this->addFeedback("Streaming to : " + url);
+    this->addFeedback("Video size : " + size);
+    this->addFeedback("Video bitrate : " + videoBitrate);
+    this->addFeedback("Audio bitrate : " + audioBitrate);
     streamTools->startStream(url,size,videoBitrate,audioBitrate);
     //streamTools->startStream();
 }
@@ -183,6 +181,7 @@ void Controller::useSource(string sourceName){
 
     if(selectedSource != 0){
         project->addUsedSource(selectedSource);
+        this->addFeedback("Source \"" + sourceName + "\" used");
         displayFreeSources();
         displayUsedSources();
     }
@@ -191,6 +190,7 @@ void Controller::useSource(string sourceName){
 void Controller::notUseSource(string sourceName){
 
     project->removeUsedSource(sourceName);
+    this->addFeedback("Source \"" + sourceName + "\" not used anymore" ) ;
     displayFreeSources();
     displayUsedSources();
 }
@@ -355,4 +355,13 @@ void Controller::chooseProjectCreate(bool choice){
     else{
         this->mainwindow->openProjectTriggered();
     }
+}
+
+void Controller::addFeedback(string feedback, boolean error){
+    if(error){
+        mainwindow->addLineFeedback(QTime::currentTime().toString() + QString::fromStdString(" => Error : ") + QString::fromStdString(feedback));
+        QMessageBox::critical(this->mainwindow,QString::fromStdString("Error"),QString::fromStdString(feedback));
+    }
+    else
+        mainwindow->addLineFeedback(QTime::currentTime().toString() + QString::fromStdString(" => ") + QString::fromStdString(feedback));
 }
