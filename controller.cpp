@@ -346,8 +346,15 @@ void Controller::setProjectStereoConfiguration(boolean value){
     this->getProject()->setStereoConfiguration(value);
 }
 
-bool Controller::openProjectFile(string filename){
-    return this->getProject()->load(filename);
+void Controller::openProjectFile(){
+    QString fileName = QFileDialog::getOpenFileName(this->mainwindow, QString::fromStdString("Open file"),QString::fromStdString("/"),QString::fromStdString("StreaMe File (*.sm)"));
+    if(fileName.toStdString() != ""){
+        if(this->getProject()->load(fileName.toStdString())==true)
+            this->deBlockInterface();
+        else{
+            this->addFeedback("Problem when loading the StreaMe project.", true);
+        }
+    }
 }
 
 void Controller::chooseProjectCreate(bool choice){
@@ -356,7 +363,7 @@ void Controller::chooseProjectCreate(bool choice){
         displayAssistantWindow();
     }
     else{
-        this->mainwindow->openProjectTriggered();
+        this->openProjectFile();
     }
 }
 

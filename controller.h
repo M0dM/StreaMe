@@ -56,7 +56,7 @@ public:
     void unblockStreamingPlay();
     void unblockStreamingStop();
 
-    bool openProjectFile(string filename);
+    void openProjectFile();
     void setMainWindowTitle(string projectName, boolean newProject);
     void setProjectName(string projectName);
     void saveProject();
