@@ -1,7 +1,12 @@
 
 Info stream dans les tabs
-event sur le menu show start stop
-bloquage interface
 
 MVC fenetres benoit
+New project réinit
+
+Doc doxygen
+
+Feedback ffmpeg
+
+Portage linux
 
