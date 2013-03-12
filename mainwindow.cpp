@@ -158,7 +158,7 @@ void MainWindow::playClicked(){
     bu2 = new QBuffer();
     array2= new QByteArray();
 
-    controller->addFeedback("Launching streaming...");
+    controller->addFeedback("Starting streaming...");
     controller->blockStreamingPlay();
     controller->unblockStreamingStop();
     ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");

@@ -102,6 +102,7 @@ void StreamTools::stopStream(){
     if(ffmpegProcess->pid() > 0) //if the process is running, the pid is > 0
         ffmpegProcess->kill(); // we kill the running process
     sThread->wait(); // we wait the thread to terminate
+    controller->addFeedback("Streaming stoped");
 }
 
 

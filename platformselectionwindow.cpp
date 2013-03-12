@@ -39,6 +39,7 @@ void PlatformSelectionWindow::okPushButtonClicked(){
     if(!ui->streamKeylineEdit->text().isEmpty()){
         this->getController()->setPlatformParameters(ui->comboBox->currentIndex(), ui->streamKeylineEdit->text().toStdString());
         controller->deBlockInterface();
+        controller->addFeedback("Project \"" + this->getController()->getProject()->getName() + "\" created");
         this->close();
     }
     else{

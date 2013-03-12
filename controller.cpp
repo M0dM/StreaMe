@@ -200,6 +200,7 @@ vector<Source*> Controller::getProjectUsedSouces(){
 }
 
 void Controller::streamStarted(){
+    this->addFeedback("Streaming started");
     mutSleep(5000);
     mainwindow->startVideo();
 
@@ -303,15 +304,17 @@ void Controller::saveProject(){
                 this->addFeedback("Problem when saving the new StreaMe project",true);
         }
     }
-    else
+    else{
         this->getProject()->save(this->getProjectFileUrl());
+        this->addFeedback("StreaMe project saved successfully");
+     }
 }
 
 void Controller::saveProjectAs(){
     QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File","/","StreaMe File (*.sm)");
     if(fileName.toStdString() != ""){
         if(this->getProject()->save(fileName.toStdString()) == true){
-            this->addFeedback("StreaMe project saved successfully.");
+            this->addFeedback("StreaMe project saved successfully in \"" + fileName.toStdString() + "\"" );
             this->setProjectFileUrl(fileName.toStdString());
         }
         else
@@ -323,6 +326,7 @@ void Controller::saveProjectAs(){
 void Controller::renameProject(string projectName){
     this->setProjectName(projectName);
     this->setMainWindowTitle(projectName, false);
+    this->addFeedback("StreaMe project now known as \"" + projectName + "\"");
 }
 
 void Controller::setPlatformParameters(int platformIndex, string streamingKey){
@@ -349,8 +353,10 @@ void Controller::setProjectStereoConfiguration(boolean value){
 void Controller::openProjectFile(){
     QString fileName = QFileDialog::getOpenFileName(this->mainwindow, QString::fromStdString("Open file"),QString::fromStdString("/"),QString::fromStdString("StreaMe File (*.sm)"));
     if(fileName.toStdString() != ""){
-        if(this->getProject()->load(fileName.toStdString())==true)
+        if(this->getProject()->load(fileName.toStdString())==true){
             this->deBlockInterface();
+            this->addFeedback("Project successfully opened");
+        }
         else{
             this->addFeedback("Problem when loading the StreaMe project.", true);
         }
