@@ -1,11 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <Phonon>
+#include <phonon/VideoWidget>
 #include <QUrl>
 #include <QFile>
 #include <QString>
 #include <phonon/MediaSource>
-#include <Phonon/VideoPlayer>
+#include <phonon/VideoPlayer>
 #include <phonon/audiooutput.h>
 #include <phonon/seekslider.h>
 #include <phonon/mediaobject.h>
@@ -18,7 +18,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include "controller.h"
-#include "windows.h"
+//#include "windows.h"
 
 class Controller;
 class Source;

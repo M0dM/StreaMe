@@ -259,7 +259,7 @@ void Controller::setProjectName(string projectName){
     this->getProject()->setName(projectName);
 }
 
-void Controller::setMainWindowTitle(string projectName, boolean newProject){
+void Controller::setMainWindowTitle(string projectName, bool newProject){
     if(this->getProjectFileUrl() == "" || newProject){
         mainwindow->setWindowTitle(QString::fromStdString(projectName) + QString::fromStdString(" - ") + QString::fromStdString("Unsaved project") + QString::fromStdString(" - StreaMe"));
     }
@@ -334,7 +334,7 @@ void Controller::setPlatformParameters(int platformIndex, string streamingKey){
     this->getProject()->setStreamingKey(QString::fromStdString(streamingKey));
 }
 
-void Controller::setProjectAutoConfiguration(boolean value){
+void Controller::setProjectAutoConfiguration(bool value){
     this->getProject()->setAutoConfiguration(value);
 }
 
@@ -346,7 +346,7 @@ void Controller::setStreamingParametersValue(int videoSizeIndex, int videoFormat
     this->getProject()->setAudioBitrateIndex(audioBitrateIndex);
 }
 
-void Controller::setProjectStereoConfiguration(boolean value){
+void Controller::setProjectStereoConfiguration(bool value){
     this->getProject()->setStereoConfiguration(value);
 }
 
@@ -373,7 +373,7 @@ void Controller::chooseProjectCreate(bool choice){
     }
 }
 
-void Controller::addFeedback(string feedback, boolean error){
+void Controller::addFeedback(string feedback, bool error){
     if(error){
         mainwindow->addLineFeedback(QTime::currentTime().toString() + QString::fromStdString(" => Error : ") + QString::fromStdString(feedback));
         QMessageBox::critical(this->mainwindow,QString::fromStdString("Error"),QString::fromStdString(feedback));

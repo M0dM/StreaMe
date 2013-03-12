@@ -16,7 +16,7 @@
 #include <string.h>
 #include <QDateTime>
 
-#include "windows.h"
+//#include "windows.h"
 
 class MainWindow;
 class Project;
@@ -57,19 +57,19 @@ public:
     void unblockStreamingStop();
 
     void openProjectFile();
-    void setMainWindowTitle(string projectName, boolean newProject);
+    void setMainWindowTitle(string projectName, bool newProject);
     void setProjectName(string projectName);
     void saveProject();
     void saveProjectAs();
     void renameProject(string projectName);
     void setPlatformParameters(int platformIndex, string streamingKey);
-    void setProjectAutoConfiguration(boolean value);
+    void setProjectAutoConfiguration(bool value);
     void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
-    void setProjectStereoConfiguration(boolean value);
+    void setProjectStereoConfiguration(bool value);
     void mutSleep(int time);
     void chooseProjectCreate(bool choice);
 
-    void addFeedback(string feedback, boolean error = false);
+    void addFeedback(string feedback, bool error = false);
 
 private:
     MainWindow * mainwindow;
