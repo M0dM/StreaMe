@@ -69,7 +69,6 @@ public:
     void mutSleep(int time);
     void chooseProjectCreate(bool choice);
 
-
     void addFeedback(string feedback, boolean error = false);
 
 private:
