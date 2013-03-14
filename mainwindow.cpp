@@ -293,3 +293,8 @@ void MainWindow::addLineFeedback(QString line){
     ui->listWidgetFeedback->addItem(line);
     ui->listWidgetFeedback->scrollToBottom();
 }
+
+void MainWindow::emptySourcesLists(){
+    this->ui->listFreeSources->clear();
+    this->ui->listUsedSources->clear();
+}

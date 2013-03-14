@@ -37,6 +37,7 @@ public:
     ~MainWindow();
     void setFreeSources(QStringList freeSources);
     void setUsedSources(QStringList usedSources);
+    void emptySourcesLists();
     void startVideo();
     Controller* getController();
     void setController(Controller* controller);

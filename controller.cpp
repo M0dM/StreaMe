@@ -261,6 +261,8 @@ void Controller::generateNewProject(){
     this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
     this->platformSelectionUi = new PlatformSelectionWindow(this);
     this->newProjectAssistantUi = new NewProjectAssistant(this);
+    this->getMainwindow()->emptySourcesLists();
+    this->displayFreeSources();
 }
 
 void Controller::displayAssistantWindow(){;
