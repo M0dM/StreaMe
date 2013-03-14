@@ -16,6 +16,7 @@ class Project
 {
 public:
     Project(Controller* controller);
+    ~Project();
     bool save(string fileUrl); // return true if successfull
     bool load(string fileUrl); // return true if successfull
     vector<Source*> getUsedSources();
@@ -77,10 +78,8 @@ public:
 private:
     Controller* controller;
     vector<Source*> usedSources;
-    Live* live;
     Controller* getController();
     string name;
-    void setLive(Live* live);
 
     // platform attributes
     int platformIndex;

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <direct.h>
+//#include <direct.h>
 
 #include <QProcess>
 #include <QDebug>

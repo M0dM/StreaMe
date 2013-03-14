@@ -29,6 +29,26 @@ Controller::~Controller(){
     delete this->chooseCreateOpenProject;
 }
 
+MainWindow* Controller::getMainwindow(){
+    return this->mainwindow;
+}
+
+QWidget* Controller::getStreamingParametersUi(){
+    return this->streamingParametersUi;
+}
+
+QWidget* Controller::getPlatformSelectionUi(){
+    return this->platformSelectionUi;
+}
+
+QWidget* Controller::getNewProjectAssistantUi(){
+    return this->newProjectAssistantUi;
+}
+
+QWidget* Controller::getRenameProjectUi(){
+    return this->renameProjectUi;
+}
+
 void Controller::showMainWindow(){
     this->mainwindow->show();
     this->chooseCreateOpenProject->show();
@@ -200,6 +220,7 @@ vector<Source*> Controller::getProjectUsedSouces(){
 }
 
 void Controller::streamStarted(){
+    this->addFeedback("Streaming started");
     mutSleep(5000);
     mainwindow->startVideo();
 
@@ -231,7 +252,17 @@ bool Controller::isProjectFile(){
 
 void Controller::generateNewProject(){
     delete(this->getProject());
-    this->setProject(new Project(this));
+    delete(this->getNewProjectAssistantUi());
+    delete(this->getRenameProjectUi());
+    delete(this->getStreamingParametersUi());
+    delete(this->getPlatformSelectionUi());
+    this->project = new Project(this);
+    this->renameProjectUi = new RenameProjectWindow(this);
+    this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
+    this->platformSelectionUi = new PlatformSelectionWindow(this);
+    this->newProjectAssistantUi = new NewProjectAssistant(this);
+    this->getMainwindow()->emptySourcesLists();
+    this->displayFreeSources();
 }
 
 void Controller::displayAssistantWindow(){;
@@ -258,7 +289,7 @@ void Controller::setProjectName(string projectName){
     this->getProject()->setName(projectName);
 }
 
-void Controller::setMainWindowTitle(string projectName, boolean newProject){
+void Controller::setMainWindowTitle(string projectName, bool newProject){
     if(this->getProjectFileUrl() == "" || newProject){
         mainwindow->setWindowTitle(QString::fromStdString(projectName) + QString::fromStdString(" - ") + QString::fromStdString("Unsaved project") + QString::fromStdString(" - StreaMe"));
     }
@@ -303,15 +334,17 @@ void Controller::saveProject(){
                 this->addFeedback("Problem when saving the new StreaMe project",true);
         }
     }
-    else
+    else{
         this->getProject()->save(this->getProjectFileUrl());
+        this->addFeedback("StreaMe project saved successfully");
+     }
 }
 
 void Controller::saveProjectAs(){
     QString fileName = QFileDialog::getSaveFileName(this->mainwindow, "Save File","/","StreaMe File (*.sm)");
     if(fileName.toStdString() != ""){
         if(this->getProject()->save(fileName.toStdString()) == true){
-            this->addFeedback("StreaMe project saved successfully.");
+            this->addFeedback("StreaMe project saved successfully in \"" + fileName.toStdString() + "\"" );
             this->setProjectFileUrl(fileName.toStdString());
         }
         else
@@ -323,6 +356,7 @@ void Controller::saveProjectAs(){
 void Controller::renameProject(string projectName){
     this->setProjectName(projectName);
     this->setMainWindowTitle(projectName, false);
+    this->addFeedback("StreaMe project now known as \"" + projectName + "\"");
 }
 
 void Controller::setPlatformParameters(int platformIndex, string streamingKey){
@@ -330,7 +364,7 @@ void Controller::setPlatformParameters(int platformIndex, string streamingKey){
     this->getProject()->setStreamingKey(QString::fromStdString(streamingKey));
 }
 
-void Controller::setProjectAutoConfiguration(boolean value){
+void Controller::setProjectAutoConfiguration(bool value){
     this->getProject()->setAutoConfiguration(value);
 }
 
@@ -342,12 +376,21 @@ void Controller::setStreamingParametersValue(int videoSizeIndex, int videoFormat
     this->getProject()->setAudioBitrateIndex(audioBitrateIndex);
 }
 
-void Controller::setProjectStereoConfiguration(boolean value){
+void Controller::setProjectStereoConfiguration(bool value){
     this->getProject()->setStereoConfiguration(value);
 }
 
-bool Controller::openProjectFile(string filename){
-    return this->getProject()->load(filename);
+void Controller::openProjectFile(){
+    QString fileName = QFileDialog::getOpenFileName(this->mainwindow, QString::fromStdString("Open file"),QString::fromStdString("/"),QString::fromStdString("StreaMe File (*.sm)"));
+    if(fileName.toStdString() != ""){
+        if(this->getProject()->load(fileName.toStdString())==true){
+            this->deBlockInterface();
+            this->addFeedback("Project successfully opened");
+        }
+        else{
+            this->addFeedback("Problem when loading the StreaMe project.", true);
+        }
+    }
 }
 
 void Controller::chooseProjectCreate(bool choice){
@@ -356,11 +399,11 @@ void Controller::chooseProjectCreate(bool choice){
         displayAssistantWindow();
     }
     else{
-        this->mainwindow->openProjectTriggered();
+        this->openProjectFile();
     }
 }
 
-void Controller::addFeedback(string feedback, boolean error){
+void Controller::addFeedback(string feedback, bool error){
     if(error){
         mainwindow->addLineFeedback(QTime::currentTime().toString() + QString::fromStdString(" => Error : ") + QString::fromStdString(feedback));
         QMessageBox::critical(this->mainwindow,QString::fromStdString("Error"),QString::fromStdString(feedback));

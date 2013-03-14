@@ -4,7 +4,6 @@
 #include "ui_streamingparametersconfigurationwindow.h"
 #include "platformselectionwindow.h"
 #include "ui_platformselectionwindow.h"
-#include <QMessageBox>
 #include <QFileDialog>
 
 MainWindow::MainWindow(Controller* controller,QWidget *parent) :
@@ -117,16 +116,7 @@ void MainWindow::newProjectTriggered(){
 }
 
 void MainWindow::openProjectTriggered(){
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"),"/",tr("StreaMe File (*.sm)"));
-    if(fileName.toStdString() != ""){
-        if(this->getController()->openProjectFile(fileName.toStdString())==true)
-            controller->deBlockInterface();
-        else{
-            QMessageBox msgBox;
-            msgBox.setText("Problem when loading the StreaMe project.");
-            msgBox.exec();
-        }
-    }
+    this->getController()->openProjectFile();
 }
 
 void MainWindow::saveProjectTriggered(){
@@ -168,7 +158,7 @@ void MainWindow::playClicked(){
     bu2 = new QBuffer();
     array2= new QByteArray();
 
-    controller->addFeedback("Launching streaming...");
+    controller->addFeedback("Starting streaming...");
     controller->blockStreamingPlay();
     controller->unblockStreamingStop();
     ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
@@ -302,4 +292,9 @@ void MainWindow::unblockStop(){
 void MainWindow::addLineFeedback(QString line){
     ui->listWidgetFeedback->addItem(line);
     ui->listWidgetFeedback->scrollToBottom();
+}
+
+void MainWindow::emptySourcesLists(){
+    this->ui->listFreeSources->clear();
+    this->ui->listUsedSources->clear();
 }
