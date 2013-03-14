@@ -29,6 +29,26 @@ Controller::~Controller(){
     delete this->chooseCreateOpenProject;
 }
 
+MainWindow* Controller::getMainwindow(){
+    return this->mainwindow;
+}
+
+QWidget* Controller::getStreamingParametersUi(){
+    return this->streamingParametersUi;
+}
+
+QWidget* Controller::getPlatformSelectionUi(){
+    return this->platformSelectionUi;
+}
+
+QWidget* Controller::getNewProjectAssistantUi(){
+    return this->newProjectAssistantUi;
+}
+
+QWidget* Controller::getRenameProjectUi(){
+    return this->renameProjectUi;
+}
+
 void Controller::showMainWindow(){
     this->mainwindow->show();
     this->chooseCreateOpenProject->show();
@@ -232,7 +252,15 @@ bool Controller::isProjectFile(){
 
 void Controller::generateNewProject(){
     delete(this->getProject());
-    this->setProject(new Project(this));
+    delete(this->getNewProjectAssistantUi());
+    delete(this->getRenameProjectUi());
+    delete(this->getStreamingParametersUi());
+    delete(this->getPlatformSelectionUi());
+    this->project = new Project(this);
+    this->renameProjectUi = new RenameProjectWindow(this);
+    this->streamingParametersUi = new StreamingParametersConfigurationWindow(this);
+    this->platformSelectionUi = new PlatformSelectionWindow(this);
+    this->newProjectAssistantUi = new NewProjectAssistant(this);
 }
 
 void Controller::displayAssistantWindow(){;

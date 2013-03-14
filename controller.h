@@ -28,6 +28,11 @@ public:
     Controller();
     ~Controller();
     void showMainWindow();
+    MainWindow* getMainwindow();
+    QWidget* getStreamingParametersUi();
+    QWidget* getPlatformSelectionUi();
+    QWidget* getNewProjectAssistantUi();
+    QWidget* getRenameProjectUi();
     void displayVideoSources();
     void displayAudioSources();
     void useSource(string sourceName);
