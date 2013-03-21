@@ -105,11 +105,14 @@ void StreamTools::stopStream(){
     controller->addFeedback("Streaming stoped");
 }
 
-
 void StreamTools::resetHardDevicesCommand(){
     this->setDevicesCommand("","");
 }
 
 void StreamTools::streamThreadStarted(){
     controller->streamStarted();
+}
+
+void StreamTools::transmitFFmpegFeedback(QString feedback){
+    controller->addFFmpegFeedback(feedback);
 }

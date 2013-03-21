@@ -70,6 +70,7 @@ public:
     void chooseProjectCreate(bool choice);
 
     void addFeedback(string feedback, boolean error = false);
+    void addFFmpegFeedback(QString feedback);
 
 private:
     MainWindow * mainwindow;

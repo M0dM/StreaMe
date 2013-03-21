@@ -218,9 +218,9 @@ void MainWindow::notUseSourceClicked(){
 void MainWindow::resizeEvent (QResizeEvent * event){
     videoWidget->setFixedWidth(ui->videoPlayer->width());
     videoWidget->setFixedHeight(ui->videoPlayer->height());
-    ui->listWidgetFeedback->setFixedWidth(ui->feedbackTab->width());
+    ui->listWidgetFFmpeg->setFixedWidth(ui->tabWidget->width());
+    ui->listWidgetFeedback->setFixedWidth(ui->tabWidget->width());
 }
-
 void MainWindow::configureParametersTrigged(){
     this->getController()->displayParametersWindow();
 }
@@ -292,4 +292,11 @@ void MainWindow::unblockStop(){
 void MainWindow::addLineFeedback(QString line){
     ui->listWidgetFeedback->addItem(line);
     ui->listWidgetFeedback->scrollToBottom();
+}
+
+void MainWindow::addFFmpegLineFeedback(QString feedback){
+    ui->listWidgetFFmpeg->addItem(feedback.mid(0,1000));
+    //cout << feedback.length() << endl;
+    if(ui->listWidgetFFmpeg->isVisible())
+        ui->listWidgetFFmpeg->scrollToBottom();
 }

@@ -381,3 +381,7 @@ void Controller::addFeedback(string feedback, boolean error){
     else
         mainwindow->addLineFeedback(QTime::currentTime().toString() + QString::fromStdString(" => ") + QString::fromStdString(feedback));
 }
+
+void Controller::addFFmpegFeedback(QString feedback){
+        mainwindow->addFFmpegLineFeedback(feedback);
+}

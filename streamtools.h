@@ -25,6 +25,7 @@ public:
     void stopStream();
     void resetHardDevicesCommand();
     void streamThreadStarted();
+    void transmitFFmpegFeedback(QString feedback);
 
 private:
     Controller *controller;

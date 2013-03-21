@@ -55,32 +55,6 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>15</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>15</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Sources</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1">
        <widget class="QWidget" name="widget_2" native="true">
         <property name="minimumSize">
@@ -137,6 +111,32 @@
         </widget>
        </widget>
       </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sources</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="3">
        <widget class="QLabel" name="label_3">
         <property name="minimumSize">
@@ -162,6 +162,9 @@
          <string>Player</string>
         </property>
        </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QWidget" name="widget_3" native="true"/>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="label_2">
@@ -205,25 +208,6 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QWidget" name="widget_3" native="true"/>
-      </item>
-      <item row="1" column="2" rowspan="3">
-       <widget class="QListWidget" name="listUsedSources">
-        <property name="minimumSize">
-         <size>
-          <width>125</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
@@ -256,6 +240,22 @@
          <widget class="QLCDNumber" name="timeNumber"/>
         </item>
        </layout>
+      </item>
+      <item row="1" column="2" rowspan="3">
+       <widget class="QListWidget" name="listUsedSources">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item row="2" column="3" rowspan="2">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -349,7 +349,7 @@
        <widget class="QTabWidget" name="tabWidget">
         <property name="minimumSize">
          <size>
-          <width>0</width>
+          <width>650</width>
           <height>100</height>
          </size>
         </property>
@@ -387,12 +387,55 @@
             <height>75</height>
            </size>
           </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerItem</enum>
+          </property>
+          <property name="resizeMode">
+           <enum>QListView::Adjust</enum>
+          </property>
+          <property name="batchSize">
+           <number>101</number>
+          </property>
          </widget>
         </widget>
-        <widget class="QWidget" name="tab_2">
+        <widget class="QWidget" name="ffmpegTab">
          <attribute name="title">
-          <string>Tab 2</string>
+          <string>FFmpeg</string>
          </attribute>
+         <widget class="QListWidget" name="listWidgetFFmpeg">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>650</width>
+            <height>75</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>650</width>
+            <height>75</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>650</width>
+            <height>75</height>
+           </size>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
