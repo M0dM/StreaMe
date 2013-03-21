@@ -1,0 +1,41 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="980" measuredH="400" mockupW="516" mockupH="352">
+  <controls>
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::Canvas" x="464" y="48" w="516" h="352" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="68" controlTypeID="com.balsamiq.mockups::Button" x="925" y="358" w="-1" h="-1" measuredW="40" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ok</text>
+      </controlProperties>
+    </control>
+    <control controlID="69" controlTypeID="com.balsamiq.mockups::Button" x="829" y="358" w="-1" h="-1" measuredW="88" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Advanced...</text>
+      </controlProperties>
+    </control>
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Button" x="479" y="358" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cancel</text>
+      </controlProperties>
+    </control>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::HRule" x="479" y="348" w="486" h="-1" measuredW="100" measuredH="10" zOrder="4" locked="false" isInGroup="-1"/>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Label" x="479" y="115" w="-1" h="-1" measuredW="117" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Streaming%20Platform%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::Label" x="479" y="167" w="-1" h="-1" measuredW="88" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Streaming%20Key</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::ComboBox" x="611" y="113" w="-1" h="-1" measuredW="141" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>justin.tv%20/%20twitch.tv</text>
+      </controlProperties>
+    </control>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::TextInput" x="611" y="164" w="306" h="-1" measuredW="79" measuredH="26" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

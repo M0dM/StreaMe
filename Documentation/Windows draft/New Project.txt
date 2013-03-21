@@ -1,0 +1,27 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="960" measuredH="380" mockupW="516" mockupH="352">
+  <controls>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Canvas" x="444" y="28" w="516" h="352" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::TextArea" x="638" y="37" w="301" h="233" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <size>12</size>
+        <text>Let%27s%20create%20a%20new%20project%20%21%0A%20%0ATo%20stream%20yourself%20arround%20the%20world%2C%20you%20have%20to%20create%20a%20new%20project%2C%20and%20configure%3A%0A%20%0A%09The%20streaming%20platform%20paramaters%0A%09If%20you%20want%2C%20the%20advanced%20quality%20parameters%0A%20%0AFirst%2C%20input%20a%20project%20name%2C%20and%20then%20lick%20on%20%22Next%22%20to%20follow%20the%20creation%20procedure</text>
+      </controlProperties>
+    </control>
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::Button" x="873" y="332" w="66" h="27" measuredW="50" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Next</text>
+      </controlProperties>
+    </control>
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="638" y="285" w="-1" h="-1" measuredW="84" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Project%20Name%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::TextInput" x="743" y="282" w="196" h="-1" measuredW="79" measuredH="26" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
