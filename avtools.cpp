@@ -67,6 +67,10 @@ void AvTools::pushSource(Source *source){
 
 void AvTools::detectSources(){
 
+#ifdef _WIN32
+
+    cout << "Windows avtools detecting sources feature is working..." << endl;
+
     QProcess *process = new QProcess();
 
     QString path("ffmpeg\\bin\\ffmpeg.exe");
@@ -146,6 +150,12 @@ void AvTools::detectSources(){
         cout << "Error while starting FFmpeg dshow devices list command" << endl; //REPLACE BY EXCEPTION
 
     process->kill();
+
+#elif __linux__
+    cout << "Linux avtools detecting sources feature is working..." << endl;
+#else
+#error
+#endif
 }
 
 
