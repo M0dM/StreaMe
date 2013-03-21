@@ -17,14 +17,14 @@ class Project
 public:
     Project(Controller* controller);
     ~Project();
-    bool save(string fileUrl); // return true if successfull
-    bool load(string fileUrl); // return true if successfull
-    vector<Source*> getUsedSources();
-    void setUsedSources(vector<Source*> usedSources);
+    bool save(std::string fileUrl); // return true if successfull
+    bool load(std::string fileUrl); // return true if successfull
+    std::vector<Source*> getUsedSources();
+    void setUsedSources(std::vector<Source*> usedSources);
     void addUsedSource(Source* source);
     void removeUsedSource(std::string sourceName);
     void test_displayUsedSources();
-    void setName(string name);
+    void setName(std::string name);
 
     // Streaming platform attributes acessors and mutators
     int getPlatformIndex();
@@ -71,15 +71,15 @@ public:
     void setStereoConfiguration(bool value);
     void setStereoConfiguration(QString value);
 
-    bool isSource(string sourceName);
+    bool isSource(std::string sourceName);
 
-    string getName();
+    std::string getName();
 
 private:
     Controller* controller;
-    vector<Source*> usedSources;
+    std::vector<Source*> usedSources;
     Controller* getController();
-    string name;
+    std::string name;
 
     // platform attributes
     int platformIndex;

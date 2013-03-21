@@ -2,16 +2,16 @@
 #define CAMERA_H
 
 #include "source.h"
-#include "winavtools.h"
+#include "avtools.h"
 
-class WinAvTools;
+class AvTools;
 
 class Camera : public Source
 {
 public:
-    Camera(WinAvTools *avTools, std::string name, std::string type);
+    Camera(AvTools *avTools, std::string name, std::string type, std::string systemName);
 private:
-    WinAvTools *avTools;
+    AvTools *avTools;
 };
 
 #endif // CAMERA_H

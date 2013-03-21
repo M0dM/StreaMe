@@ -1,6 +1,6 @@
 #include "camera.h"
 
-Camera::Camera(WinAvTools *avTools, std::string name, std::string type) : Source(name, type)
+Camera::Camera(AvTools *avTools, std::string name, std::string type, std::string systemName) : Source(name, type,systemName)
 {
     this->avTools=avTools;
 }

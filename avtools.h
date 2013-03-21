@@ -1,5 +1,5 @@
-#ifndef WINAVTOOLS_H
-#define WINAVTOOLS_H
+#ifndef AVTOOLS_H
+#define AVTOOLS_H
 
 #include <string>
 #include <vector>
@@ -19,11 +19,11 @@ class Source;
 class Camera;
 class Microphone;
 
-class WinAvTools
+class AvTools
 {
 public:
-    WinAvTools();
-    ~WinAvTools();
+    AvTools();
+    ~AvTools();
     Source *peekVideoSource() const;
     Source *peekAudioSource() const;
 

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
+
 StreamingParametersConfigurationWindow::StreamingParametersConfigurationWindow(Controller* controller, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StreamingParametersConfigurationWindow)

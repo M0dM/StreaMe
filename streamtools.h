@@ -4,21 +4,20 @@
 
 #include <string>
 
-#include "winavtools.h"
+#include "avtools.h"
 #include "controller.h"
 #include "streamthread.h"
 
 class StreamThread;
 
-class StreamTools : public WinAvTools
+class StreamTools : public AvTools
 {
-
 public:
     StreamTools(Controller *controller);
     ~StreamTools();
     std::vector<Source*> getVideoSources();
     std::vector<Source*> getAudioSources();
-    vector<Source*> getAllSources();
+    std::vector<Source*> getAllSources();
     QProcess *getFFmpegProcess();
     std::string getHardDevicesCommand() const;
     void startStream(std::string rtmpUrl = "rtmp://live.twitch.tv/app/live_39774900_NpAMoM4dg3MTooePEZREpKUkynwivr", std::string size = "480x360", std::string videoBitrate = "300k", std::string audioBitrate = "64k");

@@ -35,25 +35,25 @@ public:
     QWidget* getRenameProjectUi();
     void displayVideoSources();
     void displayAudioSources();
-    void useSource(string sourceName);
-    void notUseSource(string sourceName);
+    void useSource(std::string sourceName);
+    void notUseSource(std::string sourceName);
     void stream();
     void stopStream();
     void displayFreeSources(); //display the free sources in the interface => = (all sources) - (used sources)
     void displayUsedSources(); //display the used sources (given by the project class)
     Project* getProject();
     void setProject(Project*);
-    vector<Source*> getProjectUsedSouces();
+    std::vector<Source*> getProjectUsedSouces();
     void streamStarted();
-    string getProjectFileUrl();
-    void setProjectFileUrl(string url = "");
+    std::string getProjectFileUrl();
+    void setProjectFileUrl(std::string url = "");
     bool isProjectFile();
     void generateNewProject();
     void displayAssistantWindow();
     void displayParametersWindow();
     void displayPlatformsWindow();
     void displayRenameProjectWindow();
-    vector<Source*> getAllSources();
+    std::vector<Source*> getAllSources();
     void blockInterface();
     void deBlockInterface();
     void blockStreamingPlay();
@@ -62,19 +62,19 @@ public:
     void unblockStreamingStop();
 
     void openProjectFile();
-    void setMainWindowTitle(string projectName, bool newProject);
-    void setProjectName(string projectName);
+    void setMainWindowTitle(std::string projectName, bool newProject);
+    void setProjectName(std::string projectName);
     void saveProject();
     void saveProjectAs();
-    void renameProject(string projectName);
-    void setPlatformParameters(int platformIndex, string streamingKey);
+    void renameProject(std::string projectName);
+    void setPlatformParameters(int platformIndex, std::string streamingKey);
     void setProjectAutoConfiguration(bool value);
     void setStreamingParametersValue(int videoSizeIndex, int videoFormatIndex, int uploadSpeed, int videoBitrate, int audioBitrateIndex);
     void setProjectStereoConfiguration(bool value);
     void mutSleep(int time);
     void chooseProjectCreate(bool choice);
 
-    void addFeedback(string feedback, bool error = false);
+    void addFeedback(std::string feedback, bool error = false);
     void addFFmpegFeedback(QString feedback);
 
 private:
@@ -86,7 +86,7 @@ private:
     QWidget *chooseCreateOpenProject;
     Project *project;
     StreamTools *streamTools;
-    string ProjectFileUrl;
+    std::string ProjectFileUrl;
 };
 
 #endif // CONTROLLER_H
