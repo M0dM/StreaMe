@@ -1,7 +1,6 @@
 
 Info stream dans les tabs
 
-MVC fenetres benoit
 New project réinit
 
 Doc doxygen
@@ -10,3 +9,4 @@ Feedback ffmpeg
 
 Portage linux
 
+Thesis : Vision Based Intelligent Speed Adaptation through the use of mobile phones (BSC hons Computing 2011)

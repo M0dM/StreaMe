@@ -28,6 +28,15 @@ Project::Project(Controller* controller)
     this->setStereoConfiguration(true);
 }
 
+Project::~Project()
+{
+   // delete &streamingKey;
+    for(unsigned int i(0); i< usedSources.size(); i++){
+        delete  usedSources[i];
+         usedSources[i] = 0;
+    }
+}
+
 Controller* Project::getController(){
     return this->controller;
 }
@@ -69,10 +78,6 @@ void Project::test_displayUsedSources(){
     for(unsigned int i(0); i<usedSources.size();i++)
         cout << usedSources[i]->getName() <<" (" << usedSources[i]->getType() << ")" << endl;
     cout << "---" <<endl;
-}
-
-void Project::setLive(Live* live){
-    this->live=live;
 }
 
 bool Project::save(string fileUrl){

@@ -294,6 +294,11 @@ void MainWindow::addLineFeedback(QString line){
     ui->listWidgetFeedback->scrollToBottom();
 }
 
+void MainWindow::emptySourcesLists(){
+    this->ui->listFreeSources->clear();
+    this->ui->listUsedSources->clear();
+}
+
 void MainWindow::addFFmpegLineFeedback(QString feedback){
     ui->listWidgetFFmpeg->addItem(feedback.mid(0,1000));
     //cout << feedback.length() << endl;
