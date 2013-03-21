@@ -86,6 +86,8 @@ void AvTools::detectSources(){
     // If the process started
     if(process->waitForStarted()){
 
+        cout << "Windows avtool is working..."<< endl;
+
         while(process->waitForReadyRead())
             data.append(process->readAll());
 
