@@ -19,7 +19,7 @@ SOURCES += main.cpp\
     source.cpp \
     live.cpp \
     controller.cpp \
-    winavtools.cpp \
+    avtools.cpp \
     streamtools.cpp \
     camera.cpp \
     microphone.cpp \
@@ -35,7 +35,7 @@ HEADERS  += mainwindow.h \
     source.h \
     live.h \
     controller.h \
-    winavtools.h \
+    avtools.h \
     streamtools.h \
     camera.h \
     microphone.h \

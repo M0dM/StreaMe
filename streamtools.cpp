@@ -2,7 +2,7 @@
 
 using namespace std;
 
-StreamTools::StreamTools(Controller *controller) : WinAvTools(){
+StreamTools::StreamTools(Controller *controller) : AvTools(){
     this->controller = controller;
     this->sThread = new StreamThread(this);
     this->ffmpegProcess = new QProcess();
@@ -58,7 +58,7 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
     switch(this->controller->getProjectUsedSouces().size()){ //make decisions regarding on the size of the sources vector
     case 1:
         if(this->controller->getProjectUsedSouces()[0]->getType() == "video"){
-            this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getName());
+            this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName());
             ffmpegProcess->moveToThread(sThread);
             sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
             sThread->start();
@@ -71,7 +71,7 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
             if(this->controller->getProjectUsedSouces()[1]->getType() == "video")
                 controller->addFeedback("StreaMe can accept only a single video input", true); // ADD EXCEPTION
             else if(this->controller->getProjectUsedSouces()[1]->getType() == "audio"){
-                this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getName(),this->controller->getProjectUsedSouces()[1]->getName());
+                this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName(),this->controller->getProjectUsedSouces()[1]->getName());
                 ffmpegProcess->moveToThread(sThread);
                 sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
                 sThread->start();
@@ -83,7 +83,7 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
             if(this->controller->getProjectUsedSouces()[1]->getType() == "audio")
                 controller->addFeedback("StreaMe can accept only a single audio intput source with a at least one video source", true); // REPLACE BY EXCEPTION
             else if(this->controller->getProjectUsedSouces()[1]->getType() == "video"){
-                this->setDevicesCommand(this->controller->getProjectUsedSouces()[1]->getName(),this->controller->getProjectUsedSouces()[0]->getName());
+                this->setDevicesCommand(this->controller->getProjectUsedSouces()[1]->getSystemName(),this->controller->getProjectUsedSouces()[0]->getSystemName());
                 ffmpegProcess->moveToThread(sThread);
                 sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
                 sThread->start();
@@ -105,11 +105,14 @@ void StreamTools::stopStream(){
     controller->addFeedback("Streaming stoped");
 }
 
-
 void StreamTools::resetHardDevicesCommand(){
     this->setDevicesCommand("","");
 }
 
 void StreamTools::streamThreadStarted(){
     controller->streamStarted();
+}
+
+void StreamTools::transmitFFmpegFeedback(QString feedback){
+    controller->addFFmpegFeedback(feedback);
 }

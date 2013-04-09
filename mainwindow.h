@@ -49,6 +49,7 @@ public:
     void unblockPlay();
     void unblockStop();
     void addLineFeedback(QString line);
+    void addFFmpegLineFeedback(QString feedback);
 private:
     Ui::MainWindow *ui;
     Controller* controller;

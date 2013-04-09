@@ -3,18 +3,18 @@
 
 #include <string>
 
-using namespace std;
-
 class Source
 {
 public:
-    Source(std::string name ="null", string type="null");
-    string getName();
-    string getType();
+    Source(std::string name ="null", std::string type="null", std::string systemName="null");
+    std::string getName();
+    std::string getType();
+    std::string getSystemName();
 
 private:
-    string name;
-    string type;
+    std::string name;
+    std::string type;
+    std::string systemName;
 };
 
 #endif // SOURCE_H

@@ -2,16 +2,16 @@
 #define MICROPHONE_H
 
 #include "source.h"
-#include "winavtools.h"
+#include "avtools.h"
 
-class WinAvTools;
+class AvTools ;
 
 class Microphone  : public Source
 {
 public:
-    Microphone(WinAvTools *avTools, std::string name, std::string type);
+    Microphone(AvTools *avTools, std::string name, std::string type, std::string systemName);
 private:
-    WinAvTools *avTools;
+    AvTools *avTools;
 };
 
 #endif // MICROPHONE_H

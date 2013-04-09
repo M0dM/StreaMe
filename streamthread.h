@@ -2,6 +2,7 @@
 #define STREAMTHREAD_H
 
 #include "QThread"
+#include "QString"
 #include "streamtools.h"
 
 class StreamTools;
@@ -19,6 +20,7 @@ private:
     std::string size;
     std::string videoBitrate;
     std::string audioBitrate;
+    QString qdata;
 };
 
 #endif // STREAMTHREAD_H

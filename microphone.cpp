@@ -1,6 +1,6 @@
 #include "microphone.h"
 
-Microphone::Microphone(WinAvTools *avTools, std::string name, std::string type) : Source(name,type)
+Microphone::Microphone(AvTools *avTools, std::string name, std::string type, std::string systemName) : Source(name,type,systemName)
 {
     this->avTools = avTools;
 }

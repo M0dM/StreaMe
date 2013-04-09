@@ -1,25 +1,25 @@
-#include "winavtools.h"
+#include "avtools.h"
 
 using namespace std;
 
-WinAvTools::WinAvTools()
+AvTools::AvTools()
 {
     detectSources();
 }
 
-WinAvTools::~WinAvTools(){
+AvTools::~AvTools(){
     for(unsigned int i(0); i<sources.size(); i++){
         delete sources[i];
         sources[i] = 0;
     }
 }
 
-vector<Source*> WinAvTools::getSources() const{
+vector<Source*> AvTools::getSources() const{
     return this->sources;
 }
 
 
-Source *WinAvTools::peekVideoSource() const{
+Source *AvTools::peekVideoSource() const{
     unsigned int i(0);
     bool found(false);
 
@@ -33,7 +33,7 @@ Source *WinAvTools::peekVideoSource() const{
     return sources[i-1];
 }
 
-Source *WinAvTools::peekAudioSource() const{
+Source *AvTools::peekAudioSource() const{
     unsigned int i(0);
     bool found(false);
 
@@ -45,27 +45,31 @@ Source *WinAvTools::peekAudioSource() const{
     return sources[i-1];
 }
 
-string WinAvTools::getDevicesCommand() const{
+string AvTools::getDevicesCommand() const{
     return this->devicesCommand;
 }
 
-void WinAvTools::setSources(vector<Source*> sources){
+void AvTools::setSources(vector<Source*> sources){
     this->sources = sources;
 }
 
-void WinAvTools::setDevicesCommand(string videoDevice){
+void AvTools::setDevicesCommand(string videoDevice){
     this->devicesCommand = "video=" + videoDevice;
 }
 
-void WinAvTools::setDevicesCommand(string videoDevice, string audioDevice){
+void AvTools::setDevicesCommand(string videoDevice, string audioDevice){
     this->devicesCommand = "video=" + videoDevice + ":audio="+ audioDevice;
 }
 
-void WinAvTools::pushSource(Source *source){
+void AvTools::pushSource(Source *source){
     sources.push_back(source);
 }
 
-void WinAvTools::detectSources(){
+void AvTools::detectSources(){
+
+#ifdef _WIN32
+
+    cout << "Windows avtools detecting sources feature is working..." << endl;
 
     QProcess *process = new QProcess();
 
@@ -85,6 +89,8 @@ void WinAvTools::detectSources(){
 
     // If the process started
     if(process->waitForStarted()){
+
+        cout << "Windows avtool is working..."<< endl;
 
         while(process->waitForReadyRead())
             data.append(process->readAll());
@@ -114,7 +120,7 @@ void WinAvTools::detectSources(){
                 posVideo = video.find("\""); // the position of the next quote
 
                 //we add the source found in the global vector of sources
-                this->pushSource(new Camera(this,video.substr(0, posVideo),"video"));
+                this->pushSource(new Camera(this,video.substr(0, posVideo),"video",video.substr(0, posVideo)));
 
                 video = video.substr(++posVideo, video.size() - posVideo);
                 // we save the remaining string and remove the first character to not keep the quote for the next iteration
@@ -131,7 +137,7 @@ void WinAvTools::detectSources(){
                 posAudio = audio.find("\""); // the position of the next quote
 
                 //we add the source found in the global vector of sources
-                this->pushSource(new Microphone(this,audio.substr(0, posAudio),"audio"));
+                this->pushSource(new Microphone(this,audio.substr(0, posAudio),"audio",audio.substr(0, posAudio)));
 
                 audio = audio.substr(++posAudio, audio.size() - posAudio);
                 // we save the remaining string and remove the first character to not keep the quote for the next iteration
@@ -144,6 +150,12 @@ void WinAvTools::detectSources(){
         cout << "Error while starting FFmpeg dshow devices list command" << endl; //REPLACE BY EXCEPTION
 
     process->kill();
+
+#elif __linux__
+    cout << "Linux avtools detecting sources feature is working..." << endl;
+#else
+#error
+#endif
 }
 
 
