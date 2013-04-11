@@ -1,12 +1,13 @@
-
-Info stream dans les tabs
-
-New project réinit
-
 Doc doxygen
-
-Feedback ffmpeg
 
 Portage linux
 
-Thesis : Vision Based Intelligent Speed Adaptation through the use of mobile phones (BSC hons Computing 2011)
+Boutton cancel new project assistant
+
+Bouton help straming parameters (help on the streaming key)
+
+Thesis : (Vision Based Intelligent Speed Adaptation through the use of mobile phones (BSC hons Computing 2011) )
+	Diagrams enchainement dialog (IV)
+	Diagrams sequence (III)
+	Description classes (IV)
+	Description modele MVC (IV)
