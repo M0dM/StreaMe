@@ -8,6 +8,7 @@ NewProjectAssistant::NewProjectAssistant(Controller* controller, QWidget *parent
     ui->setupUi(this);
     this->controller = controller;
     QObject::connect(ui->nextButton, SIGNAL(clicked()),this,SLOT(nextButtonClicked()));
+    QObject::connect(ui->cancelButton, SIGNAL(clicked()),this,SLOT(close()));
 }
 
 NewProjectAssistant::~NewProjectAssistant()

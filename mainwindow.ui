@@ -449,7 +449,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -490,7 +490,6 @@
     </property>
     <addaction name="actionAdd_source"/>
     <addaction name="actionRemove_source"/>
-    <addaction name="actionAdd_object"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -526,6 +525,9 @@
   <action name="actionSave_Project">
    <property name="text">
     <string>Save Project</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WidgetShortcut</enum>
    </property>
   </action>
   <action name="actionSave_Project_As">
