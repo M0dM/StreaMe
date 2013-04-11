@@ -54,11 +54,23 @@ void AvTools::setSources(vector<Source*> sources){
 }
 
 void AvTools::setDevicesCommand(string videoDevice){
+#ifdef _WIN32
     this->devicesCommand = "video=" + videoDevice;
+#elif __linux__ // else if it's linux
+    this->devicesCommand = videoDevice ;
+#else //else, error
+#error
+#endif
 }
 
 void AvTools::setDevicesCommand(string videoDevice, string audioDevice){
+#ifdef _WIN32
     this->devicesCommand = "video=" + videoDevice + ":audio="+ audioDevice;
+#elif __linux__ // else if it's linux
+    this->devicesCommand = videoDevice + " -f alsa -i " + audioDevice ;
+#else //else, error
+#error
+#endif
 }
 
 void AvTools::pushSource(Source *source){
@@ -67,16 +79,13 @@ void AvTools::pushSource(Source *source){
 
 void AvTools::detectSources(){
 
-#ifdef _WIN32
+#ifdef _WIN32 //if the OS is Windows 32 AND 64 bits
 
     cout << "Windows avtools detecting sources feature is working..." << endl;
 
     QProcess *process = new QProcess();
 
     QString path("ffmpeg\\bin\\ffmpeg.exe");
-    // Path working, but we have to come back to the previous folder to choose the "StreaMe" directory.
-    //This is because Qt creator uses a debug folder.
-    //Maybe pay attention later...
 
     string data, video, audio;
     int posVideo(0), posAudio(0), posEnd(0);
@@ -89,9 +98,6 @@ void AvTools::detectSources(){
 
     // If the process started
     if(process->waitForStarted()){
-
-        cout << "Windows avtool is working..."<< endl;
-
         while(process->waitForReadyRead())
             data.append(process->readAll());
 
@@ -151,9 +157,73 @@ void AvTools::detectSources(){
 
     process->kill();
 
-#elif __linux__
+#elif __linux__ // else if it's linux
     cout << "Linux avtools detecting sources feature is working..." << endl;
-#else
+
+    QProcess *process = new QProcess();
+    QString path("v4l2-ctl"), data, videoName, videoSysName, audioName, audioSysName;
+    int i = 0;
+
+    QStringList arguments;
+    arguments << "--list-devices";
+
+    process->setProcessChannelMode(QProcess::MergedChannels); // get all channels for the output
+    process->start(path,arguments,QIODevice::ReadWrite);
+
+    // If the process started
+    if(process->waitForStarted()){
+        while(process->waitForReadyRead())
+            data.append(process->readAll());
+
+        //adding video souces to the souces vector
+        while(data.indexOf("\n") != -1){ //if there is at least one line
+
+            videoName=data.left(data.indexOf(" ("));
+
+            data = data.mid(data.indexOf("\n")+1, data.size()); //Removing the first line
+            data = data.mid(data.indexOf("\n")+1, data.size());// And the second line
+            data = data.mid(data.indexOf("\n")+1, data.size());// And the third line
+
+            videoSysName = "/dev/video";
+            videoSysName += QString::number(i);
+            this->pushSource(new Camera(this,videoName.toStdString(),"video",videoSysName.toStdString()));
+            videoName.clear();
+            i++;
+        }
+    }
+
+    process->kill();
+    path.clear();
+    arguments.clear();
+    data.clear();
+    i=0;
+
+    path = QString::fromStdString("cat");
+    arguments << "/proc/asound/cards";
+
+    process->start(path,arguments,QIODevice::ReadWrite);
+
+    // If the process have started
+    if(process->waitForStarted()){
+        while(process->waitForReadyRead())
+            data.append(process->readAll());
+
+        //adding video souces to the souces vector
+        while(data.indexOf("\n") != -1){ //if there is at least one line
+
+            audioName = data.mid(data.indexOf(" - ")+3,data.indexOf("\n") - (data.indexOf(" - ")+3)); //Taking the audio device name into the first line
+            data = data.mid(data.indexOf("\n")+1, data.size());// Removing the first line
+            data = data.mid(data.indexOf("\n")+1, data.size());// And the second line
+
+            audioSysName = "hw:";
+            audioSysName += QString::number(i);
+            this->pushSource(new Microphone(this,audioName.toStdString(),"audio",audioSysName.toStdString()));
+            audioName.clear();
+            i++;
+        }
+    }
+
+#else //else, error
 #error
 #endif
 }
