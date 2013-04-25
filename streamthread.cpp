@@ -42,16 +42,16 @@ void StreamThread::run() //The function called for threading
             arguments << QString::fromStdString("-ar") << QString::fromStdString("22050");
             arguments << QString::fromStdString("-threads") << QString::fromStdString("2");
             arguments << QString::fromStdString("-f") << QString::fromStdString("flv");
-            //arguments << QString::fromStdString(this->rtmpUrl);
+            arguments << QString::fromStdString(this->rtmpUrl);
     arguments << QString::fromStdString("why.mpeg");
 
     stools->resetHardDevicesCommand();
 
-    //        cout << stools->getHardDevicesCommand() << endl;
-//            cout << endl << endl;
-//            for(int i(0); i < arguments.size(); i++)
-//                cout << arguments.value(i).toStdString() + " ";
-//            cout << endl << endl;
+            cout << stools->getHardDevicesCommand() << endl;
+            cout << endl << endl;
+            for(int i(0); i < arguments.size(); i++)
+                cout << arguments.value(i).toStdString() + " ";
+            cout << endl << endl;
 
     stools->getFFmpegProcess()->setProcessChannelMode(QProcess::MergedChannels); // get all channels for the output
 
