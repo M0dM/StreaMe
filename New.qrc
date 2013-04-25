@@ -17,4 +17,7 @@
     <qresource prefix="/pictures/logo">
         <file>streaMe_logo.png</file>
     </qresource>
+    <qresource prefix="/new/Question">
+        <file>ressources/point-interrogation-icone-4919-32.png</file>
+    </qresource>
 </RCC>

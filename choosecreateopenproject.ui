@@ -25,7 +25,7 @@
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>400</x>
      <y>310</y>
      <width>93</width>
      <height>28</height>
@@ -79,7 +79,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
+     <x>10</x>
      <y>310</y>
      <width>93</width>
      <height>28</height>

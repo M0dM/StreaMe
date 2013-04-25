@@ -55,12 +55,15 @@ string StreamTools::getHardDevicesCommand() const{
 }
 
 void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate , string audioBitrate){
+    //cout << rtmpUrl << " - " << size << " - " << videoBitrate << " - " << audioBitrate << endl;
     switch(this->controller->getProjectUsedSouces().size()){ //make decisions regarding on the size of the sources vector
     case 1:
         if(this->controller->getProjectUsedSouces()[0]->getType() == "video"){
             this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName());
             ffmpegProcess->moveToThread(sThread);
             sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
+            controller->blockStreamingPlay();
+            controller->unblockStreamingStop();
             sThread->start();
         }
         else
@@ -71,9 +74,11 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
             if(this->controller->getProjectUsedSouces()[1]->getType() == "video")
                 controller->addFeedback("StreaMe can accept only a single video input", true); // ADD EXCEPTION
             else if(this->controller->getProjectUsedSouces()[1]->getType() == "audio"){
-                this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName(),this->controller->getProjectUsedSouces()[1]->getName());
+                this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName(),this->controller->getProjectUsedSouces()[1]->getSystemName());
                 ffmpegProcess->moveToThread(sThread);
                 sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
+                controller->blockStreamingPlay();
+                controller->unblockStreamingStop();
                 sThread->start();
             }
             else
@@ -86,6 +91,8 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
                 this->setDevicesCommand(this->controller->getProjectUsedSouces()[1]->getSystemName(),this->controller->getProjectUsedSouces()[0]->getSystemName());
                 ffmpegProcess->moveToThread(sThread);
                 sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
+                controller->blockStreamingPlay();
+                controller->unblockStreamingStop();
                 sThread->start();
             }
             else

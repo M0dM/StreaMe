@@ -26,6 +26,7 @@ public slots:
     void okPushButtonClicked();
     void cancelPushButtonClicked();
     void advancedButtonClicked();
+    void helpButtonClicked();
 };
 
 #endif // PLATFORMSELECTIONWINDOW_H
