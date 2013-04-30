@@ -42,7 +42,7 @@ void StreamThread::run() //The function called for threading
             arguments << QString::fromStdString("-ar") << QString::fromStdString("22050");
             arguments << QString::fromStdString("-threads") << QString::fromStdString("2");
             arguments << QString::fromStdString("-f") << QString::fromStdString("flv");
-            arguments << QString::fromStdString(this->rtmpUrl);
+            //arguments << QString::fromStdString(this->rtmpUrl);
     arguments << QString::fromStdString("why.mpeg");
 
     stools->resetHardDevicesCommand();
