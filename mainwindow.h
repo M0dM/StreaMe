@@ -63,9 +63,10 @@ private:
     QByteArray *array2;
     QFile *file;
     QTimer *m_chrono;
+    QUrl *url;
     int chrono_value;
     int minute;
-    bool playerOn, firstPlay;
+    bool playerOn, firstPlay, seekBool;
 protected:
     void resizeEvent(QResizeEvent * event );
 public slots :

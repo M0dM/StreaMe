@@ -192,22 +192,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="Phonon::VideoPlayer" name="videoPlayer">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>500</width>
-          <height>310</height>
-         </size>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
@@ -439,6 +423,22 @@
         </widget>
        </widget>
       </item>
+      <item row="1" column="3">
+       <widget class="Phonon::VideoWidget" name="VideoWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>500</width>
+          <height>310</height>
+         </size>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -449,7 +449,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -587,9 +587,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>Phonon::VideoPlayer</class>
+   <class>Phonon::VideoWidget</class>
    <extends>QWidget</extends>
-   <header location="global">phonon/videoplayer.h</header>
+   <header location="global">phonon/videowidget.h</header>
   </customwidget>
   <customwidget>
    <class>Phonon::VolumeSlider</class>

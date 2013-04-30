@@ -15,6 +15,7 @@
 #include <sstream>
 #include <string.h>
 #include <QDateTime>
+#include <unistd.h>
 
 //#include "windows.h"
 

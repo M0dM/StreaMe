@@ -5,7 +5,7 @@
 #include "platformselectionwindow.h"
 #include "ui_platformselectionwindow.h"
 #include <QFileDialog>
-
+using namespace std;
 MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -32,28 +32,24 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
 
     //test new player
     mediaObject = new Phonon::MediaObject(this);
-    videoWidget = new Phonon::VideoWidget(ui->videoPlayer);
-    Phonon::createPath(mediaObject, videoWidget);
+    Phonon::createPath(mediaObject, ui->VideoWidget);
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
     Phonon::createPath(mediaObject, audioOutput);
 
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(audioOutput);
 
-    videoWidget->setMinimumWidth(ui->videoPlayer->width());
-    videoWidget->setMinimumHeight(ui->videoPlayer->height());
-
-
-    file = new QFile();
+    file = new QFile(this);
     file->setFileName("why.mpeg");
     file->remove();
-
     //Def chrono
     playerOn=false;
     firstPlay=false;
+    seekBool=false;
     m_chrono = new QTimer();
     minute=0;
     chrono_value=0;
+    pos=0;
     QObject::connect(m_chrono, SIGNAL(timeout()), SLOT(update_chrono()));
     m_chrono->setInterval(1000);
 }
@@ -84,20 +80,18 @@ void MainWindow::startVideo(){
     fileSize=file->size();
     *array1 += file->read(file->size());
     bu->setBuffer(array1);
-
+    cout << "buff size " << bu->size() << endl;
     mediaObject->setCurrentSource(bu);
     chrono_value=0;
     minute=0;
     mediaObject->play();
     mediaObject->setPrefinishMark(200);
     if(!firstPlay){
-        QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
+        //QObject::connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)), SLOT(setNewTime()));
         QObject::connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(enqueueNextSource()));
-        QObject::connect(mediaObject, SIGNAL(prefinishMarkReached(qint32)), SLOT(videoAlmostFinished()));
+        //QObject::connect(mediaObject, SIGNAL(prefinishMarkReached(qint32)), SLOT(videoAlmostFinished()));
         firstPlay=true;
     }
-
-
 }
 
 void MainWindow::update_chrono(){
@@ -153,11 +147,10 @@ void MainWindow::stopClicked(){
 }
 
 void MainWindow::playClicked(){
-    bu = new QBuffer();
+    bu = new QBuffer(this);
     array1= new QByteArray();
-    bu2 = new QBuffer();
+    bu2 = new QBuffer(this);
     array2= new QByteArray();
-
     controller->addFeedback("Starting streaming...");
     controller->blockStreamingPlay();
     controller->unblockStreamingStop();
@@ -165,9 +158,12 @@ void MainWindow::playClicked(){
 
     m_chrono->start();
     controller->stream();
+    sleep(5);
+    startVideo();
 }
 
 void MainWindow::enqueueNextSource(){
+    cout << "Enqueue" << endl;
     pos=mediaObject->totalTime();
     oldFileSize=fileSize;
     file->close();
@@ -176,23 +172,32 @@ void MainWindow::enqueueNextSource(){
     if(fileSize!=oldFileSize)
     {
         *array2 = file->read(file->size());
-        bu2->close();
+        //bu2->close();
         bu2->setBuffer(array2);
-        mediaObject->enqueue(bu2);
+        cout << "buff 2 size " << bu2->size() << endl;
+        //bu->open(QIODevice::ReadOnly);
+        mediaObject->enqueue(bu);
     }
 
 }
 
 void MainWindow::setNewTime(){
+    cout << "Set New time" << endl;
+    if(mediaObject->isSeekable())
+        cout << "seek" << endl;
     float i=0.0;
     int val=-1;
-    mediaObject->seek(pos);
-    while(i<1.0){
-        this->controller->mutSleep(20);
+    if(seekBool)
+        mediaObject->seek(pos);
+    mediaObject->play();
+    seekBool=true;
+    /*while(i<1.0){
+        //this->controller->mutSleep(20);
+        usleep(20000);
         videoWidget->setBrightness(val+i);
         videoWidget->setContrast(val+i);
         i=i+0.1;
-    }
+    }*/
 }
 
 void MainWindow::setFreeSources(QStringList freeSources){
@@ -216,8 +221,6 @@ void MainWindow::notUseSourceClicked(){
 }
 
 void MainWindow::resizeEvent (QResizeEvent * event){
-    videoWidget->setFixedWidth(ui->videoPlayer->width());
-    videoWidget->setFixedHeight(ui->videoPlayer->height());
     ui->listWidgetFFmpeg->setFixedWidth(ui->tabWidget->width());
     ui->listWidgetFeedback->setFixedWidth(ui->tabWidget->width());
 }

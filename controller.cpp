@@ -221,9 +221,8 @@ vector<Source*> Controller::getProjectUsedSouces(){
 
 void Controller::streamStarted(){
     this->addFeedback("Streaming started");
-    mutSleep(5000);
-    mainwindow->startVideo();
-
+    //mutSleep(5000);
+    //mainwindow->startVideo();
 }
 
 void Controller::mutSleep(int time){

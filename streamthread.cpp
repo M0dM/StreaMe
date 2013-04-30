@@ -26,13 +26,13 @@ void StreamThread::run() //The function called for threading
     path = QString::fromStdString("ffmpeg\\bin\\ffmpeg.exe");
     arguments << QString::fromStdString("-f") << QString::fromStdString("dshow") << QString::fromStdString("-i") << QString::fromStdString(stools->getHardDevicesCommand());
 #elif __linux__
-    path = QString::fromStdString("./ffmpeg");
+    path = QString::fromStdString("/usr/local/bin/ffmpeg");
     arguments << QString::fromStdString("-f") << QString::fromStdString("video4linux2") << QString::fromStdString("-i") << QString::fromStdString(stools->getHardDevicesCommand());
 #else
 #error
 #endif
 
-    arguments << QString::fromStdString("-s") << QString::fromStdString(this->size);
+            arguments << QString::fromStdString("-s") << QString::fromStdString(this->size);
             arguments << QString::fromStdString("-r") << QString::fromStdString("30");
             arguments << QString::fromStdString("-b:v") << QString::fromStdString(this->videoBitrate);
             arguments << QString::fromStdString("-c:v") << QString::fromStdString("libx264");
@@ -43,15 +43,15 @@ void StreamThread::run() //The function called for threading
             arguments << QString::fromStdString("-threads") << QString::fromStdString("2");
             arguments << QString::fromStdString("-f") << QString::fromStdString("flv");
             //arguments << QString::fromStdString(this->rtmpUrl);
-    arguments << QString::fromStdString("why.mpeg");
+            arguments << QString::fromStdString("why.mpeg");
 
     stools->resetHardDevicesCommand();
 
-    //        cout << stools->getHardDevicesCommand() << endl;
-//            cout << endl << endl;
-//            for(int i(0); i < arguments.size(); i++)
-//                cout << arguments.value(i).toStdString() + " ";
-//            cout << endl << endl;
+            cout << stools->getHardDevicesCommand() << endl;
+            cout << endl << endl;
+            for(int i(0); i < arguments.size(); i++)
+                cout << arguments.value(i).toStdString() + " ";
+            cout << endl << endl;
 
     stools->getFFmpegProcess()->setProcessChannelMode(QProcess::MergedChannels); // get all channels for the output
 
