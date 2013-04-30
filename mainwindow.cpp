@@ -17,6 +17,8 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     // Connect signal buttons
     QObject::connect(ui->buttonUseSource, SIGNAL(clicked()),this,SLOT(useSourceClicked()));
     QObject::connect(ui->buttonNotUseSource, SIGNAL(clicked()),this,SLOT(notUseSourceClicked()));
+    QObject::connect(ui->actionAdd_source, SIGNAL(triggered()),this,SLOT(useSourceClicked()));
+    QObject::connect(ui->actionRemove_source, SIGNAL(triggered()),this,SLOT(notUseSourceClicked()));
     QObject::connect(ui->buttonStop, SIGNAL(clicked()),this,SLOT(stopClicked()));
     QObject::connect(ui->buttonPlay, SIGNAL(clicked()),this,SLOT(playClicked()));
     QObject::connect(ui->actionStart, SIGNAL(triggered()),this,SLOT(playClicked()));
@@ -29,6 +31,17 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     QObject::connect(ui->actionConfigure_parameters, SIGNAL(triggered()),this,SLOT(configureParametersTrigged()));
     QObject::connect(ui->actionChoose_Platform, SIGNAL(triggered()),this,SLOT(choosePlatformTrigged()));
     QObject::connect(ui->actionClose, SIGNAL(triggered()),this,SLOT(close()));
+    QObject::connect(ui->actionAbout_StreaMe, SIGNAL(triggered()),this,SLOT(aboutStreaMe()));
+
+    //Shortcuts
+    this->shortcutSave = new QShortcut(QKeySequence("Ctrl+S"), this);
+    this->shortcutPlay = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Space), this);
+    this->shortcutStop = new QShortcut(QKeySequence(Qt::CTRL +Qt::SHIFT+ Qt::Key_Space), this);
+    QObject::connect(new QShortcut(QKeySequence("Ctrl+N"), this), SIGNAL(activated()), this, SLOT(newProjectTriggered()));
+    QObject::connect(new QShortcut(QKeySequence("Ctrl+O"), this), SIGNAL(activated()), this, SLOT(openProjectTriggered()));
+    QObject::connect(shortcutSave, SIGNAL(activated()), this, SLOT(saveProjectTriggered()));
+    QObject::connect(shortcutPlay, SIGNAL(activated()), this, SLOT(playClicked()));
+    QObject::connect(shortcutStop, SIGNAL(activated()), this, SLOT(stopClicked()));
 
     //test new player
     mediaObject = new Phonon::MediaObject(this);
@@ -39,7 +52,14 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(audioOutput);
 
+<<<<<<< HEAD
     file = new QFile(this);
+=======
+    videoWidget->setMinimumWidth(ui->videoPlayer->width());
+    videoWidget->setMinimumHeight(ui->videoPlayer->height());
+
+    file = new QFile();
+>>>>>>> 3e009962a54f281bac80af90e8e5ce4aa1993ee1
     file->setFileName("why.mpeg");
     file->remove();
     //Def chrono
@@ -144,6 +164,8 @@ void MainWindow::stopClicked(){
     ui->statutBarLabel->setText("StatusBar: Streaming status - stopped");
     controller->blockStreamingStop();
     controller->unblockStreamingPlay();
+
+    //this->unblockArrows();
 }
 
 void MainWindow::playClicked(){
@@ -152,14 +174,17 @@ void MainWindow::playClicked(){
     bu2 = new QBuffer(this);
     array2= new QByteArray();
     controller->addFeedback("Starting streaming...");
-    controller->blockStreamingPlay();
-    controller->unblockStreamingStop();
     ui->statutBarLabel->setText("StatusBar: Streaming status - streaming");
 
     m_chrono->start();
     controller->stream();
+<<<<<<< HEAD
     sleep(5);
     startVideo();
+=======
+
+    //this->blockArrows();
+>>>>>>> 3e009962a54f281bac80af90e8e5ce4aa1993ee1
 }
 
 void MainWindow::enqueueNextSource(){
@@ -260,6 +285,11 @@ void MainWindow::disableInterfaceForNewProject(){
 
     //2nd : block all the remaining interface
     ui->centralWidget->setEnabled(false);
+
+    //Shortcuts
+    this->shortcutSave->setEnabled(false);
+    this->shortcutPlay->setEnabled(false);
+    this->shortcutStop->setEnabled(false);
 }
 
 void MainWindow::enableInterfaceForNewProject(){
@@ -274,6 +304,11 @@ void MainWindow::enableInterfaceForNewProject(){
 
     //2nd : block all the remaining interface
     ui->centralWidget->setEnabled(true);
+
+    //Shortcuts
+    this->shortcutSave->setEnabled(true);
+    this->shortcutPlay->setEnabled(true);
+    this->shortcutStop->setEnabled(true);
 }
 
 void MainWindow::blockPlay(){
@@ -307,4 +342,18 @@ void MainWindow::addFFmpegLineFeedback(QString feedback){
     //cout << feedback.length() << endl;
     if(ui->listWidgetFFmpeg->isVisible())
         ui->listWidgetFFmpeg->scrollToBottom();
+}
+
+void MainWindow::aboutStreaMe(){
+    QMessageBox::information(this,QString::fromStdString("About StreaMe"),QString::fromStdString("StreaMe is an open source software developped for a school project by Benoit Brayer, Nans Plancher and Romaric Delaunoy in 2013."));
+}
+
+void MainWindow::blockArrows(){
+    ui->buttonUseSource->setEnabled(false);
+    ui->buttonNotUseSource->setEnabled(false);
+}
+
+void MainWindow::unblockArrows(){
+    ui->buttonUseSource->setEnabled(true);
+    ui->buttonNotUseSource->setEnabled(true);
 }

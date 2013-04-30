@@ -4,6 +4,7 @@
 #include <QUrl>
 #include <QFile>
 #include <QString>
+#include <QShortcut>
 #include <phonon/MediaSource>
 #include <phonon/VideoPlayer>
 #include <phonon/audiooutput.h>
@@ -50,6 +51,8 @@ public:
     void unblockStop();
     void addLineFeedback(QString line);
     void addFFmpegLineFeedback(QString feedback);
+    void blockArrows();
+    void unblockArrows();
 private:
     Ui::MainWindow *ui;
     Controller* controller;
@@ -66,7 +69,12 @@ private:
     QUrl *url;
     int chrono_value;
     int minute;
+
     bool playerOn, firstPlay, seekBool;
+    QShortcut *shortcutSave;
+    QShortcut *shortcutPlay;
+    QShortcut *shortcutStop;
+
 protected:
     void resizeEvent(QResizeEvent * event );
 public slots :
@@ -85,6 +93,7 @@ public slots :
     void choosePlatformTrigged();
     void videoAlmostFinished();
     void update_chrono();
+    void aboutStreaMe();
 };
 
 #endif // MAINWINDOW_H

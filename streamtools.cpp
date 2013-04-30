@@ -62,6 +62,8 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
             this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName());
             ffmpegProcess->moveToThread(sThread);
             sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
+            controller->blockStreamingPlay();
+            controller->unblockStreamingStop();
             sThread->start();
         }
         else
@@ -75,6 +77,8 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
                 this->setDevicesCommand(this->controller->getProjectUsedSouces()[0]->getSystemName(),this->controller->getProjectUsedSouces()[1]->getSystemName());
                 ffmpegProcess->moveToThread(sThread);
                 sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
+                controller->blockStreamingPlay();
+                controller->unblockStreamingStop();
                 sThread->start();
             }
             else
@@ -87,6 +91,8 @@ void StreamTools::startStream(string rtmpUrl, string size, string videoBitrate ,
                 this->setDevicesCommand(this->controller->getProjectUsedSouces()[1]->getSystemName(),this->controller->getProjectUsedSouces()[0]->getSystemName());
                 ffmpegProcess->moveToThread(sThread);
                 sThread->setParameters(rtmpUrl,size,videoBitrate,audioBitrate);
+                controller->blockStreamingPlay();
+                controller->unblockStreamingStop();
                 sThread->start();
             }
             else
