@@ -52,14 +52,9 @@ MainWindow::MainWindow(Controller* controller,QWidget *parent) :
     //Set the volume slider
     ui->volumeSlider->setAudioOutput(audioOutput);
 
-<<<<<<< HEAD
-    file = new QFile(this);
-=======
-    videoWidget->setMinimumWidth(ui->videoPlayer->width());
-    videoWidget->setMinimumHeight(ui->videoPlayer->height());
 
-    file = new QFile();
->>>>>>> 3e009962a54f281bac80af90e8e5ce4aa1993ee1
+    file = new QFile(this);
+
     file->setFileName("why.mpeg");
     file->remove();
     //Def chrono
@@ -178,13 +173,9 @@ void MainWindow::playClicked(){
 
     m_chrono->start();
     controller->stream();
-<<<<<<< HEAD
+
     sleep(5);
     startVideo();
-=======
-
-    //this->blockArrows();
->>>>>>> 3e009962a54f281bac80af90e8e5ce4aa1993ee1
 }
 
 void MainWindow::enqueueNextSource(){
