@@ -1,9 +1,0 @@
-Doc doxygen
-
-Portage linux
-
-Thesis : (Vision Based Intelligent Speed Adaptation through the use of mobile phones (BSC hons Computing 2011) )
-	Diagrams enchainement dialog (IV)
-	Diagrams sequence (III)
-	Description classes (IV)
-	Description modele MVC (IV)
